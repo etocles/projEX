@@ -1,44 +1,50 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+// import { Observable } from 'rxjs';
+// import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Todo } from '../models/Todo';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application-json'
-  })
-}
+// const httpOptions = {
+//   headers: new HttpHeaders({
+//     'Content-Type': 'application-json'
+//   })
+// }
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodoService {
-  todosUrl:string = 'https://jsonplaceholder.typicode.com/todos';
-  todosLimit = '?_limit=5';
+  // todosUrl:string = 'https://jsonplaceholder.typicode.com/todos';
+  // todosLimit = '?_limit=5';
 
-  constructor(private http:HttpClient) { }
+  constructor() { }
 
   //Get todos
-  getTodos():Observable<Todo[]>{
-    return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
-    // return [
-    //   {
-    //     id:1,
-    //     title: 'ToDo One',
-    //     completed:false
-    //   },
-    //   {
-    //     id:2,
-    //     title: 'ToDo Two',
-    //     completed:true
-    //   },
-    //   {
-    //     id:3,
-    //     title: 'ToDo Three',
-    //     completed:false
-    //   },
-    // ]
+  getTodos(){
+    // return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
+    return [
+      {
+        name:'Todo One',
+        category:'Temporary',
+        dueDate: new Date('2020-05-09T23:59:00'),
+        order_matters:true,
+        completed:false
+      },
+      {
+        name:'Todo Two',
+        category:'Temporary',
+        dueDate: new Date('2020-05-20T23:59:00'),
+        order_matters:true,
+        completed:false
+      },
+      {
+        name:'Todo Three',
+        category:'Temporary',
+        dueDate: new Date('2020-05-31T23:59:00'),
+        order_matters:true,
+        completed:false
+      },
+    ]
   }
 
   //Delete todo

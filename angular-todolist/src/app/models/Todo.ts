@@ -1,5 +1,8 @@
+// todo -> project
 export class Todo{
-  id:number;
-  title:string;
+  name:string; //name of the assignment
+  category:string;
+  dueDate: Date;
+  order_matters:boolean;
   completed:boolean;
 }
