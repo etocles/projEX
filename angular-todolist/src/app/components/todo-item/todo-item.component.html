@@ -1,7 +1,22 @@
 <div [ngClass]="setClasses()">
-  <p>
-    <input (change)="onToggle(todo)" type="checkbox" />
-    {{todo.name}}
+  <div class="ITEM">
     <button (click)="onDelete(todo)" class="del">x</button>
-  </p>
+    <p id="category">{{todo.category}}</p>
+    <h1 id="name">
+      {{todo.name}}
+      <small class = "dateInfo">
+        DUE:{{todo.dueDate.getMonth()+1}}/{{todo.dueDate.getDate()}}/{{todo.dueDate.getFullYear()}}
+              {{todo.dueDate.getHours()%12}}:{{todo.dueDate.getMinutes()}}
+      </small>
+    </h1>
+    <div class = "container">
+      <!-- progressbar, probably needs to be repeated with repeat and css grid -->
+      <progress class="progressBar" max="100" value="20"></progress>
+      <!-- done button and edit button stacked on one another -->
+      <div class ="btn-group">
+        <input (change)="onToggle(todo)" type="checkbox" class="done" />
+        <button class="edit">...</button>
+      </div>
+    </div>
+  </div>
 </div>

@@ -4,16 +4,97 @@
   border: none;
   padding: 5px 9px;
   border-radius: 50%;
-  cursor: pointer;
   float: right;
+}
+
+.del:hover{
+  background: #c91919;
+}
+
+.edit {
+  background: #526156;
+  color: #fff;
+  text-align: center center;
+  border: none;
+  padding: 5px 11px;
+  border-radius: 20%;
+}
+
+.edit:hover{
+  background:#364038;
+}
+
+.done {
+  background: #ff0000;
+  color: #fff;
+  padding: 5px 9px;
+  border-radius: 50%;
 }
 
 .todo {
   background: #f4f4f4;
   padding: 10px;
   border-bottom: 1px #ccc dotted;
+  border-radius: 40px;
+  margin-top:10px;
 }
 
 .is-complete {
   text-decoration: line-through;
+  background:#a1a1a1;
+}
+
+.dateInfo{
+  font-size: .3em;
+  text-align:right;
+}
+
+#name{
+  padding-left: 15px;
+}
+#category{
+  padding-left: 15px;
+}
+
+.container{
+  display:flex;
+  padding-bottom: 10px;
+}
+
+.btn-group button {
+  flex:auto;
+  display: block; /* Make the buttons appear below each other */
+}
+
+.progressBar{
+  flex:auto;
+  width:90%;
+  height:50px;
+  -webkit-appearance: none;
+   appearance: none;
+}
+
+/* new css */
+/* <div class="progress" data-label="50% Complete">
+  <span class="value" style="width:50%;"></span>
+</div> */
+.progress {
+  height: 1.5em;
+  width: 100%;
+  background-color: #c9c9c9;
+  position: relative;
+}
+.progress:before {
+  content: attr(data-label);
+  font-size: 0.8em;
+  position: absolute;
+  text-align: center;
+  top: 5px;
+  left: 0;
+  right: 0;
+}
+.progress .value {
+  background-color: #7cc4ff;
+  display: inline-block;
+  height: 100%;
 }

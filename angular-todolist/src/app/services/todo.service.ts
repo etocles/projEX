@@ -24,22 +24,22 @@ export class TodoService {
     // return this.http.get<Todo[]>(`${this.todosUrl}${this.todosLimit}`);
     return [
       {
-        name:'Todo One',
-        category:'Temporary',
+        name:'Homework 7',
+        category:'FOCS',
         dueDate: new Date('2020-05-09T23:59:00'),
         order_matters:true,
         completed:false
       },
       {
-        name:'Todo Two',
-        category:'Temporary',
+        name:'Character Assignment',
+        category:'3D Modeling',
         dueDate: new Date('2020-05-20T23:59:00'),
         order_matters:true,
         completed:false
       },
       {
-        name:'Todo Three',
-        category:'Temporary',
+        name:'Dola\'s Birthday',
+        category:'Family',
         dueDate: new Date('2020-05-31T23:59:00'),
         order_matters:true,
         completed:false
