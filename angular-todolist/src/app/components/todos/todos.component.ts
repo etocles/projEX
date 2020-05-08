@@ -20,6 +20,17 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo(todo:Todo){
-    console.log('delete me');
+    //Removes from UI
+    //returns all todos that are not the specified id in the UI
+    this.todos = this.todos.filter(t => t.id !== todo.id);
+    //Removes from server
+    this.todoservice.deleteTodo(todo).subscribe();
+  }
+
+  addTodo(todo:Todo){
+    this.todos.push(todo);
+    this.todoservice.addTodo(todo).subscribe(todo => {
+      this.todos.push(todo);
+    });
   }
 }
