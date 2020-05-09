@@ -1,11 +1,10 @@
 <!-- <p>works!</p> -->
 
-<div id="ck-button" [ngClass]="setClasses()">
+<app-nested-bar *ngIf="nested" [bench]="bench"></app-nested-bar>
+<div id="ck-button" *ngIf="!nested" [ngClass]="setClasses()">
    <label>
       <input type="checkbox"><span>
-      {{bench.title}} 
+      {{bench.title}}
       </span>
    </label>
 </div>
-
-<!-- <app-hero-detail *ngIf="NestedBar"></app-hero-detail> -->

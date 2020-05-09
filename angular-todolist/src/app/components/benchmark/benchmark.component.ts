@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Bench } from 'src/app/models/Todo'
+import { CommonModule } from "@angular/common";
+import { Bench, NestedBar } from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-benchmark',
@@ -9,9 +10,16 @@ import { Bench } from 'src/app/models/Todo'
 export class BenchmarkComponent implements OnInit {
   @Input() bench: Bench;
 
+  nested:boolean;
+  nested_bar:NestedBar;
+
   constructor() { }
 
   ngOnInit(): void {
+    this.nested = this.bench.isnested;
+    if(this.nested){
+      this.nested_bar=this.bench.nested_bar;
+    }
   }
 
   setClasses(){

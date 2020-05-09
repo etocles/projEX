@@ -1,0 +1,7 @@
+<p [ngClass]="setClasses()">{{bench.title}}</p>
+<section class="basic-grid">
+  <app-part
+  *ngFor="let part of parts"
+  [part]="part">
+  </app-part>
+</section>

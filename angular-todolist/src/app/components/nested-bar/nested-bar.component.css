@@ -1,0 +1,22 @@
+.basic-grid{
+  display:grid;
+  grid-row-gap: 0rem;
+  width:100%;
+  grid-template-columns: repeat(auto-fit,minmax(1px,1fr));
+}
+
+p{
+  text-align: center;
+  height:48%;
+  background-size: 200% 100%;
+  background-image: linear-gradient(to left, green 50%, gray 50%);
+  -webkit-transition: background-position 1s;
+  -moz-transition: background-position 1s;
+  transition: background-position 1s;
+  border-bottom: 1px groove;
+  border-right: 1px solid;
+}
+
+.complete{
+  background-position: -100% 0%;
+}
