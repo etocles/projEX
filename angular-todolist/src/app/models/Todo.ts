@@ -2,26 +2,48 @@
 export class Project{
   name:string; //name of the assignment
   category:string;
-  dueDate: Date;
+  due_date: Date;
   order_matters:boolean; //commented until implementation
   completed:boolean;
   progbar:ProgressBar; //commented until implementation
+
+  constructor(){
+    this.name = "ProjectName";
+    this.category = "CategoryName";
+    this.due_date = new Date('2020-05-09T23:59:00');
+    this.order_matters = false;
+    this.completed = false;
+    this.progbar = null;
+  }
 }
 
 export class ProgressBar{
   benchmarks:Bench[];
   num_done:number;
+  constructor(){
+    this.benchmarks = [new Bench(),new Bench(),new Bench(),new Bench(),new Bench(),new Bench()];
+    this.num_done = 0;
+  }
 }
 
 export class Bench{
   id:number //the 3rd benchmark in a project will have id=3
   title:string; //title of this benchmark
-  dueDate: Date; //some have duedates
-  isdone:boolean;
+  due_date: Date; //some have duedates
+  completed:boolean;
 
   //nested progress bar
   isnested:boolean;
   nested_bar:NestedBar;
+
+  constructor(){
+    this.id = 0;
+    this.title = "benchtitle";
+    this.due_date = new Date(Date.now());
+    this.completed = false;
+    this.isnested = false;
+    this.nested_bar = null;
+  }
 }
 
 export class NestedBar{

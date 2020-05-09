@@ -14,4 +14,12 @@ export class BenchmarkComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  setClasses(){
+    let classes ={
+      todo:true,
+      'checked':this.bench.completed
+    }
+    return classes
+  }
+
 }

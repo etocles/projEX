@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { CommonModule } from "@angular/common";
 import { ProgressBar, Bench } from 'src/app/models/Todo'
 
 @Component({
@@ -7,15 +8,15 @@ import { ProgressBar, Bench } from 'src/app/models/Todo'
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
-  @Input() pbar: ProgressBar;
+  @Input() bar: ProgressBar;
 
-  // benchmarks:Bench[];
+  benchmarks:Bench[];
 
   constructor() {
-    // this.benchmarks = this.pbar.benchmarks;
   }
 
   ngOnInit(): void {
+    this.benchmarks = this.bar.benchmarks;
   }
 
 }

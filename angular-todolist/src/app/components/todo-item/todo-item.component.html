@@ -5,14 +5,15 @@
     <h1 id="name">
       {{todo.name}}
       <small class = "dateInfo">
-        DUE:{{todo.dueDate.getMonth()+1}}/{{todo.dueDate.getDate()}}/{{todo.dueDate.getFullYear()}}
-              {{todo.dueDate.getHours()%12}}:{{todo.dueDate.getMinutes()}}
+        DUE:{{todo.due_date.getMonth()+1}}/{{todo.due_date.getDate()}}/{{todo.due_date.getFullYear()}}
+              {{todo.due_date.getHours()%12}}:{{todo.due_date.getMinutes()}}
+              <!-- {{todo.due_date.shortTime()}} -->
       </small>
     </h1>
     <div class = "bar-container">
-      <app-progress-bar id="progressBar"></app-progress-bar>
+      <!-- <app-progress-bar id="progressBar"></app-progress-bar> -->
 
-      <!-- <app-progress-bar [pbar]="bar" id="progressBar"></app-progress-bar> -->
+      <app-progress-bar [bar]="bar" id="progressBar"></app-progress-bar>
 
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">

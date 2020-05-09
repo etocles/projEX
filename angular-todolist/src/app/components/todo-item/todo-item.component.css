@@ -5,6 +5,7 @@
   padding: 5px 9px;
   border-radius: 50%;
   float: right;
+  margin-right: 1%;
 }
 
 .del:hover{
