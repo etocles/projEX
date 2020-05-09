@@ -5,7 +5,7 @@ export class Project{
   dueDate: Date;
   order_matters:boolean; //commented until implementation
   completed:boolean;
-  // progbar:ProgressBar; //commented until implementation
+  progbar:ProgressBar; //commented until implementation
 }
 
 export class ProgressBar{
@@ -26,6 +26,9 @@ export class Bench{
 
 export class NestedBar{
   miniBar: Part[];
+  constructor(){
+    this.miniBar = null;
+  }
 }
 
 export class Part{

@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-
-import { Project } from 'src/app/models/Todo'
+import { Project, ProgressBar } from 'src/app/models/Todo'
 
 @Component({
   selector: 'app-todo-item',
@@ -11,7 +10,11 @@ export class TodoItemComponent implements OnInit {
   @Input() todo: Project;
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
 
-  constructor() { }
+  // bar:ProgressBar;
+
+  constructor() {
+      // this.bar = this.todo.progbar;
+  }
 
   ngOnInit(): void {}
 

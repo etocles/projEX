@@ -10,6 +10,7 @@ import { TodoItemComponent } from './components/todo-item/todo-item.component';
 import { HeaderComponent } from './components/layout/header/header.component';
 import { AddTodoComponent } from './components/add-todo/add-todo.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { BenchmarkComponent } from './components/benchmark/benchmark.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
     TodoItemComponent,
     HeaderComponent,
     AddTodoComponent,
-    ProgressBarComponent
+    ProgressBarComponent,
+    BenchmarkComponent
   ],
   imports: [
     BrowserModule,

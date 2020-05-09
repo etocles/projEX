@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ProgressBar } from 'src/app/models/Todo'
+import { Component, OnInit, Input } from '@angular/core';
+import { ProgressBar, Bench } from 'src/app/models/Todo'
 
 @Component({
   selector: 'app-progress-bar',
@@ -7,9 +7,13 @@ import { ProgressBar } from 'src/app/models/Todo'
   styleUrls: ['./progress-bar.component.css']
 })
 export class ProgressBarComponent implements OnInit {
-  // @Input() pbar: ProgressBar;
+  @Input() pbar: ProgressBar;
 
-  constructor() { }
+  // benchmarks:Bench[];
+
+  constructor() {
+    // this.benchmarks = this.pbar.benchmarks;
+  }
 
   ngOnInit(): void {
   }
