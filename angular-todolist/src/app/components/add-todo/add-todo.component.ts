@@ -15,10 +15,12 @@ export class AddTodoComponent implements OnInit {
   }
 
   onSubmit() {
+    //template for adding a Todo
     const todo = {
       name: this.name,
       completed: false,
-      dueDate: Date.now()
+      dueDate: new Date('1990-03-20T23:59:00'),
+      category:"Added"
     }
 
     this.addTodo.emit(todo);

@@ -60,100 +60,18 @@
   width: 90%;
 }
 
-.container{
+.bar-container{
   display:flex;
   padding-bottom: 10px;
 }
 
+#progressBar{
+  padding-left: 15px;
+  width:95%;
+}
+
 .btn-group button {
-  flex:auto;
+  flex:right;
+  /* float:right; */
   display: block; /* Make the buttons appear below each other */
-}
-
-/*custom checkbox css*/
-#ck-button {
-    width:100%;
-    height:auto;
-    background-color:#EFEFEF;
-    overflow:auto;
-    float:left;
-    border-right: 1px solid;
-}
-
-#ck-button span{
-  height:100%;
-}
-
-#ck-button label span {
-    text-align:center;
-    padding:10% 0%; /* TODO: THIS IS VERY SKETCH */
-    display: block;
-}
-
-#ck-button input {
-  -webkit-appearance: none;
-    position:absolute;
-    top:-20px;
-}
-
-#ck-button input + span{
-    background-size: 200% 100%;
-    background-image: linear-gradient(to left, green 50%, gray 50%);
-    -webkit-transition: background-position 1s;
-    -moz-transition: background-position 1s;
-    transition: background-position 1s;
-}
-
-#ck-button input:checked + span {
-    background-position: -100% 0%;
-    color:black;
-}
-/*end custom checkbox*/
-
-/* grid css  */
-.basic-grid{
-  display:grid;
-  grid-row-gap: 0rem;
-  width:100%;
-  grid-template-columns: repeat(auto-fit,minmax(30px,1fr));
-}
-
-/* .card {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #353535;
-  font-size: 3rem;
-  color: #050505;
-  box-shadow: rgba(3,8,20,0.1) 0px 0.15rem 0.5rem, rgba(2,8,20,0.1) 0px 0.075rem 0.175rem;
-  height: 50px;
-  width:100%;
-  border-radius: 4px;
-  transition: all 500ms;
-  overflow: hidden;
-
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
-.card:hover{
-  box-shadow:rgba(2,8,20,0.1) 0px 0.35em 1.175em, rgba(2,8,20,0.08) 0px 0.175em 0.5em;
-  transform: translateY(-3px) scale(1.1);
-} */
-
-
-/* temporary code for changing the colors of the progressBar */
-.temp{
-  color: hsl(0, 86, 56); /*(0%) doneness */
-  color: hsl(130, 86, 56); /*(100%) doneness */
-  color: hsl(39, 86, 56); /*(30%) doneness */
-  color: hsl(65, 86, 56); /*(50%) doneness */
-  color: hsl(117, 86, 56); /*(90%) doneness */
-  /*
-  formula:
-  t = percent done;
-  hsv = calc((130)*(.t)), 80%, 94%);
-  */
 }
