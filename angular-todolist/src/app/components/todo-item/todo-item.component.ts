@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 
-import { Todo } from 'src/app/models/Todo'
+import { Project } from 'src/app/models/Todo'
 
 @Component({
   selector: 'app-todo-item',
@@ -8,14 +8,14 @@ import { Todo } from 'src/app/models/Todo'
   styleUrls: ['./todo-item.component.css']
 })
 export class TodoItemComponent implements OnInit {
-  @Input() todo: Todo;
-  @Output() deleteTodo: EventEmitter<Todo> = new EventEmitter();
+  @Input() todo: Project;
+  @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  //Set Dynamic Classes
+  ngOnInit(): void {}
+
+  //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
   setClasses(){
     let classes ={
       todo:true,

@@ -17,7 +17,8 @@ export class AddTodoComponent implements OnInit {
   onSubmit() {
     const todo = {
       name: this.name,
-      completed: false
+      completed: false,
+      dueDate: Date.now()
     }
 
     this.addTodo.emit(todo);

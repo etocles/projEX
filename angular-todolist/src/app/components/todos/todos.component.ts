@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Todo } from '../../models/Todo';
+import { Project } from '../../models/Todo';
 
 @Component({
   selector: 'app-todos',
@@ -8,7 +8,7 @@ import { Todo } from '../../models/Todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos:Todo[];
+  todos:Project[];
 
   constructor() {}
 
@@ -38,18 +38,13 @@ export class TodosComponent implements OnInit {
     ];
   }
 
-  deleteTodo(todo:Todo){
+  deleteTodo(todo:Project){
     //Removes from UI
     //returns all todos that are not the specified id in the UI
     this.todos = this.todos.filter(t => t.name !== todo.name);
-    //Removes from server
-    // this.todoservice.deleteTodo(todo).subscribe();
   }
 
-  addTodo(todo:Todo){
+  addTodo(todo:Project){
     this.todos.push(todo);
-    // this.todoservice.addTodo(todo).subscribe(todo => {
-    //   this.todos.push(todo);
-    // });
   }
 }

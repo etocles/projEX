@@ -1,5 +1,5 @@
 //Project
-export class Todo{
+export class Project{
   name:string; //name of the assignment
   category:string;
   dueDate: Date;
