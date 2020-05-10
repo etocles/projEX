@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Bench, NestedBar } from 'src/app/models/Todo';
 
@@ -9,6 +9,7 @@ import { Bench, NestedBar } from 'src/app/models/Todo';
 })
 export class BenchmarkComponent implements OnInit {
   @Input() bench: Bench;
+  @Output() markUpTo: EventEmitter<any> = new EventEmitter();
 
   nested:boolean;
   nested_bar:NestedBar;
@@ -28,6 +29,13 @@ export class BenchmarkComponent implements OnInit {
       'checked':this.bench.completed
     }
     return classes
+  }
+
+  onMark(){
+    // console.log("tadah!"+this.bench.title); debugging
+    this.bench.completed = true;
+    this.markUpTo.emit(this.bench);
+    //broadcast the markUpTo message downwards
   }
 
 }

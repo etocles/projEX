@@ -1,7 +1,8 @@
 <section class="basic-grid">
   <app-benchmark
   *ngFor="let bench of benchmarks"
-  [bench]="bench">
+  [bench]="bench"
+  (markUpTo)="markUpTo($event)">
   </app-benchmark>
 
   <!-- <app-benchmark></app-benchmark> -->

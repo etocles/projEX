@@ -122,7 +122,7 @@ export class TodosComponent implements OnInit {
           benchmarks:[
             {
               id:1,
-              title:"Bench2",
+              title:"Bench1",
               due_date: new Date('2019-02-18T23:59:00'),
               completed:true,
               isnested:false,
@@ -176,7 +176,7 @@ export class TodosComponent implements OnInit {
           benchmarks:[
             {
               id:1,
-              title:"Bench2",
+              title:"Bench1",
               due_date: new Date('2019-02-18T23:59:00'),
               completed:true,
               isnested:false,

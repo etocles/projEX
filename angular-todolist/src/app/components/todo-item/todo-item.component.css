@@ -40,6 +40,7 @@
   border-bottom: 1px #ccc dotted;
   border-radius: 40px;
   margin-top:10px; /* spaces out the todos */
+  /* height:200px; */ /* TODO:  EXPERIMENT WITH THIS, AND LOCK IN A SIZE FOR EACH PROJECT */
 }
 
 .is-complete {
