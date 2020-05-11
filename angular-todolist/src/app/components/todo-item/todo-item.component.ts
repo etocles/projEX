@@ -32,7 +32,11 @@ export class TodoItemComponent implements OnInit {
 
   onToggle(todo){
     //Toggle in UI
-    todo.completed = !todo.completed;
+    // todo.completed = !todo.completed;
+    //debugging:
+    for (var i of todo.progbar.benchmarks) {
+      console.log(i.title+" "+i.completed);
+    }
   }
 
   onDelete(todo){

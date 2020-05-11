@@ -44,7 +44,7 @@ export class TodosComponent implements OnInit {
         name:'ProjectName',
         category:'CategoryName',
         due_date: new Date('2020-05-09T23:59:00'),
-        order_matters:false,
+        order_matters:true,
         completed:false,
         progbar:{
           num_done:3,
@@ -115,7 +115,7 @@ export class TodosComponent implements OnInit {
         name:'ProjectName2',
         category:'CategoryName2',
         due_date: new Date('2020-06-09T23:59:00'),
-        order_matters:false,
+        order_matters:true,
         completed:false,
         progbar:{
           num_done:1,
@@ -124,7 +124,7 @@ export class TodosComponent implements OnInit {
               id:1,
               title:"Bench1",
               due_date: new Date('2019-02-18T23:59:00'),
-              completed:true,
+              completed:false,
               isnested:false,
               nested_bar:null
             },
@@ -169,7 +169,7 @@ export class TodosComponent implements OnInit {
         name:'ProjectName3',
         category:'CategoryName3',
         due_date: new Date('2020-11-09T23:59:00'),
-        order_matters:false,
+        order_matters:true,
         completed:false,
         progbar:{
           num_done:4,

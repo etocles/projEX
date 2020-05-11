@@ -9,7 +9,7 @@ import { Bench, NestedBar } from 'src/app/models/Todo';
 })
 export class BenchmarkComponent implements OnInit {
   @Input() bench: Bench;
-  @Output() markUpTo: EventEmitter<any> = new EventEmitter();
+  @Output() markUpTo: EventEmitter<Bench> = new EventEmitter();
 
   nested:boolean;
   nested_bar:NestedBar;
@@ -25,17 +25,19 @@ export class BenchmarkComponent implements OnInit {
 
   setClasses(){
     let classes ={
-      todo:true,
-      'checked':this.bench.completed
+      'default':true,
+      'is-done':this.bench.completed,
+      'not-done':!this.bench.completed
     }
     return classes
   }
 
-  onMark(){
-    // console.log("tadah!"+this.bench.title); debugging
-    this.bench.completed = true;
+  onMark(bench){
+    console.log("tadah!"+this.bench.title); //debugging
+    this.bench.completed = !this.bench.completed;
     this.markUpTo.emit(this.bench);
-    //broadcast the markUpTo message downwards
+
+    //broadcast the markUpTo message downwards so that the nested bars know what to do
   }
 
 }
