@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Bench, NestedBar, Part } from 'src/app/models/Todo';
 
@@ -10,6 +10,7 @@ import { Bench, NestedBar, Part } from 'src/app/models/Todo';
 })
 export class NestedBarComponent implements OnInit {
   @Input() bench: Bench;
+  @Output() partMsg: EventEmitter<Bench> = new EventEmitter();
 
   parts:Part[];
 
@@ -21,9 +22,19 @@ export class NestedBarComponent implements OnInit {
 
   setClasses(){
     let classes ={
-      '.complete':this.bench.completed
+      'default':true,
+      'is-done':this.bench.completed,
+      'not-done':!this.bench.completed
     }
     return classes
+  }
+
+  onMark(p:Part){
+    console.log("nested bar hello");
+    this.bench.completed = !this.bench.completed;
+
+    //send message to update everything previous to this benchmark
+    this.partMsg.emit(this.bench);
   }
 
 }

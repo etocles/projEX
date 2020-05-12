@@ -33,11 +33,16 @@ export class BenchmarkComponent implements OnInit {
   }
 
   onMark(bench){
-    console.log("tadah!"+this.bench.title); //debugging
+    // console.log("tadah!"+this.bench.title); //debugging
     this.bench.completed = !this.bench.completed;
     this.markUpTo.emit(this.bench);
 
     //broadcast the markUpTo message downwards so that the nested bars know what to do
+  }
+
+  nestedMark(bench){
+    console.log("nestedMark recieved");
+    this.markUpTo.emit(this.bench);
   }
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Part } from 'src/app/models/Todo'
 
 @Component({
@@ -8,12 +8,26 @@ import { Part } from 'src/app/models/Todo'
 })
 export class PartComponent implements OnInit {
   @Input() part:Part;
+  @Output() partMsg: EventEmitter<Part> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.part.name);
+  }
 
+  setClasses(){
+    let classes ={
+      'default':true,
+      'is-done':this.part.completed,
+      'not-done':!this.part.completed
+    }
+    return classes;
+  }
+
+  onMark(){
+    console.log("part Hello");
+    this.part.completed = !this.part.completed;
+    this.partMsg.emit(this.part);
   }
 
 }

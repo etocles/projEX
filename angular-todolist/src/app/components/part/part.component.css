@@ -23,15 +23,17 @@
     top:-20px;
 }
 
-#ck-button input + span{
-    background-size: 200% 100%; /*width=200,height=100*/
-    background-image: linear-gradient(to left, green 50%, gray 50%);
-    -webkit-transition: background-position .75s;
-    -moz-transition: background-position .75s;
-    transition: background-position .75s;
+.default{
+  background-size: 200% 100%; /*width=200,height=100*/
+  background-image: linear-gradient(to left, green 50%, gray 50%);
+  -webkit-transition: background-position .75s;
+  -moz-transition: background-position .75s;
+  transition: background-position .75s;
+}
+.is-done{
+  background-position: -100% 0%;
 }
 
-#ck-button input:checked + span {
-    background-position: -100% 0%;
-    color:black;
+.not-done{
+  background-position: 0% 0%;
 }

@@ -1,6 +1,6 @@
-<div id="ck-button">
+<div id="ck-button" [ngClass]="setClasses()">
    <label>
-      <input type="checkbox"><span>
+      <input type="checkbox" (click)="onMark()"><span>
       {{part.name}}
       </span>
    </label>

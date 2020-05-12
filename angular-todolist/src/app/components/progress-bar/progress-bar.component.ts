@@ -34,6 +34,7 @@ export class ProgressBarComponent implements OnInit {
     for (var i of benchmarksCopy) {
         if (i.id > b.id) break;
         i.completed = true;
+        this.bar.num_done++;
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
