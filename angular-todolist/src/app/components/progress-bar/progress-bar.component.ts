@@ -26,7 +26,7 @@ export class ProgressBarComponent implements OnInit {
     if(!this.proj.order_matters) return;
     //if the previous elements have already been checked, don't uncheck them
     if(b.completed == false) return;
-    console.log("recieved: " + b.title + " " + b.completed);
+    // console.log("recieved: " + b.title + " " + b.completed);
 
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
@@ -39,11 +39,15 @@ export class ProgressBarComponent implements OnInit {
     //apply changes
     this.benchmarks = benchmarksCopy;
 
-    console.log("testing to see changes were carried through:");
-    for (var i of this.benchmarks) {
-        console.log(i.title + " " + i.completed);
-    }
-    console.log("debugging finished");
+    // console.log("testing to see changes were carried through:");
+    // for (var i of this.benchmarks) {
+    //     console.log(i.title + " " + i.completed);
+    // }
+    // console.log("debugging finished");
   }
+
+  // markDownTo(b:Bench){
+  //
+  // }
 
 }

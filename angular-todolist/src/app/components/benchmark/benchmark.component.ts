@@ -34,13 +34,24 @@ export class BenchmarkComponent implements OnInit {
 
   onMark(bench){
     // console.log("tadah!"+this.bench.title); //debugging
+
+    //structure for either marking up to or down to (implement eventually) // TODO: DO THIS
+    // if (!this.bench.completed){
+    //   this.bench.completed = !this.bench.completed;
+    //   this.markUpTo.emit(this.bench);
+    // }
+    // else{
+    //   this.bench.completed = !this.bench.completed;
+    //   this.markDownTo.emit(this.bench);
+    // }
+
     this.bench.completed = !this.bench.completed;
     this.markUpTo.emit(this.bench);
 
     //broadcast the markUpTo message downwards so that the nested bars know what to do
   }
 
-  nestedMark(bench){
+  nestedMark(){
     console.log("nestedMark recieved");
     this.markUpTo.emit(this.bench);
   }

@@ -8,9 +8,10 @@ import { Bench, NestedBar, Part } from 'src/app/models/Todo';
   templateUrl: './nested-bar.component.html',
   styleUrls: ['./nested-bar.component.css']
 })
+
 export class NestedBarComponent implements OnInit {
   @Input() bench: Bench;
-  @Output() partMsg: EventEmitter<Bench> = new EventEmitter();
+  @Output() markMsg: EventEmitter<Bench> = new EventEmitter();
 
   parts:Part[];
 
@@ -29,12 +30,12 @@ export class NestedBarComponent implements OnInit {
     return classes
   }
 
-  onMark(p:Part){
+  onMark(b:Bench){
     console.log("nested bar hello");
     this.bench.completed = !this.bench.completed;
 
     //send message to update everything previous to this benchmark
-    this.partMsg.emit(this.bench);
+    this.markMsg.emit(this.bench);
   }
 
 }
