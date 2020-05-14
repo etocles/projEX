@@ -45,16 +45,16 @@ export class NestedBarComponent implements OnInit {
 
   nestedMark(p:Part){
     console.log("nested bar mark hello");
-
-    // if (p.completed){
-    //
-    // }
-    // else{
-    //
-    // }
-    // if (p.id == this.parts[this.parts.length-1].id){
-    //   this.bench.completed = !this.bench.completed;
-    // }
+    let temp = true; //flag
+    for (let i = 0; i< this.parts.length; i++){
+      if (this.parts[i].completed == false){ //if even one part isn't done, the whole benchmark is not done
+        temp = false;
+      }
+    }
+    if(this.bench.completed != temp){
+      this.bench.completed = temp;
+      this.nestedMsg.emit(this.bench);
+    }
   }
 
 }

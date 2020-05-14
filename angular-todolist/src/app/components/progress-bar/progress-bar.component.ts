@@ -24,8 +24,6 @@ export class ProgressBarComponent implements OnInit {
   markUpTo(b:Bench){
     //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-    //if the given benchmark is false, it means that its completion did not change
-    if(b.completed == false) b.completed = true;
 
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
@@ -38,8 +36,6 @@ export class ProgressBarComponent implements OnInit {
           this.bar.num_done++;
         }
         if (i.isnested){ //mark all children as complete
-          console.log("fired");
-
           for (let j = 0; j < i.nested_bar.parts.length; j++){
             i.nested_bar.parts[j].completed = true;
           }
@@ -52,15 +48,13 @@ export class ProgressBarComponent implements OnInit {
   markDownTo(b:Bench){
     //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-    //if the given benchmark is false, it means that its completion did not change
-    if(b.completed == true) b.completed = false;
 
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
     //make appropriate modifications
     this.bar.num_done--; //subtracts one for the current bench
     for (var i of benchmarksCopy) {
-        if (i.id == b.id || i.id > b.id && i.completed){
+        if (i.id > b.id && i.completed){
           if (i.completed){
             i.completed = false;
             this.bar.num_done--;
