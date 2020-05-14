@@ -47,9 +47,9 @@ export class Bench{
 }
 
 export class NestedBar{
-  miniBar: Part[];
+  parts: Part[];
   constructor(){
-    this.miniBar = null;
+    this.parts = null;
   }
 }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { Project, ProgressBar, Bench } from 'src/app/models/Todo'
+import { Project, ProgressBar, Bench, Part } from 'src/app/models/Todo'
 
 @Component({
   selector: 'app-progress-bar',
@@ -24,30 +24,56 @@ export class ProgressBarComponent implements OnInit {
   markUpTo(b:Bench){
     //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-    //if the previous elements have already been checked, don't uncheck them
-    if(b.completed == false) return;
-    // console.log("recieved: " + b.title + " " + b.completed);
+    //if the given benchmark is false, it means that its completion did not change
+    if(b.completed == false) b.completed = true;
 
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
     //make appropriate modifications
+    this.bar.num_done++; //add one for the current bench
     for (var i of benchmarksCopy) {
         if (i.id > b.id) break;
-        i.completed = true;
-        this.bar.num_done++;
+        if (!i.completed){
+          i.completed = true;
+          this.bar.num_done++;
+        }
+        if (i.isnested){ //mark all children as complete
+          console.log("fired");
+
+          for (let j = 0; j < i.nested_bar.parts.length; j++){
+            i.nested_bar.parts[j].completed = true;
+          }
+        }
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
-
-    // console.log("testing to see changes were carried through:");
-    // for (var i of this.benchmarks) {
-    //     console.log(i.title + " " + i.completed);
-    // }
-    // console.log("debugging finished");
   }
 
-  // markDownTo(b:Bench){
-  //
-  // }
+  markDownTo(b:Bench){
+    //if the order doesn't matter, don't worry about updating the elements
+    if(!this.proj.order_matters) return;
+    //if the given benchmark is false, it means that its completion did not change
+    if(b.completed == true) b.completed = false;
+
+    //otherwise, edit the components
+    let benchmarksCopy = this.benchmarks;
+    //make appropriate modifications
+    this.bar.num_done--; //subtracts one for the current bench
+    for (var i of benchmarksCopy) {
+        if (i.id == b.id || i.id > b.id && i.completed){
+          if (i.completed){
+            i.completed = false;
+            this.bar.num_done--;
+          }
+          if (i.isnested){ //mark all children as incomplete
+            for (let j = 0; j < i.nested_bar.parts.length; j++){
+              i.nested_bar.parts[j].completed = false;
+            }
+          }
+        }
+    }
+    //apply changes
+    this.benchmarks = benchmarksCopy;
+  }
 
 }

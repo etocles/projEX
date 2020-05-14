@@ -11,14 +11,14 @@ import { Bench, NestedBar, Part } from 'src/app/models/Todo';
 
 export class NestedBarComponent implements OnInit {
   @Input() bench: Bench;
-  @Output() markMsg: EventEmitter<Bench> = new EventEmitter();
+  @Output() nestedMsg: EventEmitter<Bench> = new EventEmitter();
 
   parts:Part[];
 
   constructor() { }
 
   ngOnInit(): void {
-    this.parts = this.bench.nested_bar.miniBar;
+    this.parts = this.bench.nested_bar.parts;
   }
 
   setClasses(){
@@ -30,12 +30,31 @@ export class NestedBarComponent implements OnInit {
     return classes
   }
 
-  onMark(b:Bench){
-    console.log("nested bar hello");
+  onMark(p:Part){
+    console.log("nested title hello");
     this.bench.completed = !this.bench.completed;
+    let partsCopy = this.parts;
+    for (let i = 0; i < partsCopy.length; i++){
+      partsCopy[i].completed = this.bench.completed;
+    }
+    this.parts = partsCopy;
 
-    //send message to update everything previous to this benchmark
-    this.markMsg.emit(this.bench);
+    //update progressBar accordingly
+    this.nestedMsg.emit(this.bench);
+  }
+
+  nestedMark(p:Part){
+    console.log("nested bar mark hello");
+
+    // if (p.completed){
+    //
+    // }
+    // else{
+    //
+    // }
+    // if (p.id == this.parts[this.parts.length-1].id){
+    //   this.bench.completed = !this.bench.completed;
+    // }
   }
 
 }

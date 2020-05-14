@@ -1,6 +1,6 @@
 <!-- the component that should occur if there is indeed a nested bar on this benchmark -->
 <!-- <app-nested-bar *ngIf="nested" [bench]="bench"></app-nested-bar> -->
-<app-nested-bar *ngIf="nested" [bench]="bench" (markMsg)="nestedMark()"></app-nested-bar>
+<app-nested-bar *ngIf="nested" [bench]="bench" (nestedMsg)="nestedMark($event)"></app-nested-bar>
 <!-- the div that should occur if there is no nested bar on this benchmark -->
 <div id="ck-button" *ngIf="!nested" [ngClass]="setClasses()">
    <label>

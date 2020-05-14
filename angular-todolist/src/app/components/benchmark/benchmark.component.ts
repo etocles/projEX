@@ -10,6 +10,7 @@ import { Bench, NestedBar } from 'src/app/models/Todo';
 export class BenchmarkComponent implements OnInit {
   @Input() bench: Bench;
   @Output() markUpTo: EventEmitter<Bench> = new EventEmitter();
+  @Output() markDownTo: EventEmitter<Bench> = new EventEmitter();
 
   nested:boolean;
   nested_bar:NestedBar;
@@ -33,27 +34,18 @@ export class BenchmarkComponent implements OnInit {
   }
 
   onMark(bench){
-    // console.log("tadah!"+this.bench.title); //debugging
-
-    //structure for either marking up to or down to (implement eventually) // TODO: DO THIS
-    // if (!this.bench.completed){
-    //   this.bench.completed = !this.bench.completed;
-    //   this.markUpTo.emit(this.bench);
-    // }
-    // else{
-    //   this.bench.completed = !this.bench.completed;
-    //   this.markDownTo.emit(this.bench);
-    // }
-
+    //toggle current bench state
     this.bench.completed = !this.bench.completed;
-    this.markUpTo.emit(this.bench);
-
-    //broadcast the markUpTo message downwards so that the nested bars know what to do
+    //update rest of progress bar
+    if(this.bench.completed)this.markUpTo.emit(this.bench);
+    else this.markDownTo.emit(this.bench);
   }
 
-  nestedMark(){
+  nestedMark(b:Bench){
     console.log("nestedMark recieved");
-    this.markUpTo.emit(this.bench);
+    if (b.completed == true)this.markUpTo.emit(this.bench);
+    else this.markDownTo.emit(this.bench);
+
   }
 
 }

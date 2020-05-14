@@ -2,7 +2,8 @@
   <app-benchmark
   *ngFor="let bench of benchmarks"
   [bench]="bench"
-  (markUpTo)="markUpTo($event)">
+  (markUpTo)="markUpTo($event)"
+  (markDownTo)="markDownTo($event)">
   </app-benchmark>
 
   <!-- <app-benchmark></app-benchmark> -->

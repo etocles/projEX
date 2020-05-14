@@ -64,7 +64,7 @@ export class TodosComponent implements OnInit {
               completed:true,
               isnested:true,
               nested_bar:{
-                miniBar:[
+                parts:[
                   {
                     id:1,
                     name:"a",
@@ -118,7 +118,7 @@ export class TodosComponent implements OnInit {
         order_matters:true,
         completed:false,
         progbar:{
-          num_done:1,
+          num_done:0,
           benchmarks:[
             {
               id:1,

@@ -1,13 +1,12 @@
-<!-- <p [ngClass]="setClasses()">{{bench.title}}</p> -->
 <p [ngClass]="setClasses()" (click)="onMark(bench)">{{bench.title}}</p>
 <section class="basic-grid">
-  <app-part
-  *ngFor="let part of parts"
-  [part]="part">
-  </app-part>
   <!-- <app-part
   *ngFor="let part of parts"
-  [part]="part"
-  (onMark)="partMsg($event)">
+  [part]="part">
   </app-part> -->
+  <app-part
+  *ngFor="let part of parts"
+  [part]="part"
+  (partMsg)="nestedMark($event)">
+  </app-part>
 </section>
