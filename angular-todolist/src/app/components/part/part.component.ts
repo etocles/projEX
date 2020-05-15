@@ -25,7 +25,6 @@ export class PartComponent implements OnInit {
   }
 
   onMark(){
-    console.log("part Hello");
     this.part.completed = !this.part.completed;
     this.partMsg.emit(this.part);
   }

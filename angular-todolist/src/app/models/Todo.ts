@@ -24,6 +24,32 @@ export class ProgressBar{
     this.benchmarks = [new Bench(),new Bench(),new Bench(),new Bench(),new Bench(),new Bench()];
     this.num_done = 0;
   }
+
+  dance():void {
+    console.log("yeehaw");
+  }
+  MarkDownTo():void{
+
+    console.log("markDown in class");
+
+  //   let benchmarksCopy = this.benchmarks;
+  //   this.bar.num_done--; //subtracts one for the current bench
+  //   for (var i of benchmarksCopy) {
+  //       if (i.id > b.id && i.completed){
+  //         if (i.completed){
+  //           i.completed = false;
+  //           this.bar.num_done--;
+  //         }
+  //         if (i.isnested){ //mark all children as incomplete
+  //           for (let j = 0; j < i.nested_bar.parts.length; j++){
+  //             i.nested_bar.parts[j].completed = false;
+  //           }
+  //         }
+  //       }
+  //   }
+  //   //apply changes
+  //   this.benchmarks = benchmarksCopy;
+  }
 }
 
 export class Bench{

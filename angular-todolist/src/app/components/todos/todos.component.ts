@@ -217,6 +217,104 @@ export class TodosComponent implements OnInit {
             {
               id:6,
               title:"Bench6",
+              due_date: new Date('2019-02-23T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:7,
+              title:"Bench7",
+              due_date: new Date('2019-02-24T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:8,
+              title:"Bench8",
+              due_date: new Date('2019-02-25T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:9,
+              title:"Bench9",
+              due_date: new Date('2019-02-26T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:10,
+              title:"Bench10",
+              due_date: new Date('2019-02-27T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+          ]
+          ,
+          dance(){
+            console.log("tennis ball");
+          }
+        }
+      },
+
+      //project 4
+      {
+        name:'ProjectName4',
+        category:'CategoryName4',
+        due_date: new Date('2020-11-09T23:59:00'),
+        order_matters:false,
+        completed:false,
+        progbar:{
+          num_done:0,
+          benchmarks:[
+            {
+              id:1,
+              title:"Bench1",
+              due_date: new Date('2019-02-18T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:2,
+              title:"Bench2",
+              due_date: new Date('2019-02-18T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:3,
+              title:"Bench3",
+              due_date: new Date('2019-02-20T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:4,
+              title:"Bench4",
+              due_date: new Date('2019-02-21T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:5,
+              title:"Bench5",
+              due_date: new Date('2019-02-22T23:59:00'),
+              completed:false,
+              isnested:false,
+              nested_bar:null
+            },
+            {
+              id:6,
+              title:"Bench6",
               due_date: new Date('2019-02-22T23:59:00'),
               completed:false,
               isnested:false,

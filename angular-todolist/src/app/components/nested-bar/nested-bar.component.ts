@@ -31,7 +31,6 @@ export class NestedBarComponent implements OnInit {
   }
 
   onMark(p:Part){
-    console.log("nested title hello");
     this.bench.completed = !this.bench.completed;
     let partsCopy = this.parts;
     for (let i = 0; i < partsCopy.length; i++){
@@ -44,7 +43,6 @@ export class NestedBarComponent implements OnInit {
   }
 
   nestedMark(p:Part){
-    console.log("nested bar mark hello");
     let temp = true; //flag
     for (let i = 0; i< this.parts.length; i++){
       if (this.parts[i].completed == false){ //if even one part isn't done, the whole benchmark is not done

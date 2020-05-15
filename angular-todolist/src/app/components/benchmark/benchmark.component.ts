@@ -42,7 +42,6 @@ export class BenchmarkComponent implements OnInit {
   }
 
   nestedMark(b:Bench){
-    console.log("nestedMark recieved");
     if (b.completed == true)this.markUpTo.emit(this.bench);
     else this.markDownTo.emit(this.bench);
 

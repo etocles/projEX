@@ -22,13 +22,13 @@ export class ProgressBarComponent implements OnInit {
   }
 
   markUpTo(b:Bench){
+    this.bar.num_done++; //add one for the current bench
     //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
 
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
     //make appropriate modifications
-    this.bar.num_done++; //add one for the current bench
     for (var i of benchmarksCopy) {
         if (i.id > b.id) break;
         if (!i.completed){
@@ -46,13 +46,13 @@ export class ProgressBarComponent implements OnInit {
   }
 
   markDownTo(b:Bench){
+    this.bar.num_done--; //subtracts one for the current bench
     //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-
     //otherwise, edit the components
+
     let benchmarksCopy = this.benchmarks;
     //make appropriate modifications
-    this.bar.num_done--; //subtracts one for the current bench
     for (var i of benchmarksCopy) {
         if (i.id > b.id && i.completed){
           if (i.completed){
@@ -68,6 +68,12 @@ export class ProgressBarComponent implements OnInit {
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
+
+    let barTemp = this.bar;
+    barTemp.dance();
+    // this.bar.MarkDownTo();
+    // let s = new ProgressBar;
+    // s.dance();
   }
 
 }
