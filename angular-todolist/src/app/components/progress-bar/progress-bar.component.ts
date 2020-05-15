@@ -70,7 +70,7 @@ export class ProgressBarComponent implements OnInit {
     this.benchmarks = benchmarksCopy;
 
     let barTemp = this.bar;
-    barTemp.dance();
+    // barTemp.dance();
     // this.bar.MarkDownTo();
     // let s = new ProgressBar;
     // s.dance();

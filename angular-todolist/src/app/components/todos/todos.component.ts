@@ -255,10 +255,10 @@ export class TodosComponent implements OnInit {
               nested_bar:null
             },
           ]
-          ,
-          dance(){
-            console.log("tennis ball");
-          }
+          // ,
+          // dance(){
+          //   console.log("tennis ball");
+          // }
         }
       },
 
