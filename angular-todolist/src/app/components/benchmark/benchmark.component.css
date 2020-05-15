@@ -1,3 +1,7 @@
+:root{
+  --percent-complete: 
+}
+
 .default{
   background-size: 200% 100%; /*width=200,height=100*/
   background-image: linear-gradient(to left, green 50%, gray 50%);
@@ -29,7 +33,7 @@
     position:absolute;
     top:-20px;
 }
-  
+
 
 .is-done{
   background-position: -100% 0%;
