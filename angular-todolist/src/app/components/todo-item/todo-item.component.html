@@ -1,7 +1,7 @@
 <div [ngClass]="setClasses()">
   <div>
     <button (click)="onDelete(todo)" class="del">x</button>
-    <p id="category">{{todo.category}} {{todo.progbar.num_done/todo.progbar.benchmarks.length*100}}%</p>
+    <p id="category">{{todo.category}} {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%</p>
     <h1 id="name">
       {{todo.name}}
       <small class = "dateInfo">

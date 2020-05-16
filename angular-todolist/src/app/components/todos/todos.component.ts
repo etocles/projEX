@@ -375,13 +375,14 @@ export class TodosComponent implements OnInit {
     // this.todos =[proj,proj,proj];
   }
 
-  deleteTodo(todo:Project){
+  deleteTodo(proj:Project){
     //Removes from UI
     //returns all todos that are not the specified id in the UI
-    this.todos = this.todos.filter(t => t.name !== todo.name);
+    this.todos = this.todos.filter(t => t.name !== proj.name);
   }
 
-  addTodo(todo:Project){
-    this.todos.push(todo);
+  addTodo(proj:Project){
+    console.log(proj);
+    this.todos.push(proj);
   }
 }

@@ -16,6 +16,8 @@ export class BenchmarkComponent implements OnInit {
   nested:boolean;
   nested_bar:NestedBar;
   percent:number;
+  first:boolean;
+  last:boolean;
 
 
   constructor() {
@@ -27,13 +29,17 @@ export class BenchmarkComponent implements OnInit {
       this.nested_bar=this.bench.nested_bar;
     }
     this.percent = this.prog.num_done/this.prog.benchmarks.length;
+    this.first = this.bench.id == this.prog.benchmarks[0].id;
+    this.last = this.bench.id == this.prog.benchmarks[this.prog.benchmarks.length-1].id;
   }
 
   setClasses(){
     let classes ={
       'default':true,
       'is-done':this.bench.completed,
-      'not-done':!this.bench.completed
+      'not-done':!this.bench.completed,
+      'firstbench':this.first,
+      'lastbench':this.last
     }
     return classes
   }
@@ -82,7 +88,7 @@ export class BenchmarkComponent implements OnInit {
       return hex.length === 1 ? '0' + hex : hex;
     };
     let progColor = "#"+toHex(r)+toHex(g)+toHex(b);
-    let linGradientText = 'linear-gradient(to left, '+ `${progColor}` +' 50%, gray 50%)'
+    let linGradientText = 'linear-gradient(to left, '+ `${progColor}` +' 50%, #aaaaaa 50%)'
     return{
       'backgroundImage': linGradientText
     };

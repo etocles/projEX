@@ -30,7 +30,7 @@ export class NestedBarComponent implements OnInit {
     return classes
   }
 
-  onMark(p:Part){
+  onMark(){
     this.bench.completed = !this.bench.completed;
     let partsCopy = this.parts;
     for (let i = 0; i < partsCopy.length; i++){

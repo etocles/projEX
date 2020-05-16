@@ -1,4 +1,5 @@
 import { Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Project} from 'src/app/models/Todo'
 
 @Component({
   selector: 'app-add-todo',
@@ -6,7 +7,7 @@ import { Component, OnInit, EventEmitter, Output} from '@angular/core';
   styleUrls: ['./add-todo.component.css']
 })
 export class AddTodoComponent implements OnInit {
-  @Output() addTodo: EventEmitter<any> = new EventEmitter();
+  @Output() addTodo: EventEmitter<Project> = new EventEmitter();
   name:string;
 
   constructor() { }
@@ -16,14 +17,8 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit() {
     //template for adding a Todo
-    const todo = {
-      name: this.name,
-      completed: false,
-      dueDate: new Date('1990-03-20T23:59:00'),
-      category:"Added"
-    }
-
-    this.addTodo.emit(todo);
+    const proj = new Project(this.name, "CategoryTemp");
+    this.addTodo.emit(proj);
   }
 
 }

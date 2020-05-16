@@ -3,7 +3,7 @@
 <!-- the div that should occur if there is no nested bar on this benchmark -->
 <div id="ck-button" *ngIf="!nested" [ngClass]="setClasses()" [ngStyle]="getStyles()">
    <label>
-      <input type="checkbox" (click)="onMark(bench)"><span>
+      <input type="checkbox" (click)="onMark(bench)" href="javascript:void(0)"><span>
       {{bench.title}}
       </span>
    </label>

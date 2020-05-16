@@ -7,13 +7,13 @@ export class Project{
   completed:boolean;
   progbar:ProgressBar; //commented until implementation
 
-  constructor(){
-    this.name = "ProjectName";
-    this.category = "CategoryName";
+  constructor(name:string, cat:string){
+    this.name = name;
+    this.category = cat;
     this.due_date = new Date('2020-05-09T23:59:00');
     this.order_matters = false;
     this.completed = false;
-    this.progbar = null;
+    this.progbar = new ProgressBar;
   }
 }
 
@@ -21,16 +21,16 @@ export class ProgressBar{
   benchmarks:Bench[];
   num_done:number;
   constructor(){
-    this.benchmarks = [new Bench(),new Bench(),new Bench(),new Bench(),new Bench(),new Bench()];
+    this.benchmarks = [new Bench(1),new Bench(2),new Bench(3),new Bench(4),new Bench(5),new Bench(6)];
     this.num_done = 0;
   }
 
-  dance():void {
-    console.log("yeehaw");
-  }
-  MarkDownTo():void{
-
-    console.log("markDown in class");
+  // dance():void {
+  //   console.log("yeehaw");
+  // }
+  // MarkDownTo():void{
+  //
+  //   console.log("markDown in class");
 
   //   let benchmarksCopy = this.benchmarks;
   //   this.bar.num_done--; //subtracts one for the current bench
@@ -49,7 +49,7 @@ export class ProgressBar{
   //   }
   //   //apply changes
   //   this.benchmarks = benchmarksCopy;
-  }
+  // }
 }
 
 export class Bench{
@@ -62,8 +62,8 @@ export class Bench{
   isnested:boolean;
   nested_bar:NestedBar;
 
-  constructor(){
-    this.id = 0;
+  constructor(id:number){
+    this.id = id;
     this.title = "benchtitle";
     this.due_date = new Date(Date.now());
     this.completed = false;
