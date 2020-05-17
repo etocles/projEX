@@ -30,7 +30,36 @@ export class ProgressBar{
     this.num_done = 0;
   }
 
-  ToggleBenchmark(index:number, state = true):void{
+  MarkUpTo(b:Bench):void{
+    //otherwise, edit the components
+    let benchmarksCopy = this.benchmarks;
+    //make appropriate modifications
+    for (var i of benchmarksCopy) {
+        if (i.id > b.id) break;
+        if (!i.completed){
+          this.num_done++;
+          i.ToggleTo(true);
+        }
+    }
+    //apply changes
+    this.benchmarks = benchmarksCopy;
+  }
+
+  MarkDownTo(b:Bench):void{
+    //otherwise, edit the components
+    let benchmarksCopy = this.benchmarks;
+    //make appropriate modifications
+    for (var i of benchmarksCopy) {
+        if (i.id > b.id && i.completed){
+          this.num_done--;
+          i.ToggleTo(false);
+        }
+    }
+    //apply changes
+    this.benchmarks = benchmarksCopy;
+  }
+
+  ToggleBenchmark(index:number, state = true):void{ //manual toggling for projects where order doesn't matter
     //if completing a benchmark, state is true
     if (state){
       this.num_done++;

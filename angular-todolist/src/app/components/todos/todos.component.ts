@@ -26,13 +26,9 @@ export class TodosComponent implements OnInit {
 
     let proj3 = new Project('ProjectName3','CategoryName3',10);
     proj2.due_date = new Date('2020-11-09T23:59:00');
-    proj3.progbar.ToggleBenchmark(0);
-    proj3.progbar.ToggleBenchmark(1);
-    proj3.progbar.ToggleBenchmark(2);
-    proj3.progbar.ToggleBenchmark(3);
-    proj3.progbar.ToggleBenchmark(4);
+    proj3.progbar.MarkUpTo(proj3.progbar.benchmarks[4]);
 
-    let proj4 = new Project('ProjectName3','CategoryName3',10);
+    let proj4 = new Project('ProjectName4','CategoryName4',10);
     proj4.order_matters = false;
 
     this.todos = [proj1,proj2,proj3,proj4];

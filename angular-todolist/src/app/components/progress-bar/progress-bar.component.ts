@@ -23,51 +23,14 @@ export class ProgressBarComponent implements OnInit {
 
   markUpTo(b:Bench){
     this.bar.num_done++; //add one for the current bench
-    //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-
-    //otherwise, edit the components
-    let benchmarksCopy = this.benchmarks;
-    //make appropriate modifications
-    for (var i of benchmarksCopy) {
-        if (i.id > b.id) break;
-        if (!i.completed){
-          i.completed = true;
-          this.bar.num_done++;
-        }
-        if (i.isnested){ //mark all children as complete
-          for (let j = 0; j < i.nested_bar.parts.length; j++){
-            i.nested_bar.parts[j].completed = true;
-          }
-        }
-    }
-    //apply changes
-    this.benchmarks = benchmarksCopy;
+    this.bar.MarkUpTo(b);
   }
 
   markDownTo(b:Bench){
     this.bar.num_done--; //subtracts one for the current bench
-    //if the order doesn't matter, don't worry about updating the elements
     if(!this.proj.order_matters) return;
-    //otherwise, edit the components
-
-    let benchmarksCopy = this.benchmarks;
-    //make appropriate modifications
-    for (var i of benchmarksCopy) {
-        if (i.id > b.id && i.completed){
-          if (i.completed){
-            i.completed = false;
-            this.bar.num_done--;
-          }
-          if (i.isnested){ //mark all children as incomplete
-            for (let j = 0; j < i.nested_bar.parts.length; j++){
-              i.nested_bar.parts[j].completed = false;
-            }
-          }
-        }
-    }
-    //apply changes
-    this.benchmarks = benchmarksCopy;
+    this.bar.MarkDownTo(b);
   }
 
 }
