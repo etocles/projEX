@@ -1,7 +1,7 @@
-<div id="ck-button" [ngClass]="setClasses()" [ngStyle]="getStyles()">
-   <label>
-      <input type="checkbox" (click)="onMark()"><span>
-      {{part.name}}
-      </span>
-   </label>
+<div
+id="part" 
+[ngClass]="setClasses()" 
+[ngStyle]="getStyles()" 
+(click)="onMark()">
+{{part.name}}
 </div>

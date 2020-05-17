@@ -30,6 +30,8 @@ export class TodosComponent implements OnInit {
 
     let proj4 = new Project('ProjectName4','CategoryName4',10);
     proj4.order_matters = false;
+    proj4.progbar.benchmarks[5].isnested = true;
+    proj4.progbar.benchmarks[5].nested_bar = new NestedBar(5);
 
     this.todos = [proj1,proj2,proj3,proj4];
   }

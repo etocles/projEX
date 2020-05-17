@@ -1,26 +1,11 @@
-#ck-button {
+#part {
     width:100%;
-    height:auto;
-    background-color:#EFEFEF;
-    overflow:auto;
-    float:left;
+    height:100%;
+    overflow:hidden;
     border-right: 1px solid;
-}
-
-#ck-button span{
-  height:100%;
-}
-
-#ck-button label span {
-    text-align:center;
-    padding:10% 0%; /* TODO: THIS IS VERY SKETCH */
-    display: block;
-}
-
-#ck-button input {
-  -webkit-appearance: none;
-    position:absolute;
-    top:-20px;
+    border-color: #828282;
+    text-align: center;
+    padding: 10% 0%;
 }
 
 .default{

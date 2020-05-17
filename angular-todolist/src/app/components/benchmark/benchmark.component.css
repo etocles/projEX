@@ -7,17 +7,9 @@
   box-shadow: 0px 4px 4px #555;
 }
 
-.firstbench{
-  border-radius: 20px 0px 0px 20px;
-}
-
-.lastbench{
-  border-radius: 0px 20px 20px 0px;
-}
-
 #bench {
     width:100%;
-    height:auto;
+    height:100%;
     overflow:hidden;
     border-right: 1px solid;
     border-color: #828282;
@@ -31,4 +23,12 @@
 
 .not-done{
   background-position: 0% 0%;
+}
+
+.firstbench{
+  border-radius: 20px 0px 0px 20px;
+}
+
+.lastbench{
+  border-radius: 0px 20px 20px 0px;
 }

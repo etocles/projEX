@@ -7,7 +7,8 @@
 
 p{
   text-align: center;
-  height:48%;
+  padding: 2% 0%;
+  height:50%;
   background-size: 200% 100%;
   background-image: linear-gradient(to left, green 50%, gray 50%);
   -webkit-transition: background-position 1s;
