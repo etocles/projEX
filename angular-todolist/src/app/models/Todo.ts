@@ -7,49 +7,41 @@ export class Project{
   completed:boolean;
   progbar:ProgressBar; //commented until implementation
 
-  constructor(name:string, cat:string){
+  constructor(name:string, cat:string, length:number){
     this.name = name;
     this.category = cat;
     this.due_date = new Date('2020-05-09T23:59:00');
     this.order_matters = true;
     this.completed = false;
-    this.progbar = new ProgressBar;
+    this.progbar = new ProgressBar(length);
   }
 }
 
 export class ProgressBar{
   benchmarks:Bench[];
   num_done:number;
-  constructor(){
-    this.benchmarks = [new Bench(1),new Bench(2),new Bench(3),new Bench(4),new Bench(5),new Bench(6)];
+
+  constructor(length:number){
+    this.benchmarks=[new Bench(-1)];
+    for (let i = 0; i < length; i++){
+      this.benchmarks.push(new Bench(i));
+    }
+    this.benchmarks.shift();
     this.num_done = 0;
   }
 
-  // dance():void {
-  //   console.log("yeehaw");
-  // }
-  // MarkDownTo():void{
-  //
-  //   console.log("markDown in class");
-
-  //   let benchmarksCopy = this.benchmarks;
-  //   this.bar.num_done--; //subtracts one for the current bench
-  //   for (var i of benchmarksCopy) {
-  //       if (i.id > b.id && i.completed){
-  //         if (i.completed){
-  //           i.completed = false;
-  //           this.bar.num_done--;
-  //         }
-  //         if (i.isnested){ //mark all children as incomplete
-  //           for (let j = 0; j < i.nested_bar.parts.length; j++){
-  //             i.nested_bar.parts[j].completed = false;
-  //           }
-  //         }
-  //       }
-  //   }
-  //   //apply changes
-  //   this.benchmarks = benchmarksCopy;
-  // }
+  ToggleBenchmark(index:number, state = true):void{
+    //if completing a benchmark, state is true
+    if (state){
+      this.num_done++;
+      this.benchmarks[index].ToggleTo(state);
+    }
+    //if uncompleting a benchmark, state is false
+    else{
+      this.num_done--;
+      this.benchmarks[index].ToggleTo(state);
+    }
+  }
 }
 
 export class Bench{
@@ -64,18 +56,37 @@ export class Bench{
 
   constructor(id:number){
     this.id = id;
-    this.title = "benchtitle";
-    this.due_date = new Date(Date.now());
+    this.title = "Bench"+this.id;
+    this.due_date = new Date(Date.now()); // TODO: DATE NEEDS TO BE ADDED TO CONSTRUCTOR
     this.completed = false;
     this.isnested = false;
     this.nested_bar = null;
+  }
+
+  ToggleTo(state:boolean):void{
+    //this should only be called through the ProgressBar's CompleteBenchmark function
+    this.completed = state;
+    if (this.isnested){
+      this.nested_bar.ToggleAll(state);
+    }
   }
 }
 
 export class NestedBar{
   parts: Part[];
-  constructor(){
-    this.parts = null;
+
+  constructor(length:number){
+    this.parts = [new Part(-1)];
+    for (let i = 0; i < length; i++){
+      this.parts.push(new Part(i));
+    }
+    this.parts.shift();
+  }
+
+  ToggleAll(state:boolean):void{
+    for (let i = 0; i< this.parts.length; i++){
+      this.parts[i].Toggle(state);
+    }
   }
 }
 
@@ -83,6 +94,16 @@ export class Part{
   id:number;
   name:string;
   completed:boolean;
+
+  constructor(n:number){
+    this.name = String.fromCharCode(97 + n);
+    this.id = n;
+    this.completed = false;
+  }
+
+  Toggle(state:boolean):void{
+    this.completed = state;
+  }
 }
 
 //

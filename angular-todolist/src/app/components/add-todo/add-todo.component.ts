@@ -17,7 +17,7 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit() {
     //template for adding a Todo
-    const proj = new Project(this.name, "CategoryTemp");
+    const proj = new Project(this.name, "CategoryTemp", 6);
     this.addTodo.emit(proj);
   }
 

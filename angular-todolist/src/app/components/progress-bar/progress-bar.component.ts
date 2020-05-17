@@ -68,12 +68,6 @@ export class ProgressBarComponent implements OnInit {
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
-
-    let barTemp = this.bar;
-    // barTemp.dance();
-    // this.bar.MarkDownTo();
-    // let s = new ProgressBar;
-    // s.dance();
   }
 
 }
