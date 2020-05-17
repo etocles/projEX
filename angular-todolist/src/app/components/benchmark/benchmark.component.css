@@ -4,7 +4,7 @@
   -webkit-transition: background-position .75s;
   -moz-transition: background-position .75s;
   transition: background-position .75s;
-  box-shadow: 0px 4px 6px #555;
+  box-shadow: 0px 4px 5px #555;
 }
 
 .firstbench{

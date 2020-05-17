@@ -11,7 +11,7 @@ export class Project{
     this.name = name;
     this.category = cat;
     this.due_date = new Date('2020-05-09T23:59:00');
-    this.order_matters = false;
+    this.order_matters = true;
     this.completed = false;
     this.progbar = new ProgressBar;
   }
