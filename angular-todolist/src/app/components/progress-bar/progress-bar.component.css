@@ -1,53 +1,8 @@
-/*custom checkbox css*/
-#ck-button {
-    width:100%;
-    height:auto;
-    background-color:#EFEFEF;
-    overflow:auto;
-    float:left;
-    border-right: 1px solid;
-}
-
-#ck-button span{
-  height:100%;
-}
-
-#ck-button label span {
-    text-align:center;
-    padding:10% 0%; /* TODO: THIS IS VERY SKETCH */
-    display: block;
-}
-
-#ck-button input {
-  -webkit-appearance: none;
-    position:absolute;
-    top:-20px;
-}
-
-#ck-button input + span{
-    background-size: 200% 100%;
-    background-image: linear-gradient(to left, green 50%, gray 50%);
-    -webkit-transition: background-position 1s;
-    -moz-transition: background-position 1s;
-    transition: background-position 1s;
-}
-
-#ck-button input:checked + span {
-    background-position: -100% 0%;
-    color:black;
-}
-/*end custom checkbox*/
-
 /* grid css  */
 .basic-grid{
   display:grid;
   grid-row-gap: 0rem;
   width:100%;
+  height:80px; /*normalizes the height of the progressBar*/
   grid-template-columns: repeat(auto-fit,minmax(30px,1fr));
-}
-
-/* temporary code for changing the colors of the progressBar */
-.temp{
-  color: hsl(0, 86, 56); /*(0%) doneness */
-  color: hsl(130, 86, 56); /*(100%) doneness */
 }

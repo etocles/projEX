@@ -1,6 +1,6 @@
 #part {
     width:100%;
-    height:100%;
+    height:99%; /*idk why*/
     overflow:hidden;
     border-right: 1px solid;
     border-color: #828282;

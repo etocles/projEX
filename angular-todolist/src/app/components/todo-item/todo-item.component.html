@@ -11,10 +11,7 @@
       </small>
     </h1>
     <div class = "bar-container">
-      <!-- <app-progress-bar id="progressBar"></app-progress-bar> -->
-
       <app-progress-bar [proj]="todo" id="progressBar"></app-progress-bar>
-
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">
         <input (change)="onToggle(todo)" type="checkbox" class="done" />
