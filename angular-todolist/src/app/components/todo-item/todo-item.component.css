@@ -40,7 +40,7 @@
   border-bottom: 1px #ccc dotted;
   border-radius: 40px;
   margin-top:10px; /* spaces out the todos */
-  /* height:150px;  */
+  height:260px; /*normalizes project height*/
 }
 
 .is-complete {
@@ -48,32 +48,34 @@
   background:#a1a1a1;
 }
 
-.dateInfo{
-  font-size: .3em;
-}
-
-#name{
-  padding-left: 15px;
-  /* border-bottom: 1px solid #999; */
-}
-
-#category{
-  padding-left: 15px;
-  width: 90%;
-}
-
 .bar-container{
   display:flex;
   padding-bottom: 10px;
 }
 
+.btn-group button {
+  flex:right;
+  display: block; /* Make the buttons appear below each other */
+}
+
+#category{
+  padding-left: 15px;
+  width: 90%;
+  font-weight:bold;
+  color: #8794a3;
+}
+
+#dateInfo{
+  font-size: .3em;
+}
+
+#name{
+  padding-left: 15px;
+  font-size:3em;
+  /* border-bottom: 1px solid #999; */
+}
+
 #progressBar{
   padding-left: 15px;
   width:95%;
-}
-
-.btn-group button {
-  flex:right;
-  /* float:right; */
-  display: block; /* Make the buttons appear below each other */
 }

@@ -1,13 +1,12 @@
 <div [ngClass]="setClasses()">
   <div>
     <button (click)="onDelete(todo)" class="del">x</button>
-    <p id="category">{{todo.category}} {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%</p>
+    <h2 id="category">{{todo.category | uppercase}} {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%</h2>
     <h1 id="name">
       {{todo.name}}
-      <small class = "dateInfo">
+      <small id= "dateInfo">
         DUE:{{todo.due_date.getMonth()+1}}/{{todo.due_date.getDate()}}/{{todo.due_date.getFullYear()}}
               {{todo.due_date.getHours()%12}}:{{todo.due_date.getMinutes()}}
-              <!-- {{todo.due_date.shortTime()}} -->
       </small>
     </h1>
     <div class = "bar-container">

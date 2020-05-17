@@ -13,7 +13,7 @@ export class TodosComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    let proj1 = new Project('ProjectName','CategoryName',5);
+    let proj1 = new Project('ProjectName','Category',5);
     proj1.due_date = new Date('2020-05-09T23:59:00');
     proj1.progbar = new ProgressBar(5);
     proj1.progbar.benchmarks[1].isnested = true;
@@ -21,14 +21,14 @@ export class TodosComponent implements OnInit {
     proj1.progbar.ToggleBenchmark(0);
     proj1.progbar.ToggleBenchmark(1);
 
-    let proj2 = new Project('ProjectName2','CategoryName2',5);
+    let proj2 = new Project('ProjectName2','Category2',5);
     proj2.due_date = new Date('2020-06-09T23:59:00');
 
-    let proj3 = new Project('ProjectName3','CategoryName3',10);
+    let proj3 = new Project('ProjectName3','Category3',10);
     proj2.due_date = new Date('2020-11-09T23:59:00');
     proj3.progbar.MarkUpTo(proj3.progbar.benchmarks[4]);
 
-    let proj4 = new Project('ProjectName4','CategoryName4',10);
+    let proj4 = new Project('ProjectName4','Category4',10);
     proj4.order_matters = false;
     proj4.progbar.benchmarks[5].isnested = true;
     proj4.progbar.benchmarks[5].nested_bar = new NestedBar(5);
