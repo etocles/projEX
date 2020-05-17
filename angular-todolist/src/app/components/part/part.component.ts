@@ -32,7 +32,7 @@ export class PartComponent implements OnInit {
 
   getStyles(){
     this.percent = this.prog.num_done/this.prog.benchmarks.length;
-    let h = 130*this.percent; //maybe 10+120*this.percent instead
+    let h = (this.percent > .9) ? 130*this.percent : 60*this.percent; //better gradient
     let s = 86;
     let l = 56;
     h /= 360;
