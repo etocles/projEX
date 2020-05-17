@@ -11,9 +11,12 @@ export class PartComponent implements OnInit {
   @Input() prog:ProgressBar;
   @Output() partMsg: EventEmitter<Part> = new EventEmitter();
 
+  percent:number;
+  
   constructor() { }
 
   ngOnInit(): void {
+    this.percent = this.prog.num_done/this.prog.benchmarks.length;
   }
 
   setClasses(){

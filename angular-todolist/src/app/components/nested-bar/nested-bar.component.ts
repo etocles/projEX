@@ -15,11 +15,13 @@ export class NestedBarComponent implements OnInit {
   @Output() nestedMsg: EventEmitter<Bench> = new EventEmitter();
 
   parts:Part[];
+  percent:number;
 
   constructor() { }
 
   ngOnInit(): void {
     this.parts = this.bench.nested_bar.parts;
+    this.percent = this.prog.num_done/this.prog.benchmarks.length;
   }
 
   setClasses(){

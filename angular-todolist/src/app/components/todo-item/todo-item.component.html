@@ -5,8 +5,7 @@
     <h1 id="name">
       {{todo.name}}
       <small id= "dateInfo">
-        DUE:{{todo.due_date.getMonth()+1}}/{{todo.due_date.getDate()}}/{{todo.due_date.getFullYear()}}
-              {{todo.due_date.getHours()%12}}:{{todo.due_date.getMinutes()}}
+        DUE: {{todo.due_date | date: 'short'}}
       </small>
     </h1>
     <div class = "bar-container">
