@@ -71,6 +71,7 @@
   justify-content: space-between;
   display:flex;
   align-items:baseline;
+  /* flex-wrap:wrap; */
 }
 
 #name{

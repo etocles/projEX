@@ -1,28 +1,28 @@
 <div [ngClass]="setClasses()">
   <div>
-    <button (click)="onDelete(todo)" id="del">x</button>
-    <h2 id="category">{{todo.category | uppercase}}</h2>
+    <button (click)="onDelete(proj)" id="del">x</button>
+    <h2 id="category">{{proj.category | uppercase}}</h2>
     <div id = "spacer">
         <div>
           <h1 id="name">
-            {{todo.name}}
+            {{proj.name}}
           </h1>
           <small id= "date-info">
-            DUE: {{todo.due_date | date: 'short'}}
+            DUE: {{proj.due_date | date: 'short'}}
           </small>
         </div>
 
         <h1 id = "percent">
-          {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%
+          {{proj.progbar.num_done/proj.progbar.benchmarks.length*100 | number:'1.0-0'}}%
         </h1>
     </div>
     <hr id="separator" />
     <div class = "bar-container">
-      <app-progress-bar [proj]="todo" id="progressBar"></app-progress-bar>
+      <app-progress-bar [proj]="proj" id="progressBar"></app-progress-bar>
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">
-        <button (click)="onToggle(todo)" id="done">✅</button>
-        <button id="edit">🔽</button>
+        <button (click)="onToggle(proj)" id="done">✅</button>
+        <button (click)="onEdit()"id="edit">🔽</button>
       </div>
     </div>
   </div>

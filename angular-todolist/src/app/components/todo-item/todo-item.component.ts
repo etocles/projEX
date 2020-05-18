@@ -9,7 +9,7 @@ import { Project, ProgressBar } from 'src/app/models/Todo'
 })
 
 export class TodoItemComponent implements OnInit {
-  @Input() todo: Project;
+  @Input() proj: Project;
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
 
   bar:ProgressBar;
@@ -18,14 +18,14 @@ export class TodoItemComponent implements OnInit {
   }
 
   ngOnInit(): void {
-      this.bar = this.todo.progbar;
+      this.bar = this.proj.progbar;
   }
 
   //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
   setClasses(){
     let classes ={
       todo:true,
-      'is-complete':this.todo.completed
+      'is-complete':this.proj.completed
     }
     return classes
   }
@@ -33,10 +33,11 @@ export class TodoItemComponent implements OnInit {
   onToggle(proj){
     //Toggle in UI
     proj.completed = !proj.completed;
+    // this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]); // TODO: needs to be fully implemented
   }
 
-  onDelete(todo){
-    this.deleteTodo.emit(todo);
+  onDelete(proj){
+    this.deleteTodo.emit(proj);
   }
 
 }

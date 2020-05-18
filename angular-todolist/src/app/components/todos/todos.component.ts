@@ -8,7 +8,7 @@ import { Project, ProgressBar, NestedBar } from '../../models/Todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
-  todos:Project[];
+  projects:Project[];
 
   constructor() {}
 
@@ -37,16 +37,16 @@ export class TodosComponent implements OnInit {
     let proj5 = new Project('ProjectName5','Category5',2);
     let proj6 = new Project('Test','YEST',1);
 
-    this.todos = [proj1,proj2,proj3,proj4,proj5,proj6];
+    this.projects = [proj1,proj2,proj3,proj4,proj5,proj6];
   }
 
   deleteTodo(proj:Project){
     //Removes from UI
-    //returns all todos that are not the specified id in the UI
-    this.todos = this.todos.filter(t => t.name !== proj.name);
+    //returns all projects that are not the specified id in the UI
+    this.projects = this.projects.filter(t => t.name !== proj.name);
   }
 
   addTodo(proj:Project){
-    this.todos.push(proj);
+    this.projects.push(proj);
   }
 }
