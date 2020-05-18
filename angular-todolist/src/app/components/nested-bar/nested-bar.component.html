@@ -1,4 +1,4 @@
-<p [ngClass]="setClasses()" (click)="onMark()" [ngStyle]="getStyles()">{{bench.title}}</p>
+<p [ngClass]="setClasses()" (click)="onMark()" [ngStyle]="getStyles()" title="{{bench.title}}">{{bench.title}}</p>
 <section class="basic-grid">
   <app-part
   *ngFor="let part of parts"
