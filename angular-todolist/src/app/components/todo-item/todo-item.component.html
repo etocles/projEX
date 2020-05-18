@@ -1,6 +1,6 @@
 <div [ngClass]="setClasses()">
   <div>
-    <button (click)="onDelete(todo)" class="del">x</button>
+    <button (click)="onDelete(todo)" id="del">x</button>
     <h2 id="category">{{todo.category | uppercase}}</h2>
     <div id = "spacer">
         <div>
@@ -17,12 +17,12 @@
         </h1>
     </div>
     <hr id="separator" />
-    <div id = "bar-container">
+    <div class = "bar-container">
       <app-progress-bar [proj]="todo" id="progressBar"></app-progress-bar>
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">
-        <input (change)="onToggle(todo)" type="checkbox" class="done" />
-        <button class="edit">...</button>
+        <button (click)="onToggle(todo)" id="done">✅</button>
+        <button id="edit">...</button>
       </div>
     </div>
   </div>

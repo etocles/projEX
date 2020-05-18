@@ -6,9 +6,7 @@
   grid-template-columns: repeat(auto-fit,minmax(1px,1fr));
 }
 
-p{
-  text-align: center;
-  padding: 2% 0%;
+#nest-title{
   height:50%;
   background-size: 200% 100%;
   background-image: linear-gradient(to left, green 50%, gray 50%);
@@ -16,7 +14,15 @@ p{
   -moz-transition: background-position 1s;
   transition: background-position 1s;
   border-bottom: 1px groove;
-  border-right: 1px solid;
+  /* centers the text in the middle of the element vertically and horizontally  */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+#nest-title:hover{
+  filter:brightness(90%);
 }
 
 

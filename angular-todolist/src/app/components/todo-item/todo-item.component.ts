@@ -30,9 +30,9 @@ export class TodoItemComponent implements OnInit {
     return classes
   }
 
-  onToggle(todo){
+  onToggle(proj){
     //Toggle in UI
-    todo.completed = !todo.completed;
+    proj.completed = !proj.completed;
   }
 
   onDelete(todo){

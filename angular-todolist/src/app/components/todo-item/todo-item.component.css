@@ -1,4 +1,33 @@
-.del {
+.todo {
+  background: #f4f4f4;
+  padding: 10px;
+  border-bottom: 1px #ccc dotted;
+  border-radius: 40px;
+  margin-top:1%; /* spaces out the todos */
+  margin-left:0.6%;
+  margin-right:0.6%;
+  height: minmax(260px,auto); /*normalizes project height*/
+  box-shadow: 5px 5px #223540;
+}
+
+.is-complete {
+  text-decoration: line-through;
+  background:#a1a1a1;
+  filter:brightness(70%);
+}
+
+.btn-group button {
+  flex:right;
+  display: block; /* Make the buttons appear below each other */
+  margin-left: 30%;
+}
+
+.bar-container{
+  display:flex;
+  padding-bottom: 10px;
+}
+
+#del { /* deleting button */
   background: #ff0000;
   color: #333333;
   border: none;
@@ -7,50 +36,26 @@
   float: right;
   margin-right: 1%;
 }
-
-.del:hover{
+#del:hover{
   background: #c91919;
 }
-
-.edit {
+#edit { /* dropdown button */
   background: #526156;
   color: #fff;
-  text-align: center;
   border: none;
-  padding: 5px 11px;
+  padding: 16% 30%;
   border-radius: 20%;
 }
-.edit:hover{
-  background:#364038;
+#edit:hover{
+  /* background:#364038; */
 }
-
-.done {
-  background: #ff0000;
-  color: #fff;
-  padding: 5px 9px;
-  border-radius: 50%;
+#done { /* toggling done button*/
+  padding: 16% 30%;
+  filter:none;
+  /* border:none; */
 }
-.done:hover{
-  background: #ad0202;
-}
-
-.todo {
-  background: #f4f4f4;
-  padding: 10px;
-  border-bottom: 1px #ccc dotted;
-  border-radius: 40px;
-  margin-top:10px; /* spaces out the todos */
-  height: minmax(260px,auto); /*normalizes project height*/
-}
-
-.is-complete {
-  text-decoration: line-through;
-  background:#a1a1a1;
-}
-
-.btn-group button {
-  flex:right;
-  display: block; /* Make the buttons appear below each other */
+#done:hover{
+  /* filter:brightness(90%); */
 }
 
 #category{
@@ -65,7 +70,7 @@
 }
 
 #spacer{
-  width:90%;
+  width:92%;
   justify-content: space-between;
   display:flex;
   align-items:baseline;
@@ -84,13 +89,8 @@
 }
 
 #percent{
-  font-size:4.7em;
+  font-size:5em;
   color: rgba(130,130,130,0.2);
-}
-
-#bar-container{
-  display:flex;
-  padding-bottom: 10px;
 }
 
 #progressBar{
