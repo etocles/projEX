@@ -14,7 +14,7 @@
     border-right: 1px solid;
     border-color: #828282;
     text-align: center;
-    padding: 10% 0%; /* TODO: Still sketchy, how do we make the text appear in the middle */
+    padding: 10% 0%; /* TODO: Still sketchy, how do we make the text appear in the middle; */
 }
 
 .is-done{

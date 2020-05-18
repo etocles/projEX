@@ -40,7 +40,7 @@
   border-bottom: 1px #ccc dotted;
   border-radius: 40px;
   margin-top:10px; /* spaces out the todos */
-  height:260px; /*normalizes project height*/
+  height: minmax(260px,auto); /*normalizes project height*/
 }
 
 .is-complete {
@@ -71,7 +71,7 @@
 
 #name{
   padding-left: 20px;
-  font-size:3em;
+  font-size:3.4em;
   /* border-bottom: 1px solid #999; */
 }
 
