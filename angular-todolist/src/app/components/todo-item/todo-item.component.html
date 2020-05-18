@@ -8,7 +8,8 @@
         DUE: {{todo.due_date | date: 'short'}}
       </small>
     </h1>
-    <div class = "bar-container">
+    <hr id="separator" />
+    <div id = "bar-container">
       <app-progress-bar [proj]="todo" id="progressBar"></app-progress-bar>
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">
