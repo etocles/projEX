@@ -40,4 +40,9 @@ export class TodoItemComponent implements OnInit {
     this.deleteTodo.emit(proj);
   }
 
+  onEdit(){
+    console.log("its editing time");
+
+  }
+
 }
