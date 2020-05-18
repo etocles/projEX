@@ -1,13 +1,21 @@
 <div [ngClass]="setClasses()">
   <div>
     <button (click)="onDelete(todo)" class="del">x</button>
-    <h2 id="category">{{todo.category | uppercase}} {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%</h2>
-    <h1 id="name">
-      {{todo.name}}
-      <small id= "dateInfo">
-        DUE: {{todo.due_date | date: 'short'}}
-      </small>
-    </h1>
+    <h2 id="category">{{todo.category | uppercase}}</h2>
+    <div id = "spacer">
+        <div>
+          <h1 id="name">
+            {{todo.name}}
+          </h1>
+          <small id= "date-info">
+            DUE: {{todo.due_date | date: 'short'}}
+          </small>
+        </div>
+
+        <h1 id = "percent">
+          {{todo.progbar.num_done/todo.progbar.benchmarks.length*100 | number:'1.0-0'}}%
+        </h1>
+    </div>
     <hr id="separator" />
     <div id = "bar-container">
       <app-progress-bar [proj]="todo" id="progressBar"></app-progress-bar>
