@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import { Project, ProgressBar } from 'src/app/models/Todo';
 
 @Component({
@@ -48,9 +47,9 @@ export class TodoItemComponent implements OnInit {
     this.editing = !this.editing;
     // var btn = document.getElementById('edit');
     // btn.style.content = "🔼";
-    var cont = document.getElementById('dropdown-container');
-    if(this.editing)cont.classList.add("drop-show");
-    else cont.classList.remove('drop-show');
+    // var cont = document.getElementById('dropdown-container');
+    // if(this.editing)cont.classList.add("drop-show");
+    // else cont.classList.remove('drop-show');
   }
 
 
@@ -60,10 +59,6 @@ export class TodoItemComponent implements OnInit {
       'show': this.editing
     }
     return classes
-  }
-
-  drop(event: CdkDragDrop<string[]>) {
-    moveItemInArray(this.bar.benchmarks, event.previousIndex, event.currentIndex);
   }
 
 }

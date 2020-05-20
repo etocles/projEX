@@ -13,7 +13,7 @@ export class Project{
     this.due_date = new Date(Date.now());
     this.order_matters = true;
     this.completed = false;
-    this.progbar = new ProgressBar(length);
+    this.progbar = new ProgressBar(length,this.due_date);
   }
 }
 
@@ -21,10 +21,10 @@ export class ProgressBar{
   benchmarks:Bench[];
   num_done:number;
 
-  constructor(length:number){
-    this.benchmarks=[new Bench(-1)];
+  constructor(length:number,date:Date){
+    this.benchmarks=[new Bench(-1,date)];
     for (let i = 0; i < length; i++){
-      this.benchmarks.push(new Bench(i));
+      this.benchmarks.push(new Bench(i,date));
     }
     this.benchmarks.shift();
     this.num_done = 0;
@@ -83,10 +83,10 @@ export class Bench{
   isnested:boolean;
   nested_bar:NestedBar;
 
-  constructor(id:number){
+  constructor(id:number,date:Date){
     this.id = id;
     this.title = "Bench"+this.id;
-    this.due_date = new Date(Date.now()); // TODO: DATE NEEDS TO BE ADDED TO CONSTRUCTOR
+    this.due_date = date; // TODO: DATE NEEDS TO BE ADDED TO CONSTRUCTOR
     this.completed = false;
     this.isnested = false;
     this.nested_bar = null;
@@ -116,6 +116,15 @@ export class NestedBar{
     for (let i = 0; i< this.parts.length; i++){
       this.parts[i].Toggle(state);
     }
+  }
+
+  AllNames(){
+    let s = "";
+    for (let i = 0; i< this.parts.length; i++){
+      s+=this.parts[i].name+",";
+    }
+    s = s.substring(0, s.length - 1);
+    return s;
   }
 }
 

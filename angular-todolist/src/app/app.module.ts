@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -14,6 +15,7 @@ import { BenchmarkComponent } from './components/benchmark/benchmark.component';
 import { NestedBarComponent } from './components/nested-bar/nested-bar.component';
 import { PartComponent } from './components/part/part.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EditingDropdownComponent } from './components/editing-dropdown/editing-dropdown.component';
 
 @NgModule({
   declarations: [
@@ -25,14 +27,16 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ProgressBarComponent,
     BenchmarkComponent,
     NestedBarComponent,
-    PartComponent
+    PartComponent,
+    EditingDropdownComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    DragDropModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -29,20 +29,4 @@
 </div> <!--end of project card div-->
 
 <!-- Editing Dropdown -->
-<div class="dropdown" id="dropdown-container">
-      <!-- <div cdkDropList
-        class="example-list" (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let b of this.bar.benchmarks" cdkDrag>{{b.title}}</div>
-      </div> -->
-  <div [ngClass]="setDropdownClasses()" (cdkDropListDropped)="drop($event)"> <!-- class = "dropdown-content ~show" -->
-    <div id="input-array" class="example-box" *ngFor="let b of this.bar.benchmarks" cdkDrag>
-      <!-- <hr id = "dd-insert"/> -->
-      <input type="text" id="input-text"
-      value="{{b.title}}"/>
-      <input type="date" id="input-date"
-      value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"/>
-      <input type="time" id="input-time"
-      value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"/>
-    </div>
-  </div>
-</div>
+<app-editing-dropdown *ngIf="editing" [proj]="proj"></app-editing-dropdown>
