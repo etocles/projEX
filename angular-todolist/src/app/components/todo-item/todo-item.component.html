@@ -27,11 +27,16 @@
     </div>
   </div>
 </div> <!--end of project card div-->
+
 <!-- Editing Dropdown -->
 <div class="dropdown" id="dropdown-container">
-  <div [ngClass]="setDropdownClasses()"> <!-- class = "dropdown-content ~show" -->
-    <hr id = "dd-insert"/>
-    <div id="input-array" class="drop-item" *ngFor="let b of this.bar.benchmarks">
+      <!-- <div cdkDropList
+        class="example-list" (cdkDropListDropped)="drop($event)">
+        <div class="example-box" *ngFor="let b of this.bar.benchmarks" cdkDrag>{{b.title}}</div>
+      </div> -->
+  <div [ngClass]="setDropdownClasses()" (cdkDropListDropped)="drop($event)"> <!-- class = "dropdown-content ~show" -->
+    <div id="input-array" class="example-box" *ngFor="let b of this.bar.benchmarks" cdkDrag>
+      <!-- <hr id = "dd-insert"/> -->
       <input type="text" id="input-text"
       value="{{b.title}}"/>
       <input type="date" id="input-date"

@@ -13,6 +13,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { BenchmarkComponent } from './components/benchmark/benchmark.component';
 import { NestedBarComponent } from './components/nested-bar/nested-bar.component';
 import { PartComponent } from './components/part/part.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { PartComponent } from './components/part/part.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

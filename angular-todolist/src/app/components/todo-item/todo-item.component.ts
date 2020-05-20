@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { Project, ProgressBar } from 'src/app/models/Todo'
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import { Project, ProgressBar } from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-todo-item',
@@ -59,6 +60,10 @@ export class TodoItemComponent implements OnInit {
       'show': this.editing
     }
     return classes
+  }
+
+  drop(event: CdkDragDrop<string[]>) {
+    moveItemInArray(this.bar.benchmarks, event.previousIndex, event.currentIndex);
   }
 
 }
