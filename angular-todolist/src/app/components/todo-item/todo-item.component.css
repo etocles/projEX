@@ -49,6 +49,7 @@
   border: 1px solid;
   margin-top: 20%;
   border-radius: 20%;
+  /* content: "🔽"; */
 }
 #done { /* toggling done button*/
   width:100%;
@@ -61,7 +62,7 @@
   font-weight:bold;
   font-size: 2em;
   color: #8794a3;
-  z-index: 2;
+  z-index: 1;
   position: relative;
   top:25px;  /* TODO: sketchy, this controls how close category is to the project name */
 }
@@ -99,4 +100,70 @@
 #separator{
   padding-left: 15px;
   margin: 0.1% 6% 1% 1%; /*top, right, bottom, left*/
+}
+
+
+/* playing around with dropdowns */
+#dd-insert{
+  padding: 5px 0px;
+  display:none;
+}
+
+#input-array{
+  display:flex;
+  justify-content: space-between;
+  width: 60%;
+  margin-left: 30px;
+}
+
+#input-text{
+height:40px;
+}
+#input-date{
+  height:40px;
+
+}
+#input-time{
+  height:40px;
+
+}
+
+.dropdown {
+  position: relative;
+  margin-left: 50px;
+  width:93%;
+  height:0;
+  overflow: hidden;
+  transition: height 300ms ease;
+  z-index: 1; /* TODO: experiment with this for style (maybe -1)*/
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  width:auto;
+  display: none;
+  position: relative;
+  background-color: #f1f1f1;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 0;
+}
+
+/* Links inside the dropdown */
+.drop-item{
+  color: black;
+  padding: 10px;
+  text-align: left;
+  text-decoration: none;
+  display: block;
+  width:100%;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+
+.drop-show{
+  height:480px; /* TODO: this shit ain't scaleable */
 }

@@ -1,4 +1,4 @@
-<div [ngClass]="setClasses()">
+<div [ngClass]="setClasses()"> <!--beginning of project card div-->
   <div>
     <button (click)="onDelete(proj)" id="del">x</button>
     <h2 id="category">{{proj.category | uppercase}}</h2>
@@ -24,6 +24,20 @@
         <button (click)="onToggle(proj)" id="done">✅</button>
         <button (click)="onEdit()"id="edit">🔽</button>
       </div>
+    </div>
+  </div>
+</div> <!--end of project card div-->
+<!-- Editing Dropdown -->
+<div class="dropdown" id="dropdown-container">
+  <div [ngClass]="setDropdownClasses()"> <!-- class = "dropdown-content ~show" -->
+    <hr id = "dd-insert"/>
+    <div id="input-array" class="drop-item" *ngFor="let b of this.bar.benchmarks">
+      <input type="text" id="input-text"
+      value="{{b.title}}"/>
+      <input type="date" id="input-date"
+      value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"/>
+      <input type="time" id="input-time"
+      value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"/>
     </div>
   </div>
 </div>

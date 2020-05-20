@@ -13,12 +13,14 @@ export class TodoItemComponent implements OnInit {
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
 
   bar:ProgressBar;
+  editing:boolean;
 
   constructor() {
   }
 
   ngOnInit(): void {
       this.bar = this.proj.progbar;
+      this.editing = false;
   }
 
   //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
@@ -42,7 +44,21 @@ export class TodoItemComponent implements OnInit {
 
   onEdit(){
     console.log("its editing time");
+    this.editing = !this.editing;
+    // var btn = document.getElementById('edit');
+    // btn.style.content = "🔼";
+    var cont = document.getElementById('dropdown-container');
+    if(this.editing)cont.classList.add("drop-show");
+    else cont.classList.remove('drop-show');
+  }
 
+
+  setDropdownClasses(){
+    let classes ={
+      'dropdown-content':true,
+      'show': this.editing
+    }
+    return classes
   }
 
 }
