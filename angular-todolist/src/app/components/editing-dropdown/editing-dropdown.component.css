@@ -1,9 +1,11 @@
 /* playing around with dropdowns */
 #dd-insert{
   margin: 10px 20px;
+  transition: transform 300ms;
 }
 #dd-insert:hover{
-  cursor:col-resize;
+  cursor:cell;
+  transform: translateY(90%);
 }
 
 .input-array{
