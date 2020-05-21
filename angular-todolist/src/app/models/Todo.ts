@@ -99,6 +99,16 @@ export class Bench{
       this.nested_bar.ToggleAll(state);
     }
   }
+
+  PartNames(){
+    let s = "";
+    if (!this.isnested) return s;
+    for (let i = 0; i< this.nested_bar.parts.length; i++){
+      s+=this.nested_bar.parts[i].name+",";
+    }
+    s = s.substring(0, s.length - 1);
+    return s;
+  }
 }
 
 export class NestedBar{
@@ -116,15 +126,6 @@ export class NestedBar{
     for (let i = 0; i< this.parts.length; i++){
       this.parts[i].Toggle(state);
     }
-  }
-
-  AllNames(){
-    let s = "";
-    for (let i = 0; i< this.parts.length; i++){
-      s+=this.parts[i].name+",";
-    }
-    s = s.substring(0, s.length - 1);
-    return s;
   }
 }
 

@@ -29,4 +29,4 @@
 </div> <!--end of project card div-->
 
 <!-- Editing Dropdown -->
-<app-editing-dropdown *ngIf="editing" [proj]="proj"></app-editing-dropdown>
+<app-editing-dropdown *ngIf="editing" [proj]="proj" (updateBar)="updateBar($event)"></app-editing-dropdown>

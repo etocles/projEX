@@ -43,7 +43,6 @@ export class TodoItemComponent implements OnInit {
   }
 
   onEdit(){
-    console.log("its editing time");
     this.editing = !this.editing;
     // var btn = document.getElementById('edit');
     // btn.style.content = "🔼";
@@ -59,6 +58,13 @@ export class TodoItemComponent implements OnInit {
       'show': this.editing
     }
     return classes
+  }
+
+  updateBar(event){
+    //should reapply styles to the progressBar, such as rounding corners and completing
+    //needs to set the current progressbar's benchmarks to event
+    //update num_done
+    console.log(event);
   }
 
 }

@@ -1,35 +1,25 @@
 <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
-  <div *ngFor="let b of this.bar.benchmarks" >
-    <hr id="dd-insert"/>
+  <div *ngFor="let b of this.benchmarks" >
+    <hr id="{{b.id}}" class="dd" (click)="addBench($event)" matTooltip="Click to add a benchmark" /> <!--[matTooltipPosition]="'after'"-->
     <div class="list-box" cdkDrag>
       <p cdkDragHandle>=</p>
 
         <!--Version for Nested Benchmark Item-->
-        <div *ngIf="b.isnested" class="input-array">
-        <input type="text" class="input-text"
-        value="{{b.title}}"/>
-        <input type="text" class="input-text"
-        value="{{b.nested_bar.AllNames()}}"/>
-        <div>
-          <input type="date" class="nest-input-date"
-          value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"/>
-          <input type="time" class="nest-input-time"
-          value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"/>
-        </div>
-        </div>
-
-        <!--Version for UnNested Benchmark Item-->
-        <div *ngIf="!b.isnested" class="input-array">
-        <input type="text" class="input-text"
-        value="{{b.title}}"/>
-        <input type="date" class="input-date"
-        value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"/>
-        <input type="time" class="input-time"
-        value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"/>
+        <div class="input-array">
+          <input type="text" class="input-text"
+          value="{{b.title}}"/>
+          <input type="text" class="input-text"
+          value="{{b.PartNames()}}"/>
+          <div>
+            <input type="date" class="nest-input-date"
+            value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"/>
+            <input type="time" class="nest-input-time"
+            value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"/>
+          </div>
         </div>
 
-      <p>x</p> <!--deketion button-->
+      <p id="{{b.id}}" class ="del" (click)="delBench($event)">x</p> <!--deletion button-->
     </div>
   </div>
-  <hr id="dd-insert"/>
+  <hr id="{{this.bar.benchmarks.length}}" class="dd" (click)="addBench($event)" matTooltip="Click to add a benchmark" />
 </div>
