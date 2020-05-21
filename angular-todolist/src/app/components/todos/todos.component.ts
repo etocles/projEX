@@ -18,6 +18,7 @@ export class TodosComponent implements OnInit {
     proj1.progbar = new ProgressBar(5,proj1.due_date);
     proj1.progbar.benchmarks[1].isnested = true;
     proj1.progbar.benchmarks[1].nested_bar = new NestedBar(3);
+    proj1.progbar.benchmarks[1].CorrelateParts();
     proj1.progbar.ToggleBenchmark(0);
     proj1.progbar.ToggleBenchmark(1);
 
@@ -33,6 +34,7 @@ export class TodosComponent implements OnInit {
     proj4.order_matters = false;
     proj4.progbar.benchmarks[5].isnested = true;
     proj4.progbar.benchmarks[5].nested_bar = new NestedBar(5);
+    proj4.progbar.benchmarks[5].CorrelateParts();
 
     let proj5 = new Project('ProjectName5','Category5',2);
     let proj6 = new Project('Test','YEST',1);

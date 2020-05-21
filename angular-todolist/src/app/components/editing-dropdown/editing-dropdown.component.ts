@@ -32,6 +32,33 @@ export class EditingDropdownComponent implements OnInit {
     this.updateBar.emit(this.benchmarks);
   }
 
+  addBench(event){ //add a benchmark between two benchmarks
+    //obtaining the id from the element
+    var target = event.srcElement;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    this.benchmarks.splice(value,0,new Bench(-3, new Date(Date.now())) )
+    this.benchmarks = this.reID(this.benchmarks);
+    this.benchmarks = this.updateCompleted(this.benchmarks);
+    console.log(this.benchmarks);
+  }
+
+  delBench(event){
+    //obtaining the id from the element
+    var target = event.srcElement;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    this.benchmarks = this.benchmarks.filter(t => t.id != value);
+    this.benchmarks = this.reID(this.benchmarks);
+    console.log(this.benchmarks);
+  }
+
+  myFunction(){
+    console.log("beepbadaboopbapbee boo");
+    //a little costly, but go through each benchmark, and:
+    // if nested parts have been removed, remove them
+    // if nested parts have been added, add them
+  }
 
   //helper functions
   reID(benchmarks):Bench[]{
@@ -48,28 +75,6 @@ export class EditingDropdownComponent implements OnInit {
       benchmarks[i].completed = startCheckingCompleted;
     }
     return benchmarks
-  }
-
-  addBench(event){ //add a benchmark between two benchmarks
-    //obtaining the id from the element
-    var target = event.srcElement;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
-    this.benchmarks.splice(value,0,new Bench(0, new Date(Date.now())) )
-    this.benchmarks = this.reID(this.benchmarks);
-    this.benchmarks = this.updateCompleted(this.benchmarks);
-    console.log(this.benchmarks);
-  }
-
-  delBench(event){
-    //obtaining the id from the element
-    var target = event.srcElement;
-    var idAttr = target.attributes.id;
-    var value = idAttr.nodeValue;
-    this.benchmarks = this.benchmarks.filter(t => t.id != value);
-    this.benchmarks = this.reID(this.benchmarks);
-    console.log(this.benchmarks);
-
   }
 
 }

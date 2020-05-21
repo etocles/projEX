@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Project, ProgressBar } from 'src/app/models/Todo';
+import { EditingDropdownComponent }  from '../editing-dropdown/editing-dropdown.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -11,6 +12,8 @@ import { Project, ProgressBar } from 'src/app/models/Todo';
 export class TodoItemComponent implements OnInit {
   @Input() proj: Project;
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
+  @ViewChild(EditingDropdownComponent)
+  private dropdownForm: EditingDropdownComponent;
 
   bar:ProgressBar;
   editing:boolean;
@@ -46,9 +49,15 @@ export class TodoItemComponent implements OnInit {
     this.editing = !this.editing;
     // var btn = document.getElementById('edit');
     // btn.style.content = "🔼";
-    // var cont = document.getElementById('dropdown-container');
-    // if(this.editing)cont.classList.add("drop-show");
-    // else cont.classList.remove('drop-show');
+
+    //onOpen:
+    //toggle editing mode to on
+    //change dropdown icon to downwards chevron by rotation
+
+    //onClose:
+    //this.bar = this.dropdownForm.getNewProgressBar();
+    //set current progressbar to new progressBar provided by form
+    //this.updateBar()
   }
 
 

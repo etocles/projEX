@@ -82,6 +82,7 @@ export class Bench{
   //nested progress bar
   isnested:boolean;
   nested_bar:NestedBar;
+  parts_summary:string;
 
   constructor(id:number,date:Date){
     this.id = id;
@@ -90,6 +91,7 @@ export class Bench{
     this.completed = false;
     this.isnested = false;
     this.nested_bar = null;
+    this.parts_summary = null;
   }
 
   ToggleTo(state:boolean):void{
@@ -100,14 +102,16 @@ export class Bench{
     }
   }
 
-  PartNames(){
+  CorrelateParts(){
+    //sets the parts summary equal to the names of all the nested bar's parts.
+    //If there are none, it will return an empty string
     let s = "";
     if (!this.isnested) return s;
     for (let i = 0; i< this.nested_bar.parts.length; i++){
       s+=this.nested_bar.parts[i].name+",";
     }
     s = s.substring(0, s.length - 1);
-    return s;
+    this.parts_summary= s;
   }
 }
 
