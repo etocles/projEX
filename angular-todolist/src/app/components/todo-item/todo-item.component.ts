@@ -47,6 +47,8 @@ export class TodoItemComponent implements OnInit {
 
   onEdit(){
     this.editing = !this.editing;
+    console.log(this.editing);
+
     // var btn = document.getElementById('edit');
     // btn.style.content = "🔼";
 
@@ -55,8 +57,11 @@ export class TodoItemComponent implements OnInit {
     //change dropdown icon to downwards chevron by rotation
 
     //onClose:
-    //this.bar = this.dropdownForm.getNewProgressBar();
-    //set current progressbar to new progressBar provided by form
+    if(this.editing == false){
+      //set current progressbar to new progressBar provided by form
+      this.bar.benchmarks = this.dropdownForm.myFunction();
+      console.log(this.bar.benchmarks);
+    }
     //this.updateBar()
   }
 

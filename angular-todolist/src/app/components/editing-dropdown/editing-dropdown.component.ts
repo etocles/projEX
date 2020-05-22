@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { Project, ProgressBar, Bench } from 'src/app/models/Todo';
+import { Project, ProgressBar, Bench, NestedBar } from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-editing-dropdown',
@@ -54,10 +54,57 @@ export class EditingDropdownComponent implements OnInit {
   }
 
   myFunction(){
-    console.log("beepbadaboopbapbee boo");
     //a little costly, but go through each benchmark, and:
     // if nested parts have been removed, remove them
     // if nested parts have been added, add them
+
+    // var sample = "a.b.c.d.e.f";
+    // console.log(sample.split("."));
+    var benchmarksCopy = this.benchmarks;
+    for (let i = 0; i < benchmarksCopy.length; i++){
+      var b = benchmarksCopy[i];
+      //bench isn't nested but needs to be
+      if (!b.isnested){
+        if(b.parts_summary!==null){
+          // console.log(b.title+"falls under case 1");
+          if (b.parts_summary.substr(b.parts_summary.length-1, b.parts_summary.length) == ","){
+            b.parts_summary = b.parts_summary.slice(0, -1);
+          }
+          var namesOfParts = b.parts_summary.split(",");
+          b.isnested = true;
+          b.nested_bar = new NestedBar(namesOfParts.length);
+          for (let n = 0; n < b.nested_bar.parts.length; n++){
+            b.nested_bar.parts[n] = namesOfParts[n];
+          }
+          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
+          continue;
+        }
+      }
+      else{
+        //bench is nested but doesn't need to be
+        if(b.parts_summary==""){
+          // console.log(b.title+"falls under case 2");
+          b.isnested = false;
+          b.nested_bar = null;
+          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
+          continue;
+        }
+        //bench is nested but needs updating (length or content different)
+        if (b.parts_summary != b.nested_bar.AllNames()){
+          // console.log(b.title+"falls under case 3");
+          var namesOfParts = b.parts_summary.split(",");
+          b.isnested = true;
+          b.nested_bar = new NestedBar(namesOfParts.length);
+          for (let n = 0; n < b.nested_bar.parts.length; n++){
+            b.nested_bar.parts[n] = namesOfParts[n];
+          }
+          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
+          continue;
+        }
+      }
+    }
+    console.log(benchmarksCopy);
+    return benchmarksCopy;
   }
 
   //helper functions

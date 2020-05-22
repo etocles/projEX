@@ -3,7 +3,6 @@
     <hr id="{{b.id}}" class="dd" (click)="addBench($event)" matTooltip="Click to add a benchmark" /> <!--[matTooltipPosition]="'after'"-->
     <div class="list-box" cdkDrag>
       <p cdkDragHandle>=</p>
-        <!--Version for Nested Benchmark Item-->
         <div class="input-array">
           <input type="text" class="input-text" [(ngModel)]="b.title"/>
           <input type="text" class="input-text" [(ngModel)]="b.parts_summary" (focusout)="myFunction()"/>
@@ -12,26 +11,6 @@
             <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm'"/>
           </div>
         </div>
-
-        <!-- With ngModel -->
-        <!-- <div class="input-array">
-          <input type="text" class="input-text"
-          value="{{b.title}}"
-          [(ngModel)]="this.benchmarks[1].title"/>
-          <input type="text" class="input-text"
-          value="{{b.PartNames()}}"
-          [(ngModel)]="this.benchmarks[1].title"/>
-          <div>
-            <input type="date" class="nest-input-date"
-            value="{{b.due_date | date:'y'}}-{{b.due_date | date:'LL'}}-{{b.due_date | date:'dd'}}"
-            [(ngModel)]="this.benchmarks[1].title"/>
-            <input type="time" class="nest-input-time"
-            value="{{b.due_date | date:'HH'}}:{{b.due_date | date:'mm'}}"
-            [(ngModel)]="this.benchmarks[1].title"/>
-          </div>
-          <input type="submit" />
-        </div> -->
-
       <p id="{{b.id}}" class ="del" (click)="delBench($event)">x</p> <!--deletion button-->
     </div>
   </div>

@@ -131,6 +131,15 @@ export class NestedBar{
       this.parts[i].Toggle(state);
     }
   }
+
+  AllNames(){
+    let s = "";
+    for (let i = 0; i< this.parts.length; i++){
+      s+=this.parts[i].name+",";
+    }
+    s = s.substring(0, s.length - 1);
+    return s;
+  }
 }
 
 export class Part{
