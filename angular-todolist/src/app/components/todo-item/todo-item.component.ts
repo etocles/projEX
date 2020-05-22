@@ -59,10 +59,11 @@ export class TodoItemComponent implements OnInit {
     //onClose:
     if(this.editing == false){
       //set current progressbar to new progressBar provided by form
+      console.log(this.dropdownForm.myFunction());
       this.bar.benchmarks = this.dropdownForm.myFunction();
-      console.log(this.bar.benchmarks);
+      //this.updateBar()
     }
-    //this.updateBar()
+
   }
 
 

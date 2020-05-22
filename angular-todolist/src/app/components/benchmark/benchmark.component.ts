@@ -9,28 +9,27 @@ import { ProgressBar, Bench, NestedBar } from 'src/app/models/Todo';
 })
 export class BenchmarkComponent implements OnInit {
   @Input() bench: Bench;
-  @Input() prog:ProgressBar;
+  @Input() prog: ProgressBar;
+  @Input() first: boolean;
+  @Input() last: boolean;
+  @Input() nested: boolean;
   @Output() markUpTo: EventEmitter<Bench> = new EventEmitter();
   @Output() markDownTo: EventEmitter<Bench> = new EventEmitter();
 
   nested:boolean;
   nested_bar:NestedBar;
   percent:number;
-  first:boolean;
-  last:boolean;
 
 
   constructor() {
   }
 
   ngOnInit(): void {
-    this.nested = this.bench.isnested;
+    console.log("benchmarkINIT fired");
     if(this.nested){
       this.nested_bar=this.bench.nested_bar;
     }
     this.percent = this.prog.num_done/this.prog.benchmarks.length;
-    this.first = this.bench.id == this.prog.benchmarks[0].id;
-    this.last = this.bench.id == this.prog.benchmarks[this.prog.benchmarks.length-1].id;
   }
 
   setClasses(){

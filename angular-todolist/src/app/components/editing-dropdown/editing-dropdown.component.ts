@@ -74,7 +74,7 @@ export class EditingDropdownComponent implements OnInit {
           b.isnested = true;
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
-            b.nested_bar.parts[n] = namesOfParts[n];
+            b.nested_bar.parts[n].name = namesOfParts[n];
           }
           // console.log("updated Bench:"+b.title+" "+b.nested_bar);
           continue;
@@ -96,14 +96,14 @@ export class EditingDropdownComponent implements OnInit {
           b.isnested = true;
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
-            b.nested_bar.parts[n] = namesOfParts[n];
+            b.nested_bar.parts[n].name = namesOfParts[n];
           }
           // console.log("updated Bench:"+b.title+" "+b.nested_bar);
           continue;
         }
       }
     }
-    console.log(benchmarksCopy);
+    // console.log(benchmarksCopy);
     return benchmarksCopy;
   }
 
