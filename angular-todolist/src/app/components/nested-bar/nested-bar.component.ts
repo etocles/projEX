@@ -12,6 +12,8 @@ import { ProgressBar, Bench, NestedBar, Part } from 'src/app/models/Todo';
 export class NestedBarComponent implements OnInit {
   @Input() bench: Bench;
   @Input() prog: ProgressBar;
+  @Input() first: boolean;
+  @Input() last: boolean;
   @Output() nestedMsg: EventEmitter<Bench> = new EventEmitter();
 
   parts:Part[];
@@ -28,7 +30,9 @@ export class NestedBarComponent implements OnInit {
     let classes ={
       'default':true,
       'is-done':this.bench.completed,
-      'not-done':!this.bench.completed
+      'not-done':!this.bench.completed,
+      'firstbench':this.first,
+      'lastbench':this.last
     }
     return classes
   }

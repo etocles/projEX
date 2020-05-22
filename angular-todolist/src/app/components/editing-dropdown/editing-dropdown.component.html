@@ -5,7 +5,7 @@
       <p cdkDragHandle>=</p>
         <div class="input-array">
           <input type="text" class="input-text" [(ngModel)]="b.title"/>
-          <input type="text" class="input-text" [(ngModel)]="b.parts_summary" (focusout)="myFunction()"/>
+          <input type="text" class="input-text" [(ngModel)]="b.parts_summary" />  <!--(focusout)="myFunction()" used to call a function when focus is lost-->
           <div>
             <input type="date" class="nest-input-date" [ngModel]="b.due_date | date:'yyyy-MM-dd'"/>
             <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm'"/>

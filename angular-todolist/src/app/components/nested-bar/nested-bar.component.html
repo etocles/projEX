@@ -1,9 +1,13 @@
 <p [ngClass]="setClasses()" (click)="onMark()" [ngStyle]="getStyles()" title="{{bench.title}}" id="nest-title">{{bench.title}}</p>
 <section class="basic-grid">
   <app-part
-  *ngFor="let part of parts"
+  *ngFor="let part of parts; first as f; last as l"
   [part]="part"
   [prog]="prog"
+  [first]="first"
+  [last]="last"
+  [firstpart]="f"
+  [lastpart]="l"
   (partMsg)="nestedMark($event)">
   </app-part>
 </section>

@@ -25,7 +25,6 @@ export class BenchmarkComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log("benchmarkINIT fired");
     if(this.nested){
       this.nested_bar=this.bench.nested_bar;
     }

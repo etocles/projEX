@@ -28,3 +28,12 @@
 .not-done{
   background-position: 0% 0%;
 }
+
+
+.firstpartfirst{
+  border-bottom-left-radius: 20px;
+}
+
+.lastpartlast{
+  border-bottom-right-radius: 20px;
+}

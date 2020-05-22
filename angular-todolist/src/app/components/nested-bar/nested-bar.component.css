@@ -40,3 +40,11 @@
 .not-done{
   background-position: 0% 0%;
 }
+
+
+.firstbench{
+  border-top-left-radius: 20px;
+}
+.lastbench{
+  border-top-right-radius: 20px;
+}

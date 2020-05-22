@@ -9,10 +9,14 @@ import { ProgressBar, Part } from 'src/app/models/Todo'
 export class PartComponent implements OnInit {
   @Input() part:Part;
   @Input() prog:ProgressBar;
+  @Input() first: boolean;
+  @Input() last: boolean;
+  @Input() firstpart: boolean;
+  @Input() lastpart: boolean;
   @Output() partMsg: EventEmitter<Part> = new EventEmitter();
 
   percent:number;
-  
+
   constructor() { }
 
   ngOnInit(): void {
@@ -23,7 +27,9 @@ export class PartComponent implements OnInit {
     let classes ={
       'default':true,
       'is-done':this.part.completed,
-      'not-done':!this.part.completed
+      'not-done':!this.part.completed,
+      'firstpartfirst': this.first && this.firstpart,
+      'lastpartlast':this.last && this.lastpart
     }
     return classes;
   }

@@ -65,45 +65,44 @@ export class EditingDropdownComponent implements OnInit {
       var b = benchmarksCopy[i];
       //bench isn't nested but needs to be
       if (!b.isnested){
-        if(b.parts_summary!==null){
-          // console.log(b.title+"falls under case 1");
-          if (b.parts_summary.substr(b.parts_summary.length-1, b.parts_summary.length) == ","){
-            b.parts_summary = b.parts_summary.slice(0, -1);
-          }
+        if(b.parts_summary!=null){
+          console.log(b.title+"falls under case 1");
           var namesOfParts = b.parts_summary.split(",");
+          namesOfParts = namesOfParts.filter(t => t != "");
+          //sanity check
+          if (namesOfParts.length ==0) continue;
           b.isnested = true;
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
             b.nested_bar.parts[n].name = namesOfParts[n];
           }
-          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
           continue;
         }
       }
       else{
         //bench is nested but doesn't need to be
         if(b.parts_summary==""){
-          // console.log(b.title+"falls under case 2");
+          console.log(b.title+"falls under case 2");
           b.isnested = false;
           b.nested_bar = null;
-          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
           continue;
         }
         //bench is nested but needs updating (length or content different)
         if (b.parts_summary != b.nested_bar.AllNames()){
-          // console.log(b.title+"falls under case 3");
+          console.log(b.title+"falls under case 3");
           var namesOfParts = b.parts_summary.split(",");
+          namesOfParts = namesOfParts.filter(t => t != "");
+          //sanity check
+          if (namesOfParts.length ==0) continue;
           b.isnested = true;
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
             b.nested_bar.parts[n].name = namesOfParts[n];
           }
-          // console.log("updated Bench:"+b.title+" "+b.nested_bar);
           continue;
         }
       }
     }
-    // console.log(benchmarksCopy);
     return benchmarksCopy;
   }
 
