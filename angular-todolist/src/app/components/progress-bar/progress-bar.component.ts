@@ -19,6 +19,7 @@ export class ProgressBarComponent implements OnInit {
   ngOnInit(): void {
     this.bar = this.proj.progbar;
     this.benchmarks = this.proj.progbar.benchmarks;
+    console.log("progbar init");
   }
 
   markUpTo(b:Bench){

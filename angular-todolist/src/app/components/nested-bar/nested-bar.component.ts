@@ -11,18 +11,17 @@ import { ProgressBar, Bench, NestedBar, Part } from 'src/app/models/Todo';
 
 export class NestedBarComponent implements OnInit {
   @Input() bench: Bench;
+  @Input() parts: Part[];
   @Input() prog: ProgressBar;
   @Input() first: boolean;
   @Input() last: boolean;
   @Output() nestedMsg: EventEmitter<Bench> = new EventEmitter();
 
-  parts:Part[];
   percent:number;
 
   constructor() { }
 
   ngOnInit(): void {
-    this.parts = this.bench.nested_bar.parts;
     this.percent = this.prog.num_done/this.prog.benchmarks.length;
   }
 

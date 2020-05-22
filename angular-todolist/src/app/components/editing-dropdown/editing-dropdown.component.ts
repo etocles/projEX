@@ -56,10 +56,7 @@ export class EditingDropdownComponent implements OnInit {
   myFunction(){
     //a little costly, but go through each benchmark, and:
     // if nested parts have been removed, remove them
-    // if nested parts have been added, add them
-
-    // var sample = "a.b.c.d.e.f";
-    // console.log(sample.split("."));
+    // if nested parts have been added/changed, modify them
     var benchmarksCopy = this.benchmarks;
     for (let i = 0; i < benchmarksCopy.length; i++){
       var b = benchmarksCopy[i];
@@ -75,6 +72,7 @@ export class EditingDropdownComponent implements OnInit {
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
             b.nested_bar.parts[n].name = namesOfParts[n];
+            b.nested_bar.parts[n].completed = b.completed;
           }
           continue;
         }
@@ -98,6 +96,7 @@ export class EditingDropdownComponent implements OnInit {
           b.nested_bar = new NestedBar(namesOfParts.length);
           for (let n = 0; n < b.nested_bar.parts.length; n++){
             b.nested_bar.parts[n].name = namesOfParts[n];
+            b.nested_bar.parts[n].completed = b.completed;
           }
           continue;
         }
