@@ -9,16 +9,15 @@ import { Project, ProgressBar, Bench, Part } from 'src/app/models/Todo'
 })
 export class ProgressBarComponent implements OnInit {
   @Input() proj: Project;
+  @Input() benchmarks: Bench[];
 
   bar: ProgressBar;
-  benchmarks:Bench[];
 
   constructor() {
   }
 
   ngOnInit(): void {
     this.bar = this.proj.progbar;
-    this.benchmarks = this.proj.progbar.benchmarks;
     console.log("progbar init");
   }
 
