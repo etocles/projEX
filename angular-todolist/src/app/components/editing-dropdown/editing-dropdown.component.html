@@ -2,7 +2,7 @@
   <div *ngFor="let b of this.benchmarks" >
     <hr id="{{b.id}}" class="dd" (click)="addBench($event)" matTooltip="Click to add a benchmark" /> <!--[matTooltipPosition]="'after'"-->
     <div class="list-box" cdkDrag>
-      <p cdkDragHandle>=</p>
+      <mat-icon cdkDragHandle>reorder</mat-icon>
         <div class="input-array">
           <input type="text" class="input-text" [(ngModel)]="b.title"/>
           <input type="text" class="input-text" [(ngModel)]="b.parts_summary" />  <!--(focusout)="myFunction()" used to call a function when focus is lost-->

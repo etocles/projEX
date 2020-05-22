@@ -18,7 +18,6 @@ export class ProgressBarComponent implements OnInit {
 
   ngOnInit(): void {
     this.bar = this.proj.progbar;
-    console.log("progbar init");
   }
 
   markUpTo(b:Bench){
@@ -31,6 +30,14 @@ export class ProgressBarComponent implements OnInit {
     this.bar.num_done--; //subtracts one for the current bench
     if(!this.proj.order_matters) return;
     this.bar.MarkDownTo(b);
+  }
+
+  numDoneRecount(){ //costly, but a necessary catch-all reset
+    var temp_num_done = 0;
+    for (let i = 0; i < this.bar.benchmarks.length; i++){
+      if (this.bar.benchmarks[i].completed) temp_num_done++;
+    }
+    this.bar.num_done = temp_num_done;
   }
 
 }

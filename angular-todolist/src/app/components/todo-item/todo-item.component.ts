@@ -1,7 +1,9 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Project, ProgressBar } from 'src/app/models/Todo';
+
 import { EditingDropdownComponent }  from '../editing-dropdown/editing-dropdown.component';
+import { ProgressBarComponent }  from '../progress-bar/progress-bar.component';
 
 @Component({
   selector: 'app-todo-item',
@@ -14,6 +16,8 @@ export class TodoItemComponent implements OnInit {
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
   @ViewChild(EditingDropdownComponent)
   private dropdownForm: EditingDropdownComponent;
+  @ViewChild(ProgressBarComponent)
+  private barComponent: ProgressBarComponent;
 
   bar:ProgressBar;
   editing:boolean;
@@ -61,7 +65,7 @@ export class TodoItemComponent implements OnInit {
       //set current progressbar to new progressBar provided by form
       console.log(this.dropdownForm.myFunction());
       this.bar.benchmarks = this.dropdownForm.myFunction();
-      //this.updateBar()
+      this.barComponent.numDoneRecount(); //sanity check to make sure the num_done isn't thrown off
     }
 
   }
