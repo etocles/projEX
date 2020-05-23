@@ -11,7 +11,8 @@
             <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm'"/>
           </div>
         </div>
-      <p id="{{b.id}}" class ="del" (click)="delBench($event)">x</p> <!--deletion button-->
+      <!-- <p id="{{b.id}}" class ="del" (click)="delBench($event)">x</p>--> <!--deletion button--> 
+      <mat-icon id="{{b.id}}" class ="del" (click)="delBench($event)">close</mat-icon>
     </div>
   </div>
   <hr id="{{this.bar.benchmarks.length}}" class="dd" (click)="addBench($event)" matTooltip="Click to add a benchmark" />
