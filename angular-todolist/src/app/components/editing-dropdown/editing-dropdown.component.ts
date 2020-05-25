@@ -65,7 +65,7 @@ export class EditingDropdownComponent implements OnInit {
         if(b.parts_summary!=null){
           console.log(b.title+"falls under case 1");
           var namesOfParts = b.parts_summary.split(",");
-          namesOfParts = namesOfParts.filter(t => t != "");
+          namesOfParts = namesOfParts.filter(t => t.trim().length != 0);
           //sanity check
           if (namesOfParts.length ==0) continue;
           b.isnested = true;
@@ -89,7 +89,7 @@ export class EditingDropdownComponent implements OnInit {
         if (b.parts_summary != b.nested_bar.AllNames()){
           console.log(b.title+"falls under case 3");
           var namesOfParts = b.parts_summary.split(",");
-          namesOfParts = namesOfParts.filter(t => t != "");
+          namesOfParts = namesOfParts.filter(t => t.trim().length != 0);
           //sanity check
           if (namesOfParts.length ==0) continue;
           b.isnested = true;

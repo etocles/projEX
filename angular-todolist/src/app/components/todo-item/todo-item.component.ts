@@ -50,15 +50,12 @@ export class TodoItemComponent implements OnInit {
   }
 
   onEdit(){
-    this.editing = !this.editing;
-    console.log(this.editing);
-
-    // var btn = document.getElementById('edit');
-    // btn.style.content = "🔼";
-
     //onOpen:
     //toggle editing mode to on
-    //change dropdown icon to downwards chevron by rotation
+    this.editing = !this.editing;
+    //change dropdown icon
+    var editBtn = document.getElementById('edit');
+    editBtn.innerHTML = (!this.editing)? '🔽':'🆗';
 
     //onClose:
     if(this.editing == false){
