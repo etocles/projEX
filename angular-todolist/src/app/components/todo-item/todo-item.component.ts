@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { Project, ProgressBar } from 'src/app/models/Todo';
+import { Project, ProgressBar, Bench } from 'src/app/models/Todo';
 
 import { EditingDropdownComponent }  from '../editing-dropdown/editing-dropdown.component';
 import { ProgressBarComponent }  from '../progress-bar/progress-bar.component';
@@ -21,6 +21,7 @@ export class TodoItemComponent implements OnInit {
 
   bar:ProgressBar;
   editing:boolean;
+  benchBackup:Bench;
 
   constructor() {
   }
@@ -28,6 +29,7 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
       this.bar = this.proj.progbar;
       this.editing = false;
+      this.barBackup = null;
   }
 
   //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
@@ -42,7 +44,14 @@ export class TodoItemComponent implements OnInit {
   onToggle(proj){
     //Toggle in UI
     proj.completed = !proj.completed;
-    // this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]); // TODO: needs to be fully implemented
+    if (proj.completed){ //if project should transition to a finished state
+      this.barBackup = this.bar.benchmarks[proj.progbar.num_done-1];
+      this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
+    }
+    else{//if it should transition back to being not done, go back to the way it was
+      this.bar.MarkDownTo(this.bar.benchmarks[this.barBackup.id]);
+      this.barBackup = null;
+    }
   }
 
   onDelete(proj){
