@@ -29,7 +29,7 @@ export class TodoItemComponent implements OnInit {
   ngOnInit(): void {
       this.bar = this.proj.progbar;
       this.editing = false;
-      this.barBackup = null;
+      this.benchBackup = null;
   }
 
   //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
@@ -45,12 +45,12 @@ export class TodoItemComponent implements OnInit {
     //Toggle in UI
     proj.completed = !proj.completed;
     if (proj.completed){ //if project should transition to a finished state
-      this.barBackup = this.bar.benchmarks[proj.progbar.num_done-1];
+      this.benchBackup = this.bar.benchmarks[proj.progbar.num_done-1];
       this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
     }
     else{//if it should transition back to being not done, go back to the way it was
-      this.bar.MarkDownTo(this.bar.benchmarks[this.barBackup.id]);
-      this.barBackup = null;
+      this.bar.MarkDownTo(this.bar.benchmarks[this.benchBackup.id]);
+      this.benchBackup = null;
     }
   }
 
