@@ -40,6 +40,8 @@ export class TodosComponent implements OnInit {
     let proj6 = new Project('Test','YEST',1);
 
     this.projects = [proj1,proj2,proj3,proj4,proj5,proj6];
+    var ret = localStorage.getItem('testObject');
+    if (ret != null) this.projects.push(JSON.parse(ret));
   }
 
   deleteTodo(proj:Project){
@@ -50,5 +52,7 @@ export class TodosComponent implements OnInit {
 
   addTodo(proj:Project){
     this.projects.push(proj);
+    localStorage.removeItem('test');
+    localStorage.setItem('testObject', JSON.stringify(proj));
   }
 }

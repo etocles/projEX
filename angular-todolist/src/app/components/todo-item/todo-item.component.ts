@@ -41,7 +41,7 @@ export class TodoItemComponent implements OnInit {
     return classes
   }
 
-  onToggle(proj){
+  onToggle(proj){// TODO: erases completed parts...
     //Toggle in UI
     proj.completed = !proj.completed;
     if (proj.completed){ //if project should transition to a finished state

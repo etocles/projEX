@@ -87,7 +87,7 @@ export class Bench{
   constructor(id:number,date:Date){
     this.id = id;
     this.title = "Bench"+this.id;
-    this.due_date = date; // TODO: DATE NEEDS TO BE ADDED TO CONSTRUCTOR
+    this.due_date = date;
     this.completed = false;
     this.isnested = false;
     this.nested_bar = null;
