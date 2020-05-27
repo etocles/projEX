@@ -82,7 +82,7 @@ export class Bench{
   //nested progress bar
   isnested:boolean;
   nested_bar:NestedBar;
-  parts_summary:string;
+  parts_summary:string; //needed for the form entry in the dropdown
 
   constructor(id:number,date:Date){
     this.id = id;
@@ -102,7 +102,7 @@ export class Bench{
     }
   }
 
-  CorrelateParts(){
+  PartSummary(){
     //sets the parts summary equal to the names of all the nested bar's parts.
     //If there are none, it will return an empty string
     let s = "";
@@ -110,7 +110,7 @@ export class Bench{
     for (let i = 0; i< this.nested_bar.parts.length; i++){
       s+=this.nested_bar.parts[i].name+",";
     }
-    s = s.substring(0, s.length - 1);
+    s = s.substring(0, s.length - 1); //removes last comma
     this.parts_summary= s;
   }
 }
@@ -137,7 +137,7 @@ export class NestedBar{
     for (let i = 0; i< this.parts.length; i++){
       s+=this.parts[i].name+",";
     }
-    s = s.substring(0, s.length - 1);
+    s = s.substring(0, s.length - 1); //removes last comma
     return s;
   }
 }
