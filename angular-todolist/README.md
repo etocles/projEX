@@ -22,6 +22,10 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 Run `npm run start:electron` to run the app as an external electron process.
 
+## Electron with live reload
+
+Run `npm run start` to use electron-forge to start the app. Then, use `rs` in console to reload app after changes
+
 ## Package Electron app
 
 Run `npm run make` to package the app for your respective system
