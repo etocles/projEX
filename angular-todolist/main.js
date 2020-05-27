@@ -10,7 +10,7 @@ function createWindow () {
     width: size.width,
     height: size.height,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true /*doesn't have an effect on whether angular works or not*/
     }
   })
 
