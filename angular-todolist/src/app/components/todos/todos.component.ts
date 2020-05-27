@@ -14,10 +14,14 @@ export class TodosComponent implements OnInit {
 
   ngOnInit(): void {
     //grabs the projects from storage
-    let pArray = localStorage.getItem('projArray');
-    pArray = JSON.parse(pArray);
+    let projArray = localStorage.getItem('projArray');
+    let pArray = JSON.parse(projArray);
+    console.log(pArray);
+
     pArray.push(new Project('StorageTester',"StorageCAT",8));
-    let projs = [new Part(-1)];
+    let projs = [];
+    console.log(Array.isArray(projs));
+
     for (let i = 0; i < pArray.length; i++){
       projs.push(this.JSON_TO_PROJECT(pArray[i]));
     }

@@ -7,10 +7,10 @@ export class Project{
   completed:boolean;
   progbar:ProgressBar; //commented until implementation
 
-  constructor(name:string, cat:string, length:number){
+  constructor(name:string, cat:string, length:number, date:Date = new Date(Date.now()) ){
     this.name = name;
     this.category = cat;
-    this.due_date = new Date(Date.now());
+    this.due_date = date;
     this.order_matters = true;
     this.completed = false;
     this.progbar = new ProgressBar(length,this.due_date);
