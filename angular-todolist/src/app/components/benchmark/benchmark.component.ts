@@ -15,6 +15,7 @@ export class BenchmarkComponent implements OnInit {
   @Input() nested: boolean;
   @Output() markUpTo: EventEmitter<Bench> = new EventEmitter();
   @Output() markDownTo: EventEmitter<Bench> = new EventEmitter();
+  @Output() forceUpdate: EventEmitter<any> = new EventEmitter();
 
 
   nested_bar:NestedBar;
@@ -51,6 +52,11 @@ export class BenchmarkComponent implements OnInit {
   }
 
   nestedMark(b:Bench){
+    if(!b){
+      this.forceUpdate.emit();
+      return;
+    }
+
     if (b.completed == true)this.markUpTo.emit(this.bench);
     else this.markDownTo.emit(this.bench);
   }

@@ -23,15 +23,25 @@ export class ProgressBarComponent implements OnInit {
 
   markUpTo(b:Bench){
     this.bar.num_done++; //add one for the current bench
-    if(!this.proj.order_matters) return;
+    if(!this.proj.order_matters){
+      this.updateDB.emit()
+      return;
+    }
     this.bar.MarkUpTo(b);
     this.updateDB.emit();
   }
 
   markDownTo(b:Bench){
     this.bar.num_done--; //subtracts one for the current bench
-    if(!this.proj.order_matters) return;
+    if(!this.proj.order_matters){
+      this.updateDB.emit()
+      return;
+    }
     this.bar.MarkDownTo(b);
+    this.updateDB.emit();
+  }
+
+  outputBubbler(){
     this.updateDB.emit();
   }
 

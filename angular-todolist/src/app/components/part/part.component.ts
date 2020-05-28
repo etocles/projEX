@@ -14,6 +14,7 @@ export class PartComponent implements OnInit {
   @Input() firstpart: boolean;
   @Input() lastpart: boolean;
   @Output() partMsg: EventEmitter<Part> = new EventEmitter();
+  @Output() partUpdate: EventEmitter<any> = new EventEmitter();
 
   percent:number;
 
@@ -37,6 +38,7 @@ export class PartComponent implements OnInit {
   onMark(){
     this.part.completed = !this.part.completed;
     this.partMsg.emit(this.part);
+    this.partMsg.emit(null);
   }
 
   getStyles(){

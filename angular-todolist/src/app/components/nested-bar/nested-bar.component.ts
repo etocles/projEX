@@ -49,6 +49,9 @@ export class NestedBarComponent implements OnInit {
   }
 
   nestedMark(p:Part){
+    if(!p){
+      this.nestedMsg.emit(null);
+    }
     let temp = true; //flag
     for (let i = 0; i< this.parts.length; i++){
       if (this.parts[i].completed == false){ //if even one part isn't done, the whole benchmark is not done
