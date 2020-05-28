@@ -19,7 +19,12 @@
     </div>
     <hr id="separator" />
     <div class = "bar-container">
-      <app-progress-bar [proj]="proj" [benchmarks]="bar.benchmarks" id="progressBar"></app-progress-bar>
+      <app-progress-bar
+      [proj]="proj"
+      [benchmarks]="bar.benchmarks"
+      (updateDB)="outputBubbler()"
+      id="progressBar">
+      </app-progress-bar>
       <!-- done button and edit button stacked on one another -->
       <div class ="btn-group">
         <button (click)="onToggle(proj)" id="done">✅</button>
@@ -31,4 +36,4 @@
 </div> <!--end of project card div-->
 
 <!-- Editing Dropdown -->
-<app-editing-dropdown *ngIf="editing" [proj]="proj" (updateBar)="updateBar($event)"></app-editing-dropdown>
+<app-editing-dropdown *ngIf="editing" [proj]="proj"></app-editing-dropdown>

@@ -13,6 +13,7 @@ import { ProgressBarComponent }  from '../progress-bar/progress-bar.component';
 
 export class TodoItemComponent implements OnInit {
   @Input() proj: Project;
+  @Output() updateDB: EventEmitter<any> = new EventEmitter();
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
   @ViewChild(EditingDropdownComponent)
   private dropdownForm: EditingDropdownComponent;
@@ -52,10 +53,12 @@ export class TodoItemComponent implements OnInit {
       this.bar.MarkDownTo(this.bar.benchmarks[this.benchBackup.id]);
       this.benchBackup = null;
     }
+    this.updateDB.emit();
   }
 
   onDelete(proj){
     this.deleteTodo.emit(proj);
+    this.updateDB.emit();
   }
 
   onEdit(){
@@ -69,13 +72,12 @@ export class TodoItemComponent implements OnInit {
     //onClose:
     if(this.editing == false){
       //set current progressbar to new progressBar provided by form
-      console.log(this.dropdownForm.myFunction());
       this.bar.benchmarks = this.dropdownForm.myFunction();
       this.barComponent.numDoneRecount(); //sanity check to make sure the num_done isn't thrown off
+      this.updateDB.emit();
     }
 
   }
-
 
   setDropdownClasses(){
     let classes ={
@@ -85,11 +87,8 @@ export class TodoItemComponent implements OnInit {
     return classes
   }
 
-  updateBar(event){
-    //should reapply styles to the progressBar, such as rounding corners and completing
-    //needs to set the current progressbar's benchmarks to event
-    //update num_done
-    console.log(event);
+  outputBubbler(){
+    this.updateDB.emit();
   }
 
 }

@@ -1,10 +1,10 @@
 <section class="basic-grid">
   <app-benchmark
   *ngFor="let bench of benchmarks; first as f; last as l"
-  [bench]="bench"
-  [prog]="bar"
   [first]="f"
   [last]="l"
+  [bench]="bench"
+  [prog]="bar"
   [nested]="bench.isnested"
   (markUpTo)="markUpTo($event)"
   (markDownTo)="markDownTo($event)">

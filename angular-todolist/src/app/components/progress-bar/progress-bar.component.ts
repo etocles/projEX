@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { Project, ProgressBar, Bench, Part } from 'src/app/models/Todo'
 
@@ -10,6 +10,7 @@ import { Project, ProgressBar, Bench, Part } from 'src/app/models/Todo'
 export class ProgressBarComponent implements OnInit {
   @Input() proj: Project;
   @Input() benchmarks: Bench[];
+  @Output() updateDB: EventEmitter<any> = new EventEmitter();
 
   bar: ProgressBar;
 
@@ -24,12 +25,14 @@ export class ProgressBarComponent implements OnInit {
     this.bar.num_done++; //add one for the current bench
     if(!this.proj.order_matters) return;
     this.bar.MarkUpTo(b);
+    this.updateDB.emit();
   }
 
   markDownTo(b:Bench){
     this.bar.num_done--; //subtracts one for the current bench
     if(!this.proj.order_matters) return;
     this.bar.MarkDownTo(b);
+    this.updateDB.emit();
   }
 
   numDoneRecount(){ //costly, but a necessary catch-all reset

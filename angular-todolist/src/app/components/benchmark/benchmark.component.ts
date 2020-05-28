@@ -16,6 +16,7 @@ export class BenchmarkComponent implements OnInit {
   @Output() markUpTo: EventEmitter<Bench> = new EventEmitter();
   @Output() markDownTo: EventEmitter<Bench> = new EventEmitter();
 
+
   nested_bar:NestedBar;
   percent:number;
 
