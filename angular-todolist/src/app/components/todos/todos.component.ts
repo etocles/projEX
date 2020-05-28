@@ -13,7 +13,7 @@ export class TodosComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
-    let proj1 = new Project('Homework 7','FOCS',5);
+    let proj1 = new Project(localStorage.getItem('temp'),'FOCS',5);
     proj1.due_date = new Date('2020-05-09T23:59:00');
     proj1.progbar = new ProgressBar(5,proj1.due_date);
     proj1.progbar.benchmarks[1].isnested = true;
