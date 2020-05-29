@@ -51,4 +51,5 @@ export class TodosComponent implements OnInit {
   addTodo(proj:Project){
     this.projects.push(proj);
   }
+
 }
