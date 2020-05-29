@@ -1,4 +1,4 @@
-const {app, BrowserWindow, screen} = require('electron')
+const {app, BrowserWindow, screen, ipcMain} = require('electron')
 const url = require("url");
 const path = require("path");
 
@@ -14,6 +14,12 @@ function createWindow () {
     }
   })
 
+  // secondaryWindow = new BrowserWindow({
+  //   width:800,
+  //   height:800,
+  //   show:false
+  // })
+
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, `/dist/angular-todolist/index.html`),
@@ -21,6 +27,7 @@ function createWindow () {
       slashes: true
     })
   );
+  // secondaryWindow.loadURL('http://google.com');
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -28,6 +35,11 @@ function createWindow () {
   mainWindow.on('closed', function () {
     mainWindow = null
   })
+  // secondaryWindow.show();
+  //should open remote window
+  // ipcMain.on('OpenNumber2', () => {
+  //     secondaryWindow.show();
+  // })
 }
 
 app.on('ready', createWindow)
