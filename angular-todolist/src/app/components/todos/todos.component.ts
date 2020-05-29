@@ -13,6 +13,9 @@ export class TodosComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    //uncomment this to revert to backup
+    // this.revertToBackup()
+
     //grabs the projects from storage
     let projJSON = localStorage.getItem('projArray');
     let pArray = JSON.parse(projJSON);
@@ -35,7 +38,8 @@ export class TodosComponent implements OnInit {
   }
 
   addTodo(proj:Project){
-    this.projects.push(proj);
+    // this.projects.push(proj);
+    this.projects.unshift(proj);
   }
 
   //helper functions

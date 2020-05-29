@@ -37,7 +37,9 @@ export class EditingDropdownComponent implements OnInit {
     var target = event.srcElement;
     var idAttr = target.attributes.id;
     var value = idAttr.nodeValue;
-    this.benchmarks.splice(value,0,new Bench(-3, new Date(Date.now())) )
+    let bench_insert = new Bench(-1, this.proj.due_date);
+    bench_insert.title = "[Name Here]"
+    this.benchmarks.splice(value,0,bench_insert)
     this.benchmarks = this.reID(this.benchmarks);
     this.benchmarks = this.updateCompleted(this.benchmarks);
     console.log(this.benchmarks);
@@ -115,9 +117,10 @@ export class EditingDropdownComponent implements OnInit {
 
   updateCompleted(benchmarks):Bench[]{
     var startCheckingCompleted=false;
+    //iterate through the benchmarks starting at the end
     for (let i = benchmarks.length-1; i >= 0 ; i--){
       if (benchmarks[i].completed) startCheckingCompleted = true;
-      benchmarks[i].completed = startCheckingCompleted;
+      benchmarks[i].ToggleTo(startCheckingCompleted)
     }
     return benchmarks
   }

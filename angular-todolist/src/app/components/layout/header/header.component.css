@@ -9,3 +9,10 @@
   color: #fff;
   text-decoration: none;
 }
+
+h1{
+  /* font-family: 'FredokaOne', serif; */
+  font-family: 'Coves', serif;
+  letter-spacing: 2px;
+  /* font-size: ; */
+}

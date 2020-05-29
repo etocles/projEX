@@ -3,7 +3,7 @@
   padding: 10px;
   border-bottom: 1px #ccc dotted;
   border-radius: 40px;
-  margin-top:1%; /* spaces out the todos */
+  margin-top:1.5%; /* spaces out the todos */
   margin-left:0.6%;
   margin-right:0.6%;
   height: minmax(260px,auto); /*normalizes project height*/
@@ -50,7 +50,6 @@
   border: 1px solid;
   margin-top: 20%;
   border-radius: 20%;
-  /* content: "🔽"; */
 }
 #done { /* toggling done button*/
   width:100%;

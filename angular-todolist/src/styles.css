@@ -34,3 +34,13 @@ a {
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+@font-face{
+  font-family: FredokaOne;
+  src: url("FredokaOne-Regular.otf") format("opentype");
+}
+
+@font-face{
+  font-family: Coves;
+  src: url("Coves_Light.otf") format("opentype");
+}
