@@ -1,3 +1,11 @@
-<form class="form" (ngSubmit)="onSubmit()">
-  <input type="submit" value="+" class="btn">
+<form class="form" (submit)="onSubmit()">
+  <input type="submit" value="+" class="btn" matTooltip="Click to add a benchmark">
+  <select name="sorting_name" class="sort" size="1" [(ngModel)]="sort_type" (change)="emitSort()">
+    <option value="by_custom">Custom</option>
+    <option value="by_due_date">Due Date</option>
+    <option value="by_importance">Importance (Default)</option>
+    <option value="by_category">Category</option>
+    <option value="by_alpha">A-Z</option>
+    <option value="by_rev_alpha">Z-A</option>
+  </select>
 </form>

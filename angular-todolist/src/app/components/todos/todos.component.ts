@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
+import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
+
 import { Project, ProgressBar, NestedBar, Part } from '../../models/Todo';
+import { AddTodoComponent }  from '../add-todo/add-todo.component';
+
 
 @Component({
   selector: 'app-todos',
@@ -8,6 +12,9 @@ import { Project, ProgressBar, NestedBar, Part } from '../../models/Todo';
   styleUrls: ['./todos.component.css']
 })
 export class TodosComponent implements OnInit {
+  @ViewChild(AddTodoComponent)
+  private addComponent: AddTodoComponent;
+
   projects:Project[];
 
   constructor() {}
@@ -42,7 +49,16 @@ export class TodosComponent implements OnInit {
     this.projects.unshift(proj);
   }
 
-  //helper functions
+  drop(event: CdkDragDrop<Project>) {
+    //rearranges the list to move the benchmark
+    moveItemInArray(this.projects, event.previousIndex, event.currentIndex);
+    this.addComponent.sort_type = 'by_custom';
+    //update the database
+    this.updateStorage();
+  }
+
+  /*HELPER FUNCTIONS*/
+
   JSON_TO_PROJECT(obj):Project{
     //takes in a JSON object and turn it into a project
     // console.log("%c TRANSCRIPTINO BEGINS HERE",'font-weight:bold;background-color:yellow;');
@@ -75,6 +91,52 @@ export class TodosComponent implements OnInit {
     }
     // console.dir(proj);
     return proj;
+  }
+
+  sortProjects(sortMethod:string){
+    let projectsCopy = this.projects;
+    switch(sortMethod){
+      case "by_custom": //do nothing
+        break;
+      case "by_due_date":
+        projectsCopy.sort(function(a,b){
+          if (a.due_date < b.due_date) return -1; //first argument is lesser
+          if (a.due_date > b.due_date) return 1; //first argument is greater (placed after second one)
+          return 0; //if a==b
+        })
+        break;
+      case "by_importance":
+        projectsCopy.sort(function(a,b){
+          //should have a predefined importance hash // TODO: change this to a hash
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1;
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1;
+          return 0; //if a==b
+        })
+        break;
+      case "by_category":
+        projectsCopy.sort(function(a,b){
+          if (a.category.toLowerCase() > b.category.toLowerCase()) return 1; //first argument is greater
+          if (a.category.toLowerCase() < b.category.toLowerCase()) return -1; //first argument is less than second
+          return 0; //if a==b
+        })
+        break;
+      case "by_alpha":
+        projectsCopy.sort(function(a,b){
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return -1; //first argument is less than second
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return 1; //first argument is greater
+          return 0; //if a==b
+        })
+        break;
+      case "by_rev_alpha":
+        projectsCopy.sort(function(a,b){
+          if (a.name.toLowerCase() < b.name.toLowerCase()) return 1; //first argument is greater
+          if (a.name.toLowerCase() > b.name.toLowerCase()) return -1; //first argument is lesser
+          return 0; //if a==b
+        })
+        break;
+    }
+    this.updateStorage();
+    this.projects = projectsCopy;
   }
 
   updateStorage(){

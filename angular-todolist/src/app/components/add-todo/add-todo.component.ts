@@ -8,11 +8,19 @@ import { Project} from 'src/app/models/Todo'
 })
 export class AddTodoComponent implements OnInit {
   @Output() addTodo: EventEmitter<Project> = new EventEmitter();
-  name:string;
+  @Output() sort: EventEmitter<string> = new EventEmitter();
+
+  sort_type:string;
 
   constructor() { }
 
   ngOnInit(): void {
+    this.sort_type = localStorage.getItem("sort_type");
+  }
+
+  emitSort(){
+    localStorage.setItem("sort_type","by_custom");
+    this.sort.emit(this.sort_type);
   }
 
   onSubmit() {
