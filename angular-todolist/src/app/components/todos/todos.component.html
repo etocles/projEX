@@ -1,14 +1,13 @@
 <app-add-todo (addTodo)="addTodo($event)" (sort)="sortProjects($event)"></app-add-todo>
 <div cdkDropList (cdkDropListDropped)="drop($event)">
-  <app-todo-item
-  *ngFor="let proj of projects"
-  [proj]="proj"
-  (deleteTodo)="deleteTodo($event)"
-  (updateDB)="updateStorage()"
-  cdkDrag
-  >
-  <!-- <img *cdkDragPreview src="..."> -->
-  </app-todo-item>
+  <div cdkDrag *ngFor="let proj of projects">
+    <!-- <p cdkDragHandle style="float:left; z-index:4;">=</p> -->
+    <app-todo-item
+    [proj]="proj"
+    (deleteTodo)="deleteTodo($event)"
+    (updateDB)="updateStorage()">
+    </app-todo-item>
+  </div>
 </div>
 <!-- <cdk-drop-list>
   <li cdkDrag>Yes  </li>

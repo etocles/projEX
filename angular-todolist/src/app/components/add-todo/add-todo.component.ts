@@ -19,11 +19,15 @@ export class AddTodoComponent implements OnInit {
   }
 
   emitSort(){
-    localStorage.setItem("sort_type","by_custom");
+    localStorage.setItem("sort_type",this.sort_type);
     this.sort.emit(this.sort_type);
   }
 
   onSubmit() {
+    // const overlayRef = overlay.create();
+    // const userProfilePortal = new ComponentPortal(UserProfile);
+    // overlayRef.attach(userProfilePortal)
+
     let name, category, benchNames, date, order;
     let td = new Date(Date.now());
     name = prompt("Project Name:");

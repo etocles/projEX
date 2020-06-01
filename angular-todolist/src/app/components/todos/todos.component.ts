@@ -135,8 +135,8 @@ export class TodosComponent implements OnInit {
         })
         break;
     }
-    this.updateStorage();
     this.projects = projectsCopy;
+    this.updateStorage();
   }
 
   updateStorage(){
