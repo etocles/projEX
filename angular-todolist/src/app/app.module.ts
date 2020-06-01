@@ -39,7 +39,8 @@ import { EditingDropdownComponent } from './components/editing-dropdown/editing-
     BrowserAnimationsModule,
     DragDropModule,
     MatTooltipModule,
-    MatIconModule
+    MatIconModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent]
