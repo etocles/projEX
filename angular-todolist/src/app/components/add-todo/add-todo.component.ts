@@ -1,9 +1,9 @@
-import { Component, OnInit, EventEmitter, Output} from '@angular/core';
+import { Component, OnInit, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
 import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy } from '@angular/cdk/overlay';
-import { ComponentPortal } from '@angular/cdk/portal';
+import { ComponentPortal} from '@angular/cdk/portal';
 
 import { Project } from 'src/app/models/Todo';
-import { TodoItemComponent } from 'src/app/components/todo-item/todo-item.component';
+import { TodosComponent } from 'src/app/components/todos/todos.component';
 
 
 @Component({
@@ -19,7 +19,9 @@ export class AddTodoComponent implements OnInit {
 
   overlayRef: OverlayRef;
   overlayPosition: PositionStrategy;
-  formComponentPortal: ComponentPortal<TodoItemComponent>;
+  formComponentPortal: ComponentPortal<TodosComponent>;
+  formComponentRef: any;
+  @ViewChild('addButton') addButton: ElementRef;
 
   constructor(private overlay: Overlay) { }
 
@@ -28,9 +30,14 @@ export class AddTodoComponent implements OnInit {
 
     //playing with overlay
     this.overlayRef = this.overlay.create({
+      // positionStrategy: this.overlay.position().connectedTo(
+      //   this.addButton,
+      //   {originX: 'start', originY: 'bottom'},
+      //   {overlayX: 'start', overlayY: 'bottom'}),
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       width: 200,
     });
-    this.formComponentPortal = new ComponentPortal(TodoItemComponent);
+    this.formComponentPortal = new ComponentPortal(TodosComponent);
   }
 
   emitSort(){
@@ -40,14 +47,12 @@ export class AddTodoComponent implements OnInit {
 
   onSubmit() {
     if (!this.overlayRef.hasAttached()) {
-      this.overlayRef.attach(this.formComponentPortal);
+      this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
     } else {
-      console.dir(this.overlayRef);
+      // console.dir(this.overlayRef);
       this.overlayRef.detach();
     }
-    // const overlayRef = this.overlay.create();
-    // const userProfilePortal = new ComponentPortal(TodoItemComponent);
-    // overlayRef.attach(userProfilePortal)
+    console.dir(this.formComponentRef.instance)
 
     // let name, category, benchNames, date, order;
     // let td = new Date(Date.now());

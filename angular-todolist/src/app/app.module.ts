@@ -18,6 +18,7 @@ import { NestedBarComponent } from './components/nested-bar/nested-bar.component
 import { PartComponent } from './components/part/part.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditingDropdownComponent } from './components/editing-dropdown/editing-dropdown.component';
+import { AddFormComponent } from './components/add-form/add-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { EditingDropdownComponent } from './components/editing-dropdown/editing-
     BenchmarkComponent,
     NestedBarComponent,
     PartComponent,
-    EditingDropdownComponent
+    EditingDropdownComponent,
+    AddFormComponent
   ],
   imports: [
     BrowserModule,

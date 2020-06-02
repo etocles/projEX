@@ -1,5 +1,5 @@
 <form class="form" (submit)="onSubmit()">
-  <input type="submit" value="+" class="btn" matTooltip="Click to add a benchmark">
+  <input type="submit" value="+" class="btn" matTooltip="Click to add a benchmark" id="addButton">
   <select name="sorting_name" class="sort" size="1" [(ngModel)]="sort_type" (change)="emitSort()">
     <option value="by_custom">Custom</option>
     <option value="by_due_date">Due Date</option>
