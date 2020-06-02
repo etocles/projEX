@@ -6,6 +6,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { OverlayModule } from '@angular/cdk/overlay';
+import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
 import { TodosComponent } from './components/todos/todos.component';
@@ -42,6 +43,7 @@ import { AddFormComponent } from './components/add-form/add-form.component';
     DragDropModule,
     MatTooltipModule,
     MatIconModule,
+    MatInputModule,
     OverlayModule
   ],
   providers: [],

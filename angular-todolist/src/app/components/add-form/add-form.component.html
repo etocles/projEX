@@ -1,1 +1,42 @@
-<p>add-form works!</p>
+<div id = "panel">
+  <!-- <form> -->
+    <!-- <input name="nameField" type="text" [(ngModel)]="name" placeholder="Project Name"/>
+    <input name="categoryField" type="text" [(ngModel)]="category" placeholder="Category Name"/>
+    <input name="dateField" type="date" [ngModel]="date | date:'yyyy-MM-dd'" />
+    <input name="timeField" type="time" [ngModel]="date | date:'HH:mm'" />
+    <input name="benchField" type="text" [(ngModel)]="benchNames" placeholder="Names of benchmarks separated by commas">
+    <label>
+      Linear Project <input name="orderField" type="checkbox" [(ngModel)]="order" />
+    </label> -->
+    <mat-form-field class="field">
+      <mat-label>Name</mat-label>
+      <input matInput placeholder="Ex. Setup ProjEX" [(ngModel)]="name">
+    </mat-form-field>
+
+    <mat-form-field class="field">
+      <mat-label>Category</mat-label>
+      <input matInput placeholder="Ex. Sample Category" [(ngModel)]="category">
+    </mat-form-field>
+
+    <!-- make these side by side -->
+    <mat-form-field class="field">
+      <mat-label>Due Date</mat-label>
+      <input matInput type="date" [ngModel]="date | date:'yyyy-MM-dd'">
+    </mat-form-field>
+    <mat-form-field class="field">
+      <input matInput type="time" [ngModel]="date | date:'HH:mm'">
+    </mat-form-field>
+
+    <!-- <mat-form-field class="field">
+      <mat-label>Project is Linear?</mat-label>
+      <input type="checkbox" [(ngModel)]="order">
+    </mat-form-field> -->
+
+
+    <!-- <mat-form-field class="field">
+      <mat-label>City</mat-label>
+      <input matInput type ="date">
+    </mat-form-field> -->
+    <input name="submitBtn" type="submit" value="Create Project" (submit)="createProject()"/>
+  <!-- </form> -->
+</div>

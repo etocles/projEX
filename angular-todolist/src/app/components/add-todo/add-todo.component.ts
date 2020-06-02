@@ -3,7 +3,7 @@ import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy } from '@ang
 import { ComponentPortal} from '@angular/cdk/portal';
 
 import { Project } from 'src/app/models/Todo';
-import { TodosComponent } from 'src/app/components/todos/todos.component';
+import { AddFormComponent } from 'src/app/components/add-form/add-form.component';
 
 
 @Component({
@@ -19,9 +19,9 @@ export class AddTodoComponent implements OnInit {
 
   overlayRef: OverlayRef;
   overlayPosition: PositionStrategy;
-  formComponentPortal: ComponentPortal<TodosComponent>;
+  formComponentPortal: ComponentPortal<AddFormComponent>;
   formComponentRef: any;
-  @ViewChild('addButton') addButton: ElementRef;
+  @ViewChild("addButton") addButton: ElementRef;
 
   constructor(private overlay: Overlay) { }
 
@@ -32,12 +32,12 @@ export class AddTodoComponent implements OnInit {
     this.overlayRef = this.overlay.create({
       // positionStrategy: this.overlay.position().connectedTo(
       //   this.addButton,
-      //   {originX: 'start', originY: 'bottom'},
-      //   {overlayX: 'start', overlayY: 'bottom'}),
+      //   {originX: 'center', originY: 'center'},
+      //   {overlayX: 'start', overlayY: 'top'}),
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       width: 200,
     });
-    this.formComponentPortal = new ComponentPortal(TodosComponent);
+    this.formComponentPortal = new ComponentPortal(AddFormComponent);
   }
 
   emitSort(){
@@ -52,7 +52,7 @@ export class AddTodoComponent implements OnInit {
       // console.dir(this.overlayRef);
       this.overlayRef.detach();
     }
-    console.dir(this.formComponentRef.instance)
+    // console.dir(this.formComponentRef.instance)
 
     // let name, category, benchNames, date, order;
     // let td = new Date(Date.now());

@@ -1,0 +1,32 @@
+#panel{
+  background-color: lightgray;
+  color: black;
+  width: 500px;
+  height: 500px;
+  display: grid;
+  grid-row: auto;
+  grid-column: auto;
+  grid-template-rows: 10%;
+}
+
+/* form{
+  display: grid;
+  grid-row: auto;
+  grid-column: auto;
+  grid-template-rows: 50px;
+} */
+
+/* input{
+  margin: 2%;
+  height: 50px;
+}
+
+label{
+  margin-left: 2.4%;
+} */
+
+.field{
+  height: 10%;
+  width: 80%;
+  margin: 5%;
+}
