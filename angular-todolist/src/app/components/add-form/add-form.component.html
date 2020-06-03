@@ -1,5 +1,4 @@
 <div id = "panel">
-  <!-- <form> -->
     <!-- <input name="nameField" type="text" [(ngModel)]="name" placeholder="Project Name"/>
     <input name="categoryField" type="text" [(ngModel)]="category" placeholder="Category Name"/>
     <input name="dateField" type="date" [ngModel]="date | date:'yyyy-MM-dd'" />
@@ -19,24 +18,36 @@
     </mat-form-field>
 
     <!-- make these side by side -->
-    <mat-form-field class="field">
-      <mat-label>Due Date</mat-label>
-      <input matInput type="date" [ngModel]="date | date:'yyyy-MM-dd'">
-    </mat-form-field>
-    <mat-form-field class="field">
-      <input matInput type="time" [ngModel]="date | date:'HH:mm'">
-    </mat-form-field>
-
-    <!-- <mat-form-field class="field">
-      <mat-label>Project is Linear?</mat-label>
-      <input type="checkbox" [(ngModel)]="order">
-    </mat-form-field> -->
+    <div class="field">
+      <mat-form-field id="datefield">
+        <mat-label>Due Date</mat-label>
+        <input matInput type="date" [ngModel]="date | date:'yyyy-MM-dd'">
+      </mat-form-field>
+      <mat-form-field id="timefield">
+        <input matInput type="time" [ngModel]="date | date:'HH:mm'">
+      </mat-form-field>
+    </div>
 
 
-    <!-- <mat-form-field class="field">
-      <mat-label>City</mat-label>
-      <input matInput type ="date">
-    </mat-form-field> -->
-    <input name="submitBtn" type="submit" value="Create Project" (submit)="createProject()"/>
-  <!-- </form> -->
+    <label class="field">
+      Linear Project? <input name="orderField" type="checkbox" [(ngModel)]="order" />
+    </label>
+
+    <p class="field">Benchmarks:</p>
+    <div class="container">
+      <div class="bench-edit" *ngFor="let b of benchmarks">
+        <!-- <mat-icon>reorder</mat-icon> -->
+          <div class="input-array">
+            <input class="benchdata" type="text" [(ngModel)]="b.title"/>
+            <input class="benchdata" type="text" [(ngModel)]="b.parts_summary" />
+            <input class="benchdata" type="datetime-local" [ngModel]="b.due_date | date:'yyyy-MM-ddTHH:mm'"/>
+            <mat-icon id="{{b.id}}" class ="del" (click)="delBench($event)">close</mat-icon>
+          </div>
+      </div>
+
+      <button id="bench-adder" (click)="addBench()"> + Add a benchmark + </button>
+    </div>
+
+
+    <input id="submit-button" type="submit" value="Create Project" (click)="createProject()"/>
 </div>

@@ -72,7 +72,7 @@ export class TodoItemComponent implements OnInit {
     //onClose:
     if(this.editing == false){
       //set current progressbar to new progressBar provided by form
-      this.bar.benchmarks = this.dropdownForm.myFunction();
+      this.bar.benchmarks = this.dropdownForm.correlateBenchmarks();
       this.barComponent.numDoneRecount(); //sanity check to make sure the num_done isn't thrown off
       this.updateDB.emit();
     }

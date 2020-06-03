@@ -42,7 +42,7 @@ export class EditingDropdownComponent implements OnInit {
     this.benchmarks.splice(value,0,bench_insert)
     this.benchmarks = this.reID(this.benchmarks);
     this.benchmarks = this.updateCompleted(this.benchmarks);
-    console.log(this.benchmarks);
+    // console.log(this.benchmarks);
   }
 
   delBench(event){
@@ -52,10 +52,10 @@ export class EditingDropdownComponent implements OnInit {
     var value = idAttr.nodeValue;
     this.benchmarks = this.benchmarks.filter(t => t.id != value);
     this.benchmarks = this.reID(this.benchmarks);
-    console.log(this.benchmarks);
+    // console.log(this.benchmarks);
   }
 
-  myFunction(){
+  correlateBenchmarks(){
     //a little costly, but go through each benchmark, and:
     // if nested parts have been removed, remove them
     // if nested parts have been added/changed, modify them

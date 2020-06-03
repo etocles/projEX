@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
-import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy } from '@angular/cdk/overlay';
+import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy, ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
 import { ComponentPortal} from '@angular/cdk/portal';
 
 import { Project } from 'src/app/models/Todo';
@@ -23,7 +23,7 @@ export class AddTodoComponent implements OnInit {
   formComponentRef: any;
   @ViewChild("addButton") addButton: ElementRef;
 
-  constructor(private overlay: Overlay) { }
+  constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) { }
 
   ngOnInit(): void {
     this.sort_type = localStorage.getItem("sort_type");
@@ -35,8 +35,11 @@ export class AddTodoComponent implements OnInit {
       //   {originX: 'center', originY: 'center'},
       //   {overlayX: 'start', overlayY: 'top'}),
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
-      width: 200,
+      scrollStrategy: this.sso.close(),
+      width: 600,
+      // height: "auto",
     });
+    // console.log(this.overlay.position().global().centerHorizontally().centerVertically()); // TODO: fully center the form
     this.formComponentPortal = new ComponentPortal(AddFormComponent);
   }
 

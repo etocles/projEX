@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { Project } from 'src/app/models/Todo';
+import { Project, Bench} from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-add-form',
@@ -13,6 +13,7 @@ export class AddFormComponent implements OnInit {
   date: Date;
   order: boolean;
   proj: Project;
+  benchmarks: Bench[];
 
   constructor() { }
 
@@ -25,6 +26,7 @@ export class AddFormComponent implements OnInit {
     this.date.setHours(23,59)
     this.order = true
     this.proj = null; //upon form creation, there should be no project
+    this.benchmarks = [];
   }
 
   createProject(){
@@ -43,6 +45,25 @@ export class AddFormComponent implements OnInit {
         this.proj.progbar.benchmarks[i].title = this.benchNames[i];
       }
       console.log(this.proj);
+  }
+
+  addBench(){
+    this.benchmarks.push(new Bench(this.benchmarks.length,this.date));
+  }
+
+  delBench(event){
+    var target = event.srcElement;
+    var idAttr = target.attributes.id;
+    var value = idAttr.nodeValue;
+    this.benchmarks = this.benchmarks.filter(t => t.id != value);
+    this.benchmarks = this.reID(this.benchmarks)
+  }
+
+  reID(benchmarks):Bench[]{
+    for (let i = 0; i < benchmarks.length; i++){
+      benchmarks[i].id = i;
+    }
+    return benchmarks;
   }
 
 }
