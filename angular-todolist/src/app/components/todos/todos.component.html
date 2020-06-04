@@ -1,4 +1,4 @@
-<app-add-todo (addTodo)="addTodo($event)" (sort)="sortProjects($event)"></app-add-todo>
+<app-add-todo (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-todo>
 <div cdkDropList (cdkDropListDropped)="drop($event)">
   <div cdkDrag *ngFor="let proj of projects">
     <!-- <p cdkDragHandle style="float:left; z-index:4;">=</p> -->

@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { Project, Bench} from 'src/app/models/Todo';
+import { Project, Bench, NestedBar} from 'src/app/models/Todo';
 
 @Component({
   selector: 'app-add-form',
@@ -10,7 +10,6 @@ export class AddFormComponent implements OnInit {
   @Output() closePanel: EventEmitter<void> = new EventEmitter();
   name: string;
   category: string;
-  benchNames:any;
   date: Date;
   order: boolean;
   proj: Project;
@@ -22,7 +21,6 @@ export class AddFormComponent implements OnInit {
     // TODO: add a create from template option
     this.name = "New Project";
     this.category = "New Category"; // TODO: change this into a dropdown
-    this.benchNames = "a,b,c";
     this.date = new Date(Date.now());
     this.date.setHours(23,59)
     this.order = true
@@ -33,19 +31,34 @@ export class AddFormComponent implements OnInit {
   createProject(){
       if (!this.name) return;
       if (!this.category) return;
-      if (!this.benchNames) return; //break out of function if the user clicks cancel
-      this.benchNames = this.benchNames.split(",");
-      this.benchNames = this.benchNames.filter(t => t.trim().length != 0); //filters out any "blank space" benchmarks
-      if (this.benchNames.length == 0) return; //sanity check
+      if (this.benchmarks.length == 0) return; //sanity check
       if (!this.date) return; //break out of function if the user clicks cancel
       if (!this.order) return;
 
-      this.proj = new Project(this.name, this.category, this.benchNames.length, this.date);
+      this.proj = new Project(this.name, this.category, this.benchmarks.length, this.date);
       this.proj.order_matters = this.order;
-      for (let i = 0; i < this.proj.progbar.benchmarks.length; i++){
-        this.proj.progbar.benchmarks[i].title = this.benchNames[i];
+      
+      //make nested benchmarks where needed
+      for (var b of this.benchmarks){
+        //bench isn't nested but needs to be
+        if (!b.isnested){
+          if(b.parts_summary!=null){
+            var namesOfParts = b.parts_summary.split(",");
+            namesOfParts = namesOfParts.filter(t => t.trim().length != 0);
+            //sanity check
+            if (namesOfParts.length ==0) continue;
+            b.isnested = true;
+            b.nested_bar = new NestedBar(namesOfParts.length);
+            for (let n = 0; n < b.nested_bar.parts.length; n++){
+              b.nested_bar.parts[n].name = namesOfParts[n];
+              b.nested_bar.parts[n].completed = b.completed;
+            }
+          }
+        }
       }
-      console.log(this.proj);
+
+      this.proj.progbar.benchmarks = this.benchmarks;
+      localStorage.setItem('ProjectToBeAdded', JSON.stringify(this.proj));
       this.closePanel.emit();
   }
 

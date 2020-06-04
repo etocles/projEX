@@ -44,9 +44,17 @@ export class TodosComponent implements OnInit {
     this.projects = this.projects.filter(t => t.name !== proj.name);
   }
 
-  addTodo(proj:Project){
-    // this.projects.push(proj);
-    this.projects.unshift(proj);
+  addProj(){
+    //change sorting method to custom
+    //grab the temporary project that's stored in localStorage, and add it.
+    let proj_JSON = localStorage.getItem('ProjectToBeAdded');
+    let proj = this.JSON_TO_PROJECT(JSON.parse(proj_JSON));
+
+    // this.projects.push(proj); //adds new project at the end
+    this.projects.unshift(proj); //adds new project at the top
+
+    //cleanup
+    localStorage.removeItem('ProjectToBeAdded');
   }
 
   drop(event: CdkDragDrop<Project>) {
