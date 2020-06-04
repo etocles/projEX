@@ -7,6 +7,7 @@ import { Project, Bench} from 'src/app/models/Todo';
   styleUrls: ['./add-form.component.css']
 })
 export class AddFormComponent implements OnInit {
+  @Output() closePanel: EventEmitter<void> = new EventEmitter();
   name: string;
   category: string;
   benchNames:any;
@@ -21,7 +22,7 @@ export class AddFormComponent implements OnInit {
     // TODO: add a create from template option
     this.name = "New Project";
     this.category = "New Category"; // TODO: change this into a dropdown
-    this.benchNames = "";
+    this.benchNames = "a,b,c";
     this.date = new Date(Date.now());
     this.date.setHours(23,59)
     this.order = true
@@ -45,6 +46,7 @@ export class AddFormComponent implements OnInit {
         this.proj.progbar.benchmarks[i].title = this.benchNames[i];
       }
       console.log(this.proj);
+      this.closePanel.emit();
   }
 
   addBench(){
@@ -65,5 +67,4 @@ export class AddFormComponent implements OnInit {
     }
     return benchmarks;
   }
-
 }

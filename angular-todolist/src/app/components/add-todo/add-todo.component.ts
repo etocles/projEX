@@ -51,6 +51,11 @@ export class AddTodoComponent implements OnInit {
   onSubmit() {
     if (!this.overlayRef.hasAttached()) {
       this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
+
+      // this.formComponentRef.instance.overlayRef = this.overlayRef;
+      this.overlayRef.backdropClick().subscribe(() => this.overlayRef.detach());
+      //allows closing of the form from within form
+      this.formComponentRef.instance.closePanel.subscribe(() => this.overlayRef.detach());
     } else {
       // console.dir(this.overlayRef);
       this.overlayRef.detach();
