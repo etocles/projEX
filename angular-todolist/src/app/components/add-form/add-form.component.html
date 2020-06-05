@@ -1,45 +1,44 @@
 <div id = "panel">
-    <!-- <input name="nameField" type="text" [(ngModel)]="name" placeholder="Project Name"/>
-    <input name="categoryField" type="text" [(ngModel)]="category" placeholder="Category Name"/>
-    <input name="dateField" type="date" [ngModel]="date | date:'yyyy-MM-dd'" />
-    <input name="timeField" type="time" [ngModel]="date | date:'HH:mm'" />
-    <input name="benchField" type="text" [(ngModel)]="benchNames" placeholder="Names of benchmarks separated by commas">
-    <label>
-      Linear Project <input name="orderField" type="checkbox" [(ngModel)]="order" />
-    </label> -->
+    <!-- NAME -->
     <mat-form-field class="field">
       <mat-label>Name</mat-label>
       <input matInput placeholder="Ex. Setup ProjEX" [(ngModel)]="name">
+      <mat-hint class="warning" *ngIf="name.trim().length==0">
+        Cannot be empty
+      </mat-hint>
     </mat-form-field>
 
+    <!-- CATEGORY -->
     <mat-form-field class="field">
       <mat-label>Category</mat-label>
       <input matInput placeholder="Ex. Sample Category" [(ngModel)]="category">
+      <mat-hint class="warning" *ngIf="category.trim().length==0">
+        Cannot be empty
+      </mat-hint>
     </mat-form-field>
 
-    <!-- make these side by side -->
-    <div class="field">
-      <mat-form-field id="datefield">
-        <mat-label>Due Date</mat-label>
-        <input matInput type="date" [ngModel]="date | date:'yyyy-MM-dd'">
-      </mat-form-field>
-      <mat-form-field id="timefield">
-        <input matInput type="time" [ngModel]="date | date:'HH:mm'">
-      </mat-form-field>
-    </div>
+    <!-- DUE DATE -->
+    <mat-form-field class="field">
+      <mat-label>Due Date</mat-label>
+      <input matInput #input="ngModel" type="datetime-local" [ngModel]="date | date:'yyyy-MM-ddTHH:mm'" [min]="today | date:'yyyy-MM-ddTHH:mm'"/>
+    </mat-form-field>
 
-
+    <!-- ORDER -->
     <label class="field">
-      Linear Project? <input name="orderField" type="checkbox" [(ngModel)]="order" />
+      Linear Project? <input name="orderField" type="checkbox" [(ngModel)]="order"
+      matTooltip="Leave unchecked if benchmarks can be completed independently of one another"
+      [matTooltipPosition]="'after'"
+      [matTooltipShowDelay]="1500"/>
     </label>
 
-    <p class="field">Benchmarks:</p>
+    <!-- BENCHMARKS -->
+    <p class="field">Benchmarks:  <span *ngIf="benchmarks.length <= 1" class="warning"> Project must have at least 2 benchmarks</span> </p>
     <div class="container">
       <div class="bench-edit" *ngFor="let b of benchmarks">
         <!-- <mat-icon>reorder</mat-icon> -->
           <div class="input-array">
             <input class="benchdata" type="text" [(ngModel)]="b.title"/>
-            <input class="benchdata" type="text" [(ngModel)]="b.parts_summary" />
+            <input class="benchdata" type="text" [(ngModel)]="b.parts_summary" placeholder="ex. step 1, step 2, step 3" />
             <input class="benchdata" type="datetime-local" [ngModel]="b.due_date | date:'yyyy-MM-ddTHH:mm'"/>
             <mat-icon id="{{b.id}}" class ="del" (click)="delBench($event)">close</mat-icon>
           </div>
@@ -49,5 +48,6 @@
     </div>
 
 
+    <!-- SUBMISSION BUTTOn -->
     <input id="submit-button" type="submit" value="Create Project" (click)="createProject()"/>
 </div>

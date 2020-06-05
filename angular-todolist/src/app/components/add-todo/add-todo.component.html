@@ -1,3 +1,5 @@
+<div>
+
 <form class="form" (submit)="openForm()">
   <input type="submit" value="+" class="btn" matTooltip="Click to start a new project" id="addButton" >
   <select name="sorting_name" class="sort" size="1" [(ngModel)]="sort_type" (change)="emitSort()">
@@ -9,3 +11,5 @@
     <option value="by_rev_alpha">Z-A</option>
   </select>
 </form>
+
+</div>

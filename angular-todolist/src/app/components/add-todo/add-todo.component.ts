@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output, ElementRef, ViewChild } from '@angular/core';
-import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy, ScrollStrategy, ScrollStrategyOptions } from '@angular/cdk/overlay';
+import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy, ScrollStrategy, ScrollStrategyOptions, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal} from '@angular/cdk/portal';
 
 import { Project } from 'src/app/models/Todo';
@@ -23,23 +23,23 @@ export class AddTodoComponent implements OnInit {
   formComponentRef: any;
   @ViewChild("addButton") addButton: ElementRef;
 
-  constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) { }
+  constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {}
 
   ngOnInit(): void {
     this.sort_type = localStorage.getItem("sort_type");
 
     //playing with overlay
+    // this.overlayRef = this.overlay.create({
+    //   // positionStrategy: this.overlay.position().connectedTo(
+    //   //   this.addButton,
+    //   //   {originX: 'center', originY: 'center'},
+    //   //   {overlayX: 'start', overlayY: 'top'}),
     this.overlayRef = this.overlay.create({
-      // positionStrategy: this.overlay.position().connectedTo(
-      //   this.addButton,
-      //   {originX: 'center', originY: 'center'},
-      //   {overlayX: 'start', overlayY: 'top'}),
+      hasBackdrop: true,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.sso.close(),
-      width: 600,
-      // height: "auto",
+      width: 600
     });
-    // console.log(this.overlay.position().global().centerHorizontally().centerVertically()); // TODO: fully center the form
     this.formComponentPortal = new ComponentPortal(AddFormComponent);
   }
 
@@ -53,12 +53,18 @@ export class AddTodoComponent implements OnInit {
       this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
       //allows closing of the form from within form
       // this.formComponentRef.instance.closePanel.subscribe(() => this.overlayRef.detach());
+      this.overlayRef.backdropClick().subscribe(_ => this.overlayRef.detach());
       this.formComponentRef.instance.closePanel.subscribe(() => {
         this.addProj.emit();
-        this.overlayRef.detach();})
+        this.overlayRef.detach();
+      })
     } else { //close the panel if the plus button is clicked again
       this.overlayRef.detach();
     }
   }
 
+  // onClick(event) {
+  //  if (!this.overlayRef.contains(event.target)) // or some similar check
+  //    console.log("ha");
+  // }
 }

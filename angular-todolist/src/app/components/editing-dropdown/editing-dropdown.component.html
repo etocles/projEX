@@ -5,7 +5,7 @@
       <mat-icon cdkDragHandle>reorder</mat-icon>
         <div class="input-array">
           <input type="text" class="input-text" [(ngModel)]="b.title"/>
-          <input type="text" class="input-text" [(ngModel)]="b.parts_summary" placeholder="Create sub-parts by typing them here, separated by commas "/>  <!--(focusout)="myFunction()" used to call a function when focus is lost-->
+          <input type="text" class="input-text" [(ngModel)]="b.parts_summary" placeholder="Sub-parts go here, separated by commas "/>  <!--(focusout)="myFunction()" used to call a function when focus is lost-->
           <div>
             <input type="date" class="nest-input-date" [ngModel]="b.due_date | date:'yyyy-MM-dd'"/>
             <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm'"/>

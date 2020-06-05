@@ -1,3 +1,13 @@
+.hint-text{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding-top: 5%;
+  color:#223540;
+  font-size: 2em;
+}
+
 .cdk-drag-placeholder {
   opacity: 0;
 }
@@ -7,7 +17,3 @@
 .cdk-drop-list-dragging {
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
 }
-
-/* .cdk-drag-preview{
-
-} */

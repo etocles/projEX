@@ -14,6 +14,7 @@ export class AddFormComponent implements OnInit {
   order: boolean;
   proj: Project;
   benchmarks: Bench[];
+  today: Date;
 
   constructor() { }
 
@@ -26,18 +27,17 @@ export class AddFormComponent implements OnInit {
     this.order = true
     this.proj = null; //upon form creation, there should be no project
     this.benchmarks = [];
+    this.today = new Date(Date.now());
   }
 
   createProject(){
       if (!this.name) return;
       if (!this.category) return;
-      if (this.benchmarks.length == 0) return; //sanity check
-      if (!this.date) return; //break out of function if the user clicks cancel
-      if (!this.order) return;
+      if (this.benchmarks.length <= 1) return; //sanity check
 
       this.proj = new Project(this.name, this.category, this.benchmarks.length, this.date);
       this.proj.order_matters = this.order;
-      
+
       //make nested benchmarks where needed
       for (var b of this.benchmarks){
         //bench isn't nested but needs to be

@@ -1,5 +1,8 @@
 <app-add-todo (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-todo>
-<div cdkDropList (cdkDropListDropped)="drop($event)">
+<p *ngIf="projects.length==0" class="hint-text">
+    Looks like you don't have any projects started yet. Click the "+" above to add one!
+</p>
+<div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="projects.length!=0">
   <div cdkDrag *ngFor="let proj of projects">
     <!-- <p cdkDragHandle style="float:left; z-index:4;">=</p> -->
     <app-todo-item
@@ -9,9 +12,3 @@
     </app-todo-item>
   </div>
 </div>
-<!-- <cdk-drop-list>
-  <li cdkDrag>Yes  </li>
-  <li cdkDrag> A </li>
-  <li cdkDrag>  BB </li>
-  <li cdkDrag>  GAjufga </li>
-</cdk-drop-list> -->

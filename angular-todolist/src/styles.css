@@ -44,3 +44,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   font-family: Coves;
   src: url("Coves_Light.otf") format("opentype");
 }
+
+
+.cdk-overlay-backdrop.cdk-overlay-backdrop-showing {
+  background-color: rgba(0,0,0,.6);
+}
