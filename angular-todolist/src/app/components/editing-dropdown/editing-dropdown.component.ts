@@ -104,6 +104,11 @@ export class EditingDropdownComponent implements OnInit {
         }
       }
     }
+
+    //if the date of the last benchmark is after the project's duedate, update the project's duedate
+    if(benchmarksCopy[benchmarksCopy.length-1].due_date > this.proj.due_date){
+      this.proj.due_date = benchmarksCopy[benchmarksCopy.length-1].due_date;
+    }
     return benchmarksCopy;
   }
 

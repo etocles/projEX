@@ -55,6 +55,7 @@ export class TodosComponent implements OnInit {
 
     //cleanup
     localStorage.removeItem('ProjectToBeAdded');
+    this.updateStorage();
   }
 
   drop(event: CdkDragDrop<Project>) {
