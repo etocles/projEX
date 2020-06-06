@@ -21,6 +21,18 @@
   grid-template-columns: repeat(auto-fit,minmax(30px,1fr));
 }
 
+.project-array{
+  margin-left: 5%;
+  padding: 1% 0%;
+
+  display:grid;
+  width:90%;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  column-gap: 10px;
+  background-color: lightgray;
+}
+
 .input-text, .input-date, .input-time{
 height:60px;
 }
