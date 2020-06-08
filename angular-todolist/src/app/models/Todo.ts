@@ -71,6 +71,16 @@ export class ProgressBar{
       this.benchmarks[index].ToggleTo(state);
     }
   }
+
+  UpcomingBenchmark():Bench{
+    var temp = this.benchmarks[this.benchmarks.length-1];
+    for (let i = this.benchmarks.length-1; i >= 0; i--){
+      //if the benchmark is the most pressing, return it
+      if (this.benchmarks[i].due_date <= temp.due_date && !this.benchmarks[i].completed)
+        temp = this.benchmarks[i]
+    }
+    return temp
+  }
 }
 
 export class Bench{

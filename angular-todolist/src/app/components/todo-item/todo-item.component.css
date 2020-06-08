@@ -31,6 +31,11 @@
   padding-bottom: 10px;
 }
 
+.upcoming-benchmark-info{
+  padding-left: 26px;
+  font-size: .75rem;
+}
+
 #del { /* deleting button */
   background: #ff0000;
   color: #333333;
@@ -67,6 +72,13 @@
   top:25px;  /* TODO: sketchy, this controls how close category is to the project name */
 }
 
+#recent-warning{
+  padding-left: 2%;
+  font-weight: bold;
+  color: darkred;
+  opacity: 80%;
+}
+
 #spacer{
   width:92%;
   justify-content: space-between;
@@ -99,5 +111,5 @@
 
 #separator{
   padding-left: 15px;
-  margin: 0.1% 6% 1% 1%; /*top, right, bottom, left*/
+  margin: -1% 5% 0% 1%; /*top, right, bottom, left*/
 }

@@ -39,7 +39,7 @@
           <div class="input-array">
             <input class="benchdata" type="text" [(ngModel)]="b.title"/>
             <input class="benchdata" type="text" [(ngModel)]="b.parts_summary" placeholder="ex. step 1, step 2, step 3" />
-            <input class="benchdata" type="datetime-local" [ngModel]="b.due_date | date:'yyyy-MM-ddTHH:mm'"/>
+            <input class="benchdata" type="datetime-local" [ngModel]="b.due_date | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="b.due_date = $event"/>
             <mat-icon id="{{b.id}}" class ="del" (click)="delBench($event)">close</mat-icon>
           </div>
       </div>

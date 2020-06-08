@@ -2,22 +2,25 @@
   <div>
     <button (click)="onDelete(proj)" id="del">x</button>
     <!-- <mat-icon (click)="onDelete(proj)" id="del">remove_circle</mat-icon> -->
-    <h2 id="category">{{proj.category | uppercase}}</h2>
+    <h2 id="category">{{proj.category | uppercase}}  <span id="recent-warning">3 DAYS</span> </h2>
     <div id = "spacer">
         <div>
           <h1 id="name">
             {{proj.name}}
           </h1>
           <small id= "date-info">
-            DUE: {{proj.due_date | date: 'short'}}
+            {{proj.due_date | date: 'short'}}
           </small>
         </div>
-
         <h1 id = "percent">
           {{proj.progbar.num_done/proj.progbar.benchmarks.length*100 | number:'1.0-0'}}%
         </h1>
     </div>
+
     <hr id="separator" />
+
+    <small class="upcoming-benchmark-info"> {{proj.progbar.UpcomingBenchmark().title}} Due at {{proj.progbar.UpcomingBenchmark().due_date | date:'short'}}</small>
+
     <div class = "bar-container">
       <app-progress-bar
       [proj]="proj"
