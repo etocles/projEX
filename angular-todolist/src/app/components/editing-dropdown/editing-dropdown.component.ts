@@ -55,10 +55,28 @@ export class EditingDropdownComponent implements OnInit {
     // console.log(this.benchmarks);
   }
 
+  //helper functions
+
+  timeAdjust(date,event){
+    date = new Date(date); //original benchmark due-date, unchanged
+    // TODO: add something that auto-initializes to 11:59 pm if time breaks
+    if (event.includes("-")){ //date was changed
+      var adjust = new Date(event);
+      adjust.setHours(date.getHours(), date.getMinutes());
+      return adjust;
+    }
+    if (event.includes(":")){ //date was changed
+      let info = event.split(":");
+      date.setHours( info[0],info[1] ); //HH:mm
+      return date;
+    }
+  }
+
   correlateBenchmarks(){
     //a little costly, but go through each benchmark, and:
     // if nested parts have been removed, remove them
     // if nested parts have been added/changed, modify them
+    // make sure that the project has the same due date as the last benchmark
     var benchmarksCopy = this.benchmarks;
     for (let i = 0; i < benchmarksCopy.length; i++){
       var b = benchmarksCopy[i];
@@ -105,14 +123,17 @@ export class EditingDropdownComponent implements OnInit {
       }
     }
 
-    //if the date of the last benchmark is after the project's duedate, update the project's duedate
-    if(benchmarksCopy[benchmarksCopy.length-1].due_date > this.proj.due_date){
-      this.proj.due_date = benchmarksCopy[benchmarksCopy.length-1].due_date;
-    }
+    //grab the furthestmost due-date, and update the project's duedate to that
+    var dateSetter = benchmarksCopy;
+    dateSetter.sort(function(a,b){
+      if (a.due_date > b.due_date) return -1; //first argument is lesser
+      if (a.due_date < b.due_date) return 1; //first argument is greater (placed after second one)
+      return 0; //if a==b
+    })
+    if (dateSetter[0].due_date > this.proj.due_date) this.proj.due_date = dateSetter[0].due_date;
     return benchmarksCopy;
   }
 
-  //helper functions
   reID(benchmarks):Bench[]{
     for (let i = 0; i < benchmarks.length; i++){
       benchmarks[i].id = i;

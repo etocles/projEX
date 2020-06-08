@@ -73,13 +73,15 @@ export class ProgressBar{
   }
 
   UpcomingBenchmark():Bench{
-    var temp = this.benchmarks[this.benchmarks.length-1];
-    for (let i = this.benchmarks.length-1; i >= 0; i--){
-      //if the benchmark is the most pressing, return it
-      if (this.benchmarks[i].due_date <= temp.due_date && !this.benchmarks[i].completed)
-        temp = this.benchmarks[i]
-    }
-    return temp
+    //narrow the benchmarks down to the ones that haven't been completed
+    let not_done = this.benchmarks.filter(t => !t.completed);
+    //sort them by due_date
+    not_done.sort(function(a,b){
+      if (a.due_date < b.due_date) return -1; //first argument is lesser
+      if (a.due_date > b.due_date) return 1; //first argument is greater (placed after second one)
+      return 0; //if a==b
+    })
+    return not_done[0];
   }
 }
 

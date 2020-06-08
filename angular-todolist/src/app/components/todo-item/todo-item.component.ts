@@ -68,6 +68,7 @@ export class TodoItemComponent implements OnInit {
     //change dropdown icon
     var editBtn = document.getElementById('edit');
     editBtn.innerHTML = (!this.editing)? '🔽':'🆗';
+    console.dir(this.proj.progbar.benchmarks);
 
     //onClose:
     if(this.editing == false){
