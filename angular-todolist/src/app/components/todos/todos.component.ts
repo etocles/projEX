@@ -23,6 +23,12 @@ export class TodosComponent implements OnInit {
     //uncomment this to revert to backup
     // this.revertToBackup()
 
+    if(localStorage.getItem('projArray') == "undefined"){ //on first bootup, the projects array will be empty
+      this.projects = [];
+      return;
+    }
+
+
     //grabs the projects from storage
     let projJSON = localStorage.getItem('projArray');
     let pArray = JSON.parse(projJSON);

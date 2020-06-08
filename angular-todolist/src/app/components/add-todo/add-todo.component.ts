@@ -51,7 +51,8 @@ export class AddTodoComponent implements OnInit {
       hasBackdrop: true,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.sso.close(),
-      width: 600
+      width: 600,
+      height: 700
     });
     this.formComponentPortal = new ComponentPortal(AddFormComponent);
   }

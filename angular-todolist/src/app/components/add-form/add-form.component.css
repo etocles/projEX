@@ -7,7 +7,7 @@
 
   /* css grid config */
   display: grid;
-  grid-template-rows: 10% 10% 10% 6% 0% 48% 0%;
+  grid-template-rows: 10% 10% 10% 6% 0% 45% 0%;
   grid-template-columns: 45% 45%;
   gap: 13px;
   justify-items: center;
