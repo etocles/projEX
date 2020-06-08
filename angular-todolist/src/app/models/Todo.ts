@@ -75,7 +75,7 @@ export class ProgressBar{
   UpcomingBenchmark():Bench{
     //narrow the benchmarks down to the ones that haven't been completed
     let not_done = this.benchmarks.filter(t => !t.completed);
-    //sort them by due_date
+    //sort them by due_date where the furthest most due date is first
     not_done.sort(function(a,b){
       if (a.due_date < b.due_date) return -1; //first argument is lesser
       if (a.due_date > b.due_date) return 1; //first argument is greater (placed after second one)
