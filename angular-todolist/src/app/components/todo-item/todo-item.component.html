@@ -19,7 +19,7 @@
 
     <hr id="separator" />
 
-    <small class="upcoming-benchmark-info"> {{proj.progbar.UpcomingBenchmark().title}} Due at {{proj.progbar.UpcomingBenchmark().due_date | date:'short'}}</small>
+    <small class="upcoming-benchmark-info" *ngIf="!proj.completed"> {{proj.UpcomingBenchmark().title}} Due at {{proj.UpcomingBenchmark().due_date | date:'short'}}</small>
 
     <div class = "bar-container">
       <app-progress-bar

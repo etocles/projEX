@@ -16,8 +16,8 @@
           <input type="text" class="input-text" [(ngModel)]="b.title"/>
           <input type="text" class="input-text" [(ngModel)]="b.parts_summary" placeholder="Sub-parts go here, separated by commas "/>  <!--(focusout)="myFunction()" used to call a function when focus is lost-->
           <div>
-            <input type="date" class="nest-input-date" [ngModel]="b.due_date | date:'yyyy-MM-dd' " (ngModelChange)="b.due_date = timeAdjust(b.due_date,$event)"/>
-            <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm' " (ngModelChange)="b.due_date = timeAdjust(b.due_date,$event)"/>
+            <input type="date" class="nest-input-date" [ngModel]="b.due_date | date:'yyyy-MM-dd' " (ngModelChange)="b.due_date = timeAdjust(b.due_date,$event)" [min]="today | date:'yyyy-MM-dd' "/>
+            <input type="time" class="nest-input-time" [ngModel]="b.due_date | date:'HH:mm' " (ngModelChange)="b.due_date = timeAdjust(b.due_date,$event)" [min]="today | date:'HH:mm' "/>
           </div>
         </div>
       <mat-icon id="{{b.id}}" class ="del" (click)="delBench($event)">close</mat-icon>

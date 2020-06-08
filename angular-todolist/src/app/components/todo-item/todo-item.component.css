@@ -33,7 +33,10 @@
 
 .upcoming-benchmark-info{
   padding-left: 26px;
-  font-size: .75rem;
+    font-size: .75rem;
+    z-index: 4;
+    position: relative;
+    top: -6px;
 }
 
 #del { /* deleting button */
@@ -111,5 +114,5 @@
 
 #separator{
   padding-left: 15px;
-  margin: -1% 5% 0% 1%; /*top, right, bottom, left*/
+  margin: -1% 5% 1% 1%; /*top, right, bottom, left*/
 }

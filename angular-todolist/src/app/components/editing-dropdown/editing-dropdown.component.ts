@@ -13,12 +13,14 @@ export class EditingDropdownComponent implements OnInit {
 
   bar:ProgressBar;
   benchmarks:Bench[];
+  today:Date;
 
   constructor() { }
 
   ngOnInit(): void {
     this.bar = this.proj.progbar;
     this.benchmarks = this.bar.benchmarks;
+    this.today = new Date(Date.now());
   }
 
   drop(event: CdkDragDrop<Bench>) {
@@ -56,21 +58,6 @@ export class EditingDropdownComponent implements OnInit {
   }
 
   //helper functions
-
-  timeAdjust(date,event){
-    date = new Date(date); //original benchmark due-date, unchanged
-    // TODO: add something that auto-initializes to 11:59 pm if time breaks
-    if (event.includes("-")){ //date was changed
-      var adjust = new Date(event);
-      adjust.setHours(date.getHours(), date.getMinutes());
-      return adjust;
-    }
-    if (event.includes(":")){ //date was changed
-      let info = event.split(":");
-      date.setHours( info[0],info[1] ); //HH:mm
-      return date;
-    }
-  }
 
   correlateBenchmarks(){
     //a little costly, but go through each benchmark, and:
@@ -132,6 +119,21 @@ export class EditingDropdownComponent implements OnInit {
     })
     if (dateSetter[0].due_date > this.proj.due_date) this.proj.due_date = dateSetter[0].due_date;
     return benchmarksCopy;
+  }
+
+  timeAdjust(date,event){
+    date = new Date(date); //original benchmark due-date, unchanged
+    // TODO: add something that auto-initializes to 11:59 pm if time breaks
+    if (event.includes("-")){ //date was changed
+      var adjust = new Date(event);
+      adjust.setHours(date.getHours(), date.getMinutes());
+      return adjust;
+    }
+    if (event.includes(":")){ //date was changed
+      let info = event.split(":");
+      date.setHours( info[0],info[1] ); //HH:mm
+      return date;
+    }
   }
 
   reID(benchmarks):Bench[]{

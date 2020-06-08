@@ -15,6 +15,18 @@ export class Project{
     this.completed = false;
     this.progbar = new ProgressBar(length,this.due_date);
   }
+
+  UpcomingBenchmark():Bench{
+    //narrow the benchmarks down to the ones that haven't been completed
+    let not_done = this.progbar.benchmarks.filter(t => !t.completed);
+    //sort them by due_date where the furthest most due date is first
+    not_done.sort(function(a,b){
+      if (a.due_date < b.due_date) return -1; //first argument is lesser
+      if (a.due_date > b.due_date) return 1; //first argument is greater (placed after second one)
+      return 0; //if a==b
+    })
+    return not_done[0];
+  }
 }
 
 export class ProgressBar{
@@ -70,18 +82,6 @@ export class ProgressBar{
       this.num_done--;
       this.benchmarks[index].ToggleTo(state);
     }
-  }
-
-  UpcomingBenchmark():Bench{
-    //narrow the benchmarks down to the ones that haven't been completed
-    let not_done = this.benchmarks.filter(t => !t.completed);
-    //sort them by due_date where the furthest most due date is first
-    not_done.sort(function(a,b){
-      if (a.due_date < b.due_date) return -1; //first argument is lesser
-      if (a.due_date > b.due_date) return 1; //first argument is greater (placed after second one)
-      return 0; //if a==b
-    })
-    return not_done[0];
   }
 }
 
