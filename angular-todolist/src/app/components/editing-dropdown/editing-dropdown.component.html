@@ -1,11 +1,11 @@
 <div class="project-array">
   <input type="text" [(ngModel)]="proj.name"/>
   <input type="text" [(ngModel)]="proj.category"/>
+  <input type="datetime-local" [ngModel]="proj.due_date | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="proj.due_date = $event" [min]="today | date:'yyyy-MM-ddTHH:mm' "/>
   <label>
     Linear Project:
     <input type="checkbox" [(ngModel)]="proj.order_matters"/>
-  </label>
-  <hr />
+  </label><hr />
 </div>
 <div cdkDropList class="drop-list" (cdkDropListDropped)="drop($event)">
   <div *ngFor="let b of this.benchmarks" >
