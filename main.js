@@ -22,7 +22,7 @@ function createWindow () {
 
   mainWindow.loadURL(
     url.format({
-      pathname: path.join(__dirname, `/dist/angular-todolist/index.html`),
+      pathname: path.join(__dirname, `/dist/projex/index.html`),
       protocol: "file:",
       slashes: true
     })

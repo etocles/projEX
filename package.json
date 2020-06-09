@@ -69,7 +69,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "angular_todolist"
+            "name": "projex"
           }
         },
         {
