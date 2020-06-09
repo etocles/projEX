@@ -22,7 +22,7 @@ export class ProjectItemComponent implements OnInit {
 
   bar:ProgressBar;
   editing:boolean;
-  benchBackup:Bench;
+  benchBackup:Bench[];
 
   constructor() {
   }
@@ -46,11 +46,11 @@ export class ProjectItemComponent implements OnInit {
     //Toggle in UI
     proj.completed = !proj.completed;
     if (proj.completed){ //if project should transition to a finished state
-      this.benchBackup = this.bar.benchmarks[proj.progbar.num_done-1];
+      this.benchBackup = this.bar.benchmarks.map((x) => x);
       this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
     }
     else{//if it should transition back to being not done, go back to the way it was
-      this.bar.MarkDownTo(this.bar.benchmarks[this.benchBackup.id]);
+      this.bar.benchmarks = this.benchBackup.map((x) => x);
       this.benchBackup = null;
     }
     this.updateDB.emit();

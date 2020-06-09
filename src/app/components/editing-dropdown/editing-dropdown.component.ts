@@ -70,7 +70,7 @@ export class EditingDropdownComponent implements OnInit {
       //bench isn't nested but needs to be
       if (!b.isnested){
         if(b.parts_summary!=null){
-          console.log(b.title+"falls under case 1");
+          // console.log(b.title+"falls under case 1");
           var namesOfParts = b.parts_summary.split(",");
           namesOfParts = namesOfParts.filter(t => t.trim().length != 0);
           //sanity check
@@ -87,14 +87,14 @@ export class EditingDropdownComponent implements OnInit {
       else{
         //bench is nested but doesn't need to be
         if(b.parts_summary==""){
-          console.log(b.title+"falls under case 2");
+          // console.log(b.title+"falls under case 2");
           b.isnested = false;
           b.nested_bar = null;
           continue;
         }
         //bench is nested but needs updating (length or content different)
         if (b.parts_summary != b.nested_bar.AllNames()){
-          console.log(b.title+"falls under case 3");
+          // console.log(b.title+"falls under case 3");
           var namesOfParts = b.parts_summary.split(",");
           namesOfParts = namesOfParts.filter(t => t.trim().length != 0);
           //sanity check
