@@ -1,7 +1,7 @@
 <div class="project-array">
   <input type="text" [(ngModel)]="proj.name"/>
   <input type="text" [(ngModel)]="proj.category"/>
-  <input type="datetime-local" [ngModel]="proj.due_date | date:'yyyy-MM-ddTHH:mm'" (ngModelChange)="proj.due_date = $event" [min]="today | date:'yyyy-MM-ddTHH:mm' "/>
+  <input type="datetime-local" [ngModel]="proj.due_date | date:'yyyy-MM-ddTHH:mm'" (focusout)="dateOverride($event)" [min]="today | date:'yyyy-MM-ddTHH:mm' "/>
   <label>
     Linear Project:
     <input type="checkbox" [(ngModel)]="proj.order_matters"/>

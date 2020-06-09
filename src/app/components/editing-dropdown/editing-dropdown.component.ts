@@ -117,7 +117,8 @@ export class EditingDropdownComponent implements OnInit {
       if (a.due_date < b.due_date) return 1; //first argument is greater (placed after second one)
       return 0; //if a==b
     })
-    if (dateSetter[0].due_date > this.proj.due_date) this.proj.due_date = dateSetter[0].due_date;
+    var refDate = new Date(dateSetter[0].due_date);
+    if (refDate > this.proj.due_date) this.proj.due_date = refDate;
     return benchmarksCopy;
   }
 
@@ -134,6 +135,34 @@ export class EditingDropdownComponent implements OnInit {
       date.setHours( info[0],info[1] ); //HH:mm
       return date;
     }
+  }
+
+  dateOverride(event){
+
+    var dateSetter = [...this.benchmarks];
+    //sort it so that the 0th index is the furthestmost date
+    dateSetter.sort(function(a,b){
+      if (a.due_date > b.due_date) return -1; //first argument is lesser
+      if (a.due_date < b.due_date) return 1; //first argument is greater (placed after second one)
+      return 0; //if a==b
+    })
+    let refDate = new Date(dateSetter[0].due_date)
+    let newProjDate = new Date(event.srcElement.value);
+
+    // console.dir(newProjDate);
+    // console.dir(refDate);
+    // console.dir(this.proj.due_date);
+    //
+    // console.log(refDate > newProjDate);
+
+    if (refDate.getTime() > newProjDate.getTime()){
+      let ans = confirm("The date that you have chosen is earlier than (a benchmarks) due date. \nWould you like to change all of the benchmarks to have this due date?");
+      if (ans == false) return; //if user clicks cancel, abandon changing project duedate.
+      for (let i = 0; i < this.benchmarks.length; i++){
+        this.benchmarks[i].due_date = newProjDate;
+      }
+    }
+    this.proj.due_date = newProjDate;
   }
 
   reID(benchmarks):Bench[]{
