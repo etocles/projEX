@@ -45,12 +45,4 @@ export class ProgressBarComponent implements OnInit {
     this.updateDB.emit();
   }
 
-  numDoneRecount(){ //costly, but a necessary catch-all reset
-    var temp_num_done = 0;
-    for (let i = 0; i < this.bar.benchmarks.length; i++){
-      if (this.bar.benchmarks[i].completed) temp_num_done++;
-    }
-    this.bar.num_done = temp_num_done;
-  }
-
 }

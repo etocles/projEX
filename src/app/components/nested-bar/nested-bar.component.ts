@@ -50,7 +50,7 @@ export class NestedBarComponent implements OnInit {
 
   nestedMark(p:Part){
     if(!p){
-      this.nestedMsg.emit(null);
+      this.nestedMsg.emit(null); //updateDB event
     }
     let temp = true; //flag
     for (let i = 0; i< this.parts.length; i++){
@@ -58,7 +58,7 @@ export class NestedBarComponent implements OnInit {
         temp = false;
       }
     }
-    if(this.bench.completed != temp){
+    if(this.bench.completed != temp){ //either mark up to or mark down to
       this.bench.completed = temp;
       this.nestedMsg.emit(this.bench);
     }

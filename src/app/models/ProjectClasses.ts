@@ -19,6 +19,7 @@ export class Project{
   UpcomingBenchmark():Bench{
     //narrow the benchmarks down to the ones that haven't been completed
     let not_done = this.progbar.benchmarks.filter(t => !t.completed);
+    if (not_done.length == 0){return new Bench(-1, new Date(Date.now()));}
     //sort them by due_date where the furthest most due date is first
     not_done.sort(function(a,b){
       if (a.due_date < b.due_date) return -1; //first argument is lesser
@@ -77,12 +78,12 @@ export class ProgressBar{
     for (var i of benchmarksCopy) {
         if (i.id > b.id) break;
         if (!i.completed){
-          this.num_done++;
           i.ToggleTo(true);
         }
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
+    this.numDoneRecount();
   }
 
   MarkDownTo(b:Bench):void{
@@ -91,12 +92,12 @@ export class ProgressBar{
     //make appropriate modifications
     for (var i of benchmarksCopy) {
         if (i.id > b.id && i.completed){
-          this.num_done--;
           i.ToggleTo(false);
         }
     }
     //apply changes
     this.benchmarks = benchmarksCopy;
+    this.numDoneRecount();
   }
 
   ToggleBenchmark(index:number, state = true):void{ //manual toggling for projects where order doesn't matter
@@ -110,6 +111,14 @@ export class ProgressBar{
       this.num_done--;
       this.benchmarks[index].ToggleTo(state);
     }
+  }
+
+  numDoneRecount(){ //costly, but a necessary catch-all reset
+    var temp_num_done = 0;
+    for (let i = 0; i < this.benchmarks.length; i++){
+      temp_num_done+=this.benchmarks[i].GetCompletedValue();
+    }
+    this.num_done = temp_num_done;
   }
 }
 
@@ -152,6 +161,22 @@ export class Bench{
     }
     s = s.substring(0, s.length - 1); //removes last comma
     this.parts_summary= s;
+  }
+
+  GetCompletedValue():number{
+    //returns anything between 0 and 1 indicating the percent completion of benchmark
+    if (!this.isnested){
+      if (this.completed) return 1;
+      else return 0;
+    }
+    else{
+      let temp_num = 0;
+      for (let i = 0; i< this.nested_bar.parts.length; i++){
+        if (this.nested_bar.parts[i].completed) temp_num++;
+      }
+      return temp_num/this.nested_bar.parts.length
+    }
+
   }
 }
 

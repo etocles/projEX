@@ -38,7 +38,8 @@ export class PartComponent implements OnInit {
   onMark(){
     this.part.completed = !this.part.completed;
     this.partMsg.emit(this.part);
-    this.partMsg.emit(null);
+    this.prog.numDoneRecount();
+    this.partMsg.emit(null); //updateDB event
   }
 
   getStyles(){
