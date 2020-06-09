@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
-import { Project, ProgressBar, Bench, NestedBar } from 'src/app/models/Todo';
+import { Project, ProgressBar, Bench, NestedBar } from 'src/app/models/ProjectClasses';
 
 @Component({
   selector: 'app-editing-dropdown',

@@ -2,17 +2,17 @@ import { Component, OnInit, EventEmitter, Output, ElementRef, ViewChild } from '
 import { Overlay, PositionStrategy, OverlayRef, BlockScrollStrategy, ScrollStrategy, ScrollStrategyOptions, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal} from '@angular/cdk/portal';
 
-import { Project } from 'src/app/models/Todo';
+import { Project } from 'src/app/models/ProjectClasses';
 import { AddFormComponent } from 'src/app/components/add-form/add-form.component';
 import { IpcRenderer } from 'electron';
 
 
 @Component({
-  selector: 'app-add-todo',
-  templateUrl: './add-todo.component.html',
-  styleUrls: ['./add-todo.component.css']
+  selector: 'app-add-project',
+  templateUrl: './add-project.component.html',
+  styleUrls: ['./add-project.component.css']
 })
-export class AddTodoComponent implements OnInit {
+export class AddProjectComponent implements OnInit {
   @Output() addProj: EventEmitter<void> = new EventEmitter();
   @Output() sort: EventEmitter<string> = new EventEmitter();
 

@@ -1,17 +1,17 @@
 import { Component, OnInit, Input, EventEmitter, Output, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { Project, ProgressBar, Bench } from 'src/app/models/Todo';
+import { Project, ProgressBar, Bench } from 'src/app/models/ProjectClasses';
 
 import { EditingDropdownComponent }  from '../editing-dropdown/editing-dropdown.component';
 import { ProgressBarComponent }  from '../progress-bar/progress-bar.component';
 
 @Component({
-  selector: 'app-todo-item',
-  templateUrl: './todo-item.component.html',
-  styleUrls: ['./todo-item.component.css'],
+  selector: 'app-project-item',
+  templateUrl: './project-item.component.html',
+  styleUrls: ['./project-item.component.css'],
 })
 
-export class TodoItemComponent implements OnInit {
+export class ProjectItemComponent implements OnInit {
   @Input() proj: Project;
   @Output() updateDB: EventEmitter<any> = new EventEmitter();
   @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();

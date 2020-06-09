@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ProgressBar, Part } from 'src/app/models/Todo'
+import { ProgressBar, Part } from 'src/app/models/ProjectClasses'
 
 @Component({
   selector: 'app-part',

@@ -9,10 +9,10 @@ import { OverlayModule } from '@angular/cdk/overlay';
 import { MatInputModule } from '@angular/material/input';
 
 import { AppComponent } from './app.component';
-import { TodosComponent } from './components/todos/todos.component';
-import { TodoItemComponent } from './components/todo-item/todo-item.component';
+import { ProjectsComponent } from './components/projects/projects.component';
+import { ProjectItemComponent } from './components/project-item/project-item.component';
 import { HeaderComponent } from './components/layout/header/header.component';
-import { AddTodoComponent } from './components/add-todo/add-todo.component';
+import { AddProjectComponent } from './components/add-project/add-project.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 import { BenchmarkComponent } from './components/benchmark/benchmark.component';
 import { NestedBarComponent } from './components/nested-bar/nested-bar.component';
@@ -24,10 +24,10 @@ import { AddFormComponent } from './components/add-form/add-form.component';
 @NgModule({
   declarations: [
     AppComponent,
-    TodosComponent,
-    TodoItemComponent,
+    ProjectsComponent,
+    ProjectItemComponent,
     HeaderComponent,
-    AddTodoComponent,
+    AddProjectComponent,
     ProgressBarComponent,
     BenchmarkComponent,
     NestedBarComponent,

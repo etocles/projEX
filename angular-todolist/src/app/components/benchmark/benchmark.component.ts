@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { ProgressBar, Bench, NestedBar } from 'src/app/models/Todo';
+import { ProgressBar, Bench, NestedBar } from 'src/app/models/ProjectClasses';
 
 @Component({
   selector: 'app-benchmark',

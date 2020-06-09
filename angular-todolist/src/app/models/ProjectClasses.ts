@@ -32,7 +32,8 @@ export class Project{
     let today = new Date(Date.now());
     //danger thresholds:
     //3,2,1 days, and every hour under that.
-    let timeBetween = this.due_date.getTime()-today.getTime();
+    let projDue = new Date(this.due_date);
+    let timeBetween = projDue.getTime()-today.getTime();
     let daysBetween = timeBetween / (1000 * 3600 * 24)
     let hoursBetween = timeBetween / (1000 * 3600);
     let minutesBetween =  timeBetween / (1000 * 60)

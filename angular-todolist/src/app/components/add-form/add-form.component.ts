@@ -1,5 +1,5 @@
 import { Component, OnInit, Output, EventEmitter} from '@angular/core';
-import { Project, Bench, NestedBar} from 'src/app/models/Todo';
+import { Project, Bench, NestedBar} from 'src/app/models/ProjectClasses';
 
 @Component({
   selector: 'app-add-form',

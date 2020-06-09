@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from "@angular/common";
-import { Project, ProgressBar, Bench, Part } from 'src/app/models/Todo'
+import { Project, ProgressBar, Bench, Part } from 'src/app/models/ProjectClasses'
 
 @Component({
   selector: 'app-progress-bar',

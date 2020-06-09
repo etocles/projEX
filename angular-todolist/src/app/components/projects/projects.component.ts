@@ -2,18 +2,18 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
-import { Project, ProgressBar, NestedBar, Part } from '../../models/Todo';
-import { AddTodoComponent }  from '../add-todo/add-todo.component';
+import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
+import { AddProjectComponent }  from '../add-project/add-project.component';
 
 
 @Component({
-  selector: 'app-todos',
-  templateUrl: './todos.component.html',
-  styleUrls: ['./todos.component.css']
+  selector: 'app-projects',
+  templateUrl: './projects.component.html',
+  styleUrls: ['./projects.component.css']
 })
-export class TodosComponent implements OnInit {
-  @ViewChild(AddTodoComponent)
-  private addComponent: AddTodoComponent;
+export class ProjectsComponent implements OnInit {
+  @ViewChild(AddProjectComponent)
+  private addComponent: AddProjectComponent;
 
   projects:Project[];
 
