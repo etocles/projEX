@@ -25,10 +25,8 @@
 
     <!-- ORDER -->
     <label class="field">
-      Linear Project? <input name="orderField" type="checkbox" [(ngModel)]="order"
-      matTooltip="Leave unchecked if benchmarks can be completed independently of one another"
-      [matTooltipPosition]="'after'"
-      [matTooltipShowDelay]="1500"/>
+      Linear Project: <input name="orderField" type="checkbox" [(ngModel)]="order"/>
+      <a style="float:right; border-bottom-style:dotted; padding:0px 3px;" matTooltip="Leave unchecked if benchmarks can be completed independently of one another" [matTooltipPosition]="'after'" [matTooltipShowDelay]="1500"> ?</a>
     </label>
 
     <!-- BENCHMARKS -->

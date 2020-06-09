@@ -111,7 +111,7 @@ export class EditingDropdownComponent implements OnInit {
     }
 
     //grab the furthestmost due-date, and update the project's duedate to that
-    var dateSetter = benchmarksCopy;
+    var dateSetter = [...benchmarksCopy];
     dateSetter.sort(function(a,b){
       if (a.due_date > b.due_date) return -1; //first argument is lesser
       if (a.due_date < b.due_date) return 1; //first argument is greater (placed after second one)
