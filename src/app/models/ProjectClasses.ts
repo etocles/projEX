@@ -54,7 +54,7 @@ export class Project{
       return "";
     }
 
-    return Math.trunc(hoursBetween) + " hours left";
+    // return Math.trunc(hoursBetween) + " hours left";
   }
 }
 
@@ -177,6 +177,32 @@ export class Bench{
       return temp_num/this.nested_bar.parts.length
     }
 
+  }
+
+  SoonMeter(): String{
+    let today = new Date(Date.now());
+    //danger thresholds:
+    //3,2,1 days, and every hour under that.
+    let projDue = new Date(this.due_date);
+    let timeBetween = projDue.getTime()-today.getTime();
+    let daysBetween = timeBetween / (1000 * 3600 * 24)
+    let hoursBetween = timeBetween / (1000 * 3600);
+    let minutesBetween =  timeBetween / (1000 * 60)
+    if (hoursBetween < 1){
+      return Math.trunc(minutesBetween) + " MINUTES";
+    }
+    else if (daysBetween < 1){
+      return Math.trunc(hoursBetween) + " HOURS";
+    }
+    else if (daysBetween < 2){
+      return Math.trunc(daysBetween) + " DAY";
+    }
+    else if (daysBetween < 4){
+      return Math.trunc(daysBetween) + " DAYS";
+    }
+    else{
+      return "";
+    }
   }
 }
 

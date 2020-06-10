@@ -68,7 +68,7 @@
   padding-left: 35px;
   width: 90%;
   font-weight:bold;
-  font-size: 2em;
+  font-size: 2rem;
   color: #8794a3;
   z-index: 1;
   position: relative;
@@ -78,7 +78,8 @@
 #recent-warning{
   padding-left: 2%;
   font-weight: bold;
-  color: darkred;
+  font-size: 2rem;
+  color: #cf2323;
   opacity: 80%;
 }
 
@@ -92,7 +93,7 @@
 
 #name{
   padding-left: 20px;
-  font-size:3.7em;
+  font-size:3.7rem;
   display:inline;
 }
 
@@ -115,4 +116,47 @@
 #separator{
   padding-left: 15px;
   margin: -1% 5% 1% 1%; /*top, right, bottom, left*/
+}
+
+
+/*min-width means that when the browser extends over the given width, the following styles will apply*/
+/*max-width means that when the browser extends below the given width, the following styles will apply*/
+@media (max-width: 630px) {
+  #name{
+    padding-left: 20px;
+    font-size:2rem;
+    display:inline;
+  }
+  #category{
+    padding-left: 35px;
+    font-size: 1rem;
+    color: #8794a3;
+    top:25px;
+  }
+  #percent{
+    font-size: 3rem;
+  }
+  #progressBar{
+    width:90%;
+  }
+}
+
+@media (max-width: 400px) {
+  #name{
+    padding-left: 20px;
+    font-size:1.5rem;
+    display:inline;
+  }
+  #category{
+    padding-left: 35px;
+    font-size: .7rem;
+    color: #8794a3;
+    top:25px;
+  }
+  #percent{
+    font-size: 2rem;
+  }
+  #progressBar{
+    width:70%;
+  }
 }

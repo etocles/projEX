@@ -3,6 +3,13 @@
   display:grid;
   grid-row-gap: 0rem;
   width:100%;
-  height:80px; /*normalizes the height of the progressBar*/
+  height:80px; /*normalizes the height of the progressBar, 64px also works quite well*/
   grid-template-columns: repeat(auto-fit,minmax(30px,1fr));
+}
+
+
+@media (max-width: 630px) {
+  .basic-grid{
+    height:50px;
+  }
 }

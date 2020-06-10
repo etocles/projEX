@@ -1,9 +1,10 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from "@angular/common";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
 import { AddProjectComponent }  from '../add-project/add-project.component';
+import { IpcRenderer } from 'electron';
 
 
 @Component({
@@ -16,18 +17,28 @@ export class ProjectsComponent implements OnInit {
   private addComponent: AddProjectComponent;
 
   projects:Project[];
+  notifID: any;
 
-  constructor() {}
+  private ipc: IpcRenderer
+  constructor() {
+    //adds electron api
+    if ((<any>window).require) {
+      try {
+        this.ipc = (<any>window).require('electron').ipcRenderer;
+      } catch (e) {
+        throw e;
+      }
+    } else {
+      console.warn('App not running inside Electron!');
+    }
+  }
 
   ngOnInit(): void {
     //uncomment this to revert to backup
     // this.revertToBackup()
 
-    if(localStorage.getItem('projArray') == "undefined"){ //on first bootup, the projects array will be empty
-      this.projects = [];
-      return;
-    }
-
+    this.projects = [];
+    if(localStorage.getItem('projArray') == "undefined") return; //on first bootup, the projects array will be empty
 
     //grabs the projects from storage
     let projJSON = localStorage.getItem('projArray');
@@ -37,11 +48,12 @@ export class ProjectsComponent implements OnInit {
     // pArray.push(new Project('StorageTester',"StorageCAT",8));
 
     //convert every JSON project to an instance of Project
-    let projs = []; //create an empty array of Projects
     for (let i = 0; i < pArray.length; i++){
-      projs.push(this.JSON_TO_PROJECT(pArray[i]));
+      this.projects.push(this.JSON_TO_PROJECT(pArray[i]));
     }
-    this.projects = projs;
+
+    //begin checking for notifications every 30 minutes
+    setInterval(this.NotificationService, 30 * 60 * 1000);
   }
 
   deleteTodo(proj:Project){
@@ -189,6 +201,76 @@ export class ProjectsComponent implements OnInit {
     let proj6 = new Project('Test','YEST',1);
     let projs  = [proj1,proj2,proj3,proj4,proj5,proj6];
     localStorage.setItem('projArray',JSON.stringify(projs));
+  }
+
+  NotificationService(){
+    //because this is working at the window context, it has to remake the projects array and then iterate through it to send notifications
+    console.log("beginning notification checking!");
+    let projs = JSON.parse(localStorage.getItem('projArray'));
+    let ps = []
+    for (let i = 0; i < projs.length; i++){
+      let obj = projs[i];
+      let proj = new Project(obj.name, obj.category, obj.progbar.benchmarks.length);
+      proj.due_date = new Date(obj.due_date);
+      proj.order_matters = obj.order_matters;
+      proj.completed = obj.completed;
+      proj.progbar = new ProgressBar(obj.progbar.benchmarks.length,proj.due_date);
+      proj.progbar.num_done = obj.progbar.num_done;
+      //now go through the progressbar's benchmarks
+      for (let i = 0; i < proj.progbar.benchmarks.length; i++){
+        let curr = proj.progbar.benchmarks[i];
+        let ref = obj.progbar.benchmarks[i];
+        //copy all values (except id)
+        curr.title = ref.title;
+        curr.due_date = ref.due_date;
+        curr.completed = ref.completed;
+        curr.parts_summary = ref.parts_summary;
+        curr.isnested = ref.isnested;
+        //create a NestedBar if necessary
+        curr.nested_bar = (ref.isnested)? new NestedBar(ref.nested_bar.parts.length): null;
+        if(ref.isnested){
+          //copy all values (except id)
+          for (let j = 0; j < ref.nested_bar.parts.length; j++){
+            curr.nested_bar.parts[j].name = ref.nested_bar.parts[j].name;
+            curr.nested_bar.parts[j].completed = ref.nested_bar.parts[j].completed;
+          }
+        }
+        proj.progbar.benchmarks[i] = curr;
+      }
+      ps.push(proj)
+    }
+    console.dir(ps)
+    //figure out which projects to notify for
+    for (let i = 0; i < ps.length; i++){
+      let p = ps[i];
+      let b = p.UpcomingBenchmark();
+      if (p.completed) continue;
+      //if the project is due soon, send a notification.
+      if (p.SoonMeter() != ""){
+        var notification = {
+          title: 'Project' + p.name + ' due soon!',
+          body:
+          p.SoonMeter() + ' REMAINING' +
+          '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
+          '\nThe next benchmark you have to get done is: ' + p.UpcomingBenchmark().title + '.'
+        }
+        var myNotification = new window.Notification(notification.title, notification)
+        // myNotification.onclick = () => {
+        //   console.log('Notification clicked')
+        // }
+      }
+      if (b.SoonMeter() != ""){
+        var notification = {
+          title: 'Benchmark' + b.title + ' due soon!',
+          body: b.SoonMeter() + ' REMAINING to finish this benchmark!'
+        }
+        var myNotification = new window.Notification(notification.title, notification)
+        // myNotification.onclick = () => {
+        //   console.log('Notification clicked')
+        // }
+      }
+    }
+    console.log("notification checking finished.");
   }
 
 }
