@@ -205,7 +205,6 @@ export class ProjectsComponent implements OnInit {
 
   NotificationService(){
     //because this is working at the window context, it has to remake the projects array and then iterate through it to send notifications
-    console.log("beginning notification checking!");
     let projs = JSON.parse(localStorage.getItem('projArray'));
     let ps = []
     for (let i = 0; i < projs.length; i++){
@@ -239,7 +238,6 @@ export class ProjectsComponent implements OnInit {
       }
       ps.push(proj)
     }
-    console.dir(ps)
     //figure out which projects to notify for
     for (let i = 0; i < ps.length; i++){
       let p = ps[i];
@@ -270,7 +268,6 @@ export class ProjectsComponent implements OnInit {
         // }
       }
     }
-    console.log("notification checking finished.");
   }
 
 }
