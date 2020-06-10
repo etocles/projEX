@@ -86,6 +86,22 @@ export class ProjectsComponent implements OnInit {
 
   /*HELPER FUNCTIONS*/
 
+  overflowFunction(){
+    // var el = document.getElementsByClassName("default");
+    // for (let i = 0; i < el.length; i++){
+    //   let e = el[i];
+    //   var isOverflowing = e.clientWidth < e.scrollWidth;
+    //   if (isOverflowing) {
+    //       e.innerHTML = e.title.substr(0,1)+"...";
+    //      // e.innerHTML = "";
+    //      // console.log(e.title);
+    //      // console.log("client width, height: ", e.clientWidth, e.clientHeight);
+    //      // console.log("scroll width, height: ", e.scrollWidth, e.scrollHeight);
+    //   }
+    //   else e.innerHTML = e.title;
+    // }
+  }
+
   JSON_TO_PROJECT(obj):Project{
     //takes in a JSON object and turn it into a project
     // console.log("%c TRANSCRIPTINO BEGINS HERE",'font-weight:bold;background-color:yellow;');

@@ -2,7 +2,7 @@
 <p *ngIf="projects.length==0" class="hint-text">
     Looks like you don't have any projects started yet. Click the "+" above to add one!
 </p>
-<div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="projects.length!=0">
+<div cdkDropList (cdkDropListDropped)="drop($event)" *ngIf="projects.length!=0" (window:resize)="overflowFunction()">
   <div cdkDrag *ngFor="let proj of projects">
     <p cdkDragHandle style="float:left; z-index:4; padding-left: 18px; padding-top: 9%;"> ||| </p>
     <!-- <mat-icon cdkDragHandle style="float:left; z-index:4; padding-left: 30px; padding-top: .6%;">reorder</mat-icon> -->

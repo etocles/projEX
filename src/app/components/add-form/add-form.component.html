@@ -20,7 +20,13 @@
     <!-- DUE DATE -->
     <mat-form-field class="field">
       <mat-label>Due Date</mat-label>
-      <input matInput #input="ngModel" type="datetime-local" [ngModel]="date | date:'yyyy-MM-ddTHH:mm'" [min]="today | date:'yyyy-MM-ddTHH:mm'"/>
+      <input
+      matInput
+      #input="ngModel"
+      type="datetime-local"
+      [ngModel]="date | date:'yyyy-MM-ddTHH:mm'"
+      (ngModelChange)="date = $event"
+      [min]="today | date:'yyyy-MM-ddTHH:mm'"/>
     </mat-form-field>
 
     <!-- ORDER -->

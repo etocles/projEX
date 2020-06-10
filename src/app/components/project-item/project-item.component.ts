@@ -35,6 +35,16 @@ export class ProjectItemComponent implements OnInit {
 
   //Set Dynamic Classes //aka set attributes of the div based on the todo that's being passed in
   setClasses(){
+    //if all benchmarks are done, the project should also be marked as done
+    let completedTest = true;
+    for (let i = 0; i < this.bar.benchmarks.length; i++){
+      if (!this.bar.benchmarks[i].completed) {
+        completedTest = false;
+        break;
+      }
+    }
+    this.proj.completed = completedTest;
+
     let classes ={
       todo:true,
       'is-complete':this.proj.completed
@@ -45,14 +55,14 @@ export class ProjectItemComponent implements OnInit {
   onToggle(proj){// TODO: erases completed parts... and doesn't revert back to where it was for projects w/o order
     //Toggle in UI
     proj.completed = !proj.completed;
-    if (proj.completed){ //if project should transition to a finished state
-      this.benchBackup = this.bar.benchmarks.map((x) => x);
-      this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
-    }
-    else{//if it should transition back to being not done, go back to the way it was
-      this.bar.benchmarks = this.benchBackup.map((x) => x);
-      this.benchBackup = null;
-    }
+    // if (proj.completed){ //if project should transition to a finished state
+    //   this.benchBackup = this.bar.benchmarks.map((x) => x);
+    //   this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
+    // }
+    // else{//if it should transition back to being not done, go back to the way it was
+    //   this.bar.benchmarks = this.benchBackup.map((x) => x);
+    //   this.benchBackup = null;
+    // }
     this.updateDB.emit();
   }
 
