@@ -35,7 +35,7 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     //uncomment this to revert to backup
-    // this.revertToBackup()
+    this.revertToBackup()
 
     this.projects = [];
     if(localStorage.getItem('projArray') == "undefined") return; //on first bootup, the projects array will be empty

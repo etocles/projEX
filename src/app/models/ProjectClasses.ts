@@ -71,6 +71,17 @@ export class ProgressBar{
     this.num_done = 0;
   }
 
+  copy(obj){
+    this.benchmarks = [];
+    for (let i = 0; i < obj.benchmarks.length; i++){
+      let x = obj.benchmarks[i];
+      let s = new Bench(-1,new Date(Date.now()));
+      s.copy(x)
+      this.benchmarks.push(s)
+    }
+    this.num_done = obj.num_done;
+  }
+
   MarkUpTo(b:Bench):void{
     //otherwise, edit the components
     let benchmarksCopy = this.benchmarks;
@@ -142,6 +153,22 @@ export class Bench{
     this.nested_bar = null;
     this.parts_summary = null;
   }
+
+  copy(obj){
+    this.id = obj.id;
+    this.title = obj.title;
+    this.due_date = new Date(obj.due_date);
+    this.completed = obj.completed;
+    this.isnested = obj.isnested;
+    this.parts_summary = obj.parts_summary;
+    if (obj.isnested){
+      this.nested_bar = new NestedBar(obj.nested_bar.parts.length);
+      this.nested_bar.copy(obj.nested_bar)
+    }
+    else{
+      this.nested_bar = null;
+    }
+  }//copy constructor
 
   ToggleTo(state:boolean):void{
     //this should only be called through the ProgressBar's CompleteBenchmark function
@@ -217,6 +244,16 @@ export class NestedBar{
     this.parts.shift();
   }
 
+  copy(obj){
+    this.parts = []
+    for (let i = 0; i < obj.parts.length; i++){
+      let x = obj.parts[i];
+      let temp = new Part(-1);
+      temp.copy(x)
+      this.parts.push(temp)
+    }
+  }   //copy constructor
+
   ToggleAll(state:boolean):void{
     for (let i = 0; i< this.parts.length; i++){
       this.parts[i].Toggle(state);
@@ -243,6 +280,12 @@ export class Part{
     this.id = n;
     this.completed = false;
   }
+
+  copy(obj){
+    this.id = obj.id;
+    this.name = obj.name;
+    this.completed = obj.completed;
+  }  //copy constructor
 
   Toggle(state:boolean):void{
     this.completed = state;
