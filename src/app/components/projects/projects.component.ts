@@ -37,6 +37,11 @@ export class ProjectsComponent implements OnInit {
     //uncomment this to revert to backup
     // this.revertToBackup()
 
+    if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
+      //store default user preferences here
+    }
+
+
     this.projects = [];
     if(localStorage.getItem('projArray') == "undefined") return; //on first bootup, the projects array will be empty
 
