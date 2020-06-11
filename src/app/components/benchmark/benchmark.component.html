@@ -11,9 +11,8 @@
 
 
 <!-- the div that should occur if there is no nested bar on this benchmark -->
-<!-- (window:resize)="overflowFunction()" -->
 <div
-title="{{bench.title}}"
+matTooltip = "{{bench.title}}"
 class="bench"
 *ngIf="!nested"
 [ngClass]="setClasses()"
