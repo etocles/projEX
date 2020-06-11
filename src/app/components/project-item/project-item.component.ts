@@ -59,7 +59,7 @@ export class ProjectItemComponent implements OnInit {
       // let temp = new ProgressBar( 2, new Date(Date.now()) );
       this.barBackup.copy(this.bar);
       this.bar.MarkUpTo(this.bar.benchmarks[this.bar.benchmarks.length-1]);
-      console.dir(this.barBackup)
+      // console.dir(this.barBackup)
     }
     else{//if it should transition back to being not done, go back to the way it was
       // let temp = new ProgressBar( 2, new Date(Date.now()) );
