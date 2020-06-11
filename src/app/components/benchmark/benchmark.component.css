@@ -18,7 +18,7 @@
     align-items: center;
 }
 
-#bench:hover{
+.bench:hover{
   filter:brightness(90%);
 }
 
