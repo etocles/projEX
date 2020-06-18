@@ -18,7 +18,7 @@
   - category manager ???
 - Search bar for easier finding of projects
 - Full implementation of undo/redo
-####### fix bugs of previous version
+- OBVIOUSLY fix any other bugs of previous version
 
 
 ### Beta 0.0.0
@@ -67,7 +67,7 @@
   - Closes on scroll
   - Closes on submit, and packages the data to be made into a project in the main process
 - Media Queries semi-adapt the appearance of the application
-- Tooltips show information about benchmarks when hovered over 
+- Tooltips show information about benchmarks when hovered over
 
 #### BUGS
 - Notification titles
