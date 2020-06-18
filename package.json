@@ -66,7 +66,7 @@
   "config": {
     "forge": {
       "packagerConfig": {
-        "icon": "./PJX_4_icn.ico"
+        "icon": "./PJX_5_icn.ico"
       },
       "makers": [
         {

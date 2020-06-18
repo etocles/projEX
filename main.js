@@ -9,7 +9,7 @@ function createWindow () {
   mainWindow = new BrowserWindow({
     width: size.width,
     height: size.height,
-    icon: path.join(__dirname, `/PJX_4.png`),
+    icon: path.join(__dirname, `/PJX_5.png`),
     webPreferences: {
       nodeIntegration: true /*doesn't have an effect on whether angular works or not*/
     }

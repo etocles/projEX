@@ -58,7 +58,7 @@ export class ProjectsComponent implements OnInit {
     }
 
     //begin checking for notifications every 30 minutes
-    setInterval(this.NotificationService, 30 * 60 * 1000);
+    setInterval(this.NotificationService, 60 * 60 * 1000);
   }
 
   deleteTodo(proj:Project){
@@ -265,25 +265,25 @@ export class ProjectsComponent implements OnInit {
       let b = p.UpcomingBenchmark();
       if (p.completed) continue;
       //if the project is due soon, send a notification.
-      if (p.SoonMeter() != ""){
+      if (p.SoonMeter().includes("HOURS") || p.SoonMeter().includes("MINUTES")){
         var notification = {
-          title: 'Project' + p.name + ' due soon!',
+          title: 'Project ' + p.name + ' due soon!',
           body:
           p.SoonMeter() + ' REMAINING' +
           '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
           '\nThe next benchmark you have to get done is: ' + p.UpcomingBenchmark().title + '.'
         }
-        var myNotification = new window.Notification(notification.title, notification)
+        const myNotification = new window.Notification(notification.title, notification)
         // myNotification.onclick = () => {
         //   console.log('Notification clicked')
         // }
       }
-      if (b.SoonMeter() != ""){
+      if (b.SoonMeter().includes("HOURS") || b.SoonMeter().includes("MINUTES")){
         var notification = {
-          title: 'Benchmark' + b.title + ' due soon!',
+          title: 'Benchmark ' + b.title + ' due soon!',
           body: b.SoonMeter() + ' REMAINING to finish this benchmark!'
         }
-        var myNotification = new window.Notification(notification.title, notification)
+        const myNotification = new window.Notification(notification.title, notification)
         // myNotification.onclick = () => {
         //   console.log('Notification clicked')
         // }
