@@ -15,7 +15,7 @@
 ####### fix bugs of previous version
 
 
-### Beta 1.0.0
+### Beta 0.0.0
 
 <details><summary>Click for full info</summary>
 <p>
