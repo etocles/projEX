@@ -12,6 +12,7 @@
   - lightness mode
   - etc.
 - Search bar for easier finding of projects
+- Full implementation of undo/redo
 ####### fix bugs of previous version
 
 
@@ -27,9 +28,10 @@
   - can be linear and non-linear
   - due on a certain date (which benchmarks inherit on default)
 - Progress visualized by interactive progress bar
+- Projects can be manually sorted by dragging and dropping
 - Projects can be sorted by multiple different settings
   - by custom
-    -
+    - default sorting system
   - by due date
     - Most recent project is sorted to be at the top
   - by importance (Default)
@@ -42,6 +44,11 @@
   - by rev alpha
     - Sorts projects by name in reverse alphabetical order
 - Dropdown to edit the project's contents
+  - Benchmarks can be added
+    - by clicking between benchmarks, benchmarks can be added infinitely many times
+  - Benchmarks can be moved
+    - by dragging benchmarks by their handles, the order of the benchmarks can be changed at will
+  - Benchmarks can be deleted
   - Each benchmark is purely mutable
     - Due Date can be changed
     - Due Time can be changed
