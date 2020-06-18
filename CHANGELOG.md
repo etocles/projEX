@@ -4,13 +4,18 @@
 
 ### Upcoming Changes
 
+- Completion of project depends on benchmarks, not a button
+- Change the benchmark form proportions in addPanel
+- add Delay to tooltips
 - Archiving benchmarks when deleted so that they can be brought back
 - Dark Mode/Light Mode
 - Alternative Views
 - UserPrefs Config
   - sort_type
   - lightness mode
-  - etc.
+  - notification frequency
+  - importance hash menu
+  - category manager ???
 - Search bar for easier finding of projects
 - Full implementation of undo/redo
 ####### fix bugs of previous version
@@ -61,6 +66,8 @@
   - Closes on clicking away
   - Closes on scroll
   - Closes on submit, and packages the data to be made into a project in the main process
+- Media Queries semi-adapt the appearance of the application
+- Tooltips show information about benchmarks when hovered over 
 
 #### BUGS
 - Notification titles
