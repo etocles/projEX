@@ -1,4 +1,5 @@
 <app-add-project (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-project>
+<button (click)="NotificationService()">click to notification service</button>
 <p *ngIf="projects.length==0" class="hint-text">
     Looks like you don't have any projects started yet. Click the "+" above to add one!
 </p>

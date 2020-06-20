@@ -4,7 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
 import { AddProjectComponent }  from '../add-project/add-project.component';
-import { IpcRenderer } from 'electron';
+import { IpcRenderer, app } from 'electron';
 
 
 @Component({
@@ -283,6 +283,8 @@ export class ProjectsComponent implements OnInit {
       //if the project is due soon, send a notification.
       if (p.SoonMeter().includes("HOURS") || p.SoonMeter().includes("MINUTES")){
         var notification = {
+          timeoutType: 'never',
+          icon: '../../PJX_5.png',
           title: 'Project ' + p.name + ' due soon!',
           body:
           p.SoonMeter() + ' REMAINING' +
@@ -290,19 +292,21 @@ export class ProjectsComponent implements OnInit {
           '\nThe next benchmark you have to get done is: ' + p.UpcomingBenchmark().title + '.'
         }
         const myNotification = new window.Notification(notification.title, notification)
-        // myNotification.onclick = () => {
-        //   console.log('Notification clicked')
-        // }
+        myNotification.onclick = () => {
+          console.dir(window);
+        }
       }
       if (b.SoonMeter().includes("HOURS") || b.SoonMeter().includes("MINUTES")){
         var notification = {
+          timeoutType: 'never',
+          icon: '../../PJX_5.png',
           title: 'Benchmark ' + b.title + ' due soon!',
           body: b.SoonMeter() + ' REMAINING to finish this benchmark!'
         }
         const myNotification = new window.Notification(notification.title, notification)
-        // myNotification.onclick = () => {
-        //   console.log('Notification clicked')
-        // }
+        myNotification.onclick = () => {
+          console.dir(window);
+        }
       }
     }
   }

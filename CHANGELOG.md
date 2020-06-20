@@ -7,6 +7,8 @@
 - Sort by uncompleted first (also sorts by due-date)
 - fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
 - import project from text
+- Clicking notification opens app
+- Notification disappears in 30 mins
 - Soon meter doesn't show up when project is completed
 - Completion of project depends on benchmarks, not a button
 - Clicking notification opens app
