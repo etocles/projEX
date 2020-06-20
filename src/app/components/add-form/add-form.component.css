@@ -48,7 +48,7 @@
 .input-array{
   width:100%;
   display: grid;
-  grid-template-columns: 2.3fr 2fr 5fr 1fr;
+  grid-template-columns: 2fr 2fr 3fr .3fr;
   justify-content: center;
   column-gap: 2%;
   row-gap: 2%;
