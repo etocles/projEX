@@ -58,7 +58,9 @@ export class AddProjectComponent implements OnInit {
   }
 
   emitSort(){
-    localStorage.setItem("sort_type",this.sort_type);
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    userPrefs.sort_type = this.sort_type;
+    localStorage.setItem("userPrefs",JSON.stringify(userPrefs));
     this.sort.emit(this.sort_type);
   }
 
