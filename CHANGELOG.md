@@ -4,7 +4,12 @@
 
 ### Upcoming Changes
 
+- Sort by uncompleted first (also sorts by due-date)
+- fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
+- import project from text
+- Soon meter doesn't show up when project is completed
 - Completion of project depends on benchmarks, not a button
+- Clicking notification opens app
 - Change the benchmark form proportions in addPanel
 - add Delay to tooltips
 - Archiving benchmarks when deleted so that they can be brought back
@@ -14,6 +19,10 @@
   - sort_type
   - lightness mode
   - notification frequency
+  - type of notifications
+    - ONLY project due date notifications
+    - ONLY benchmark due date notifications
+    - BOTH project + benchmark due date notifications (Default)
   - importance hash menu
   - category manager ???
 - Search bar for easier finding of projects
@@ -68,6 +77,7 @@
   - Closes on submit, and packages the data to be made into a project in the main process
 - Media Queries semi-adapt the appearance of the application
 - Tooltips show information about benchmarks when hovered over
+- SoonMeter shows how soon a project or benchmark is due
 
 #### BUGS
 - Notification titles

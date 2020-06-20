@@ -146,6 +146,22 @@ export class ProjectsComponent implements OnInit {
     switch(sortMethod){
       case "by_custom": //do nothing
         break;
+      case "completed_first":
+        projectsCopy.sort(function(a,b){
+          if (a.completed && !b.completed) return 1;
+          if (!a.completed && b.completed) return -1;
+          if (!a.completed && !b.completed && a.due_date < b.due_date) return -1;
+          else return 0;
+        })
+        break;
+      case "not_completed_first":
+        projectsCopy.sort(function(a,b){
+          if (a.completed && !b.completed) return -1;
+          if (!a.completed && b.completed) return 1;
+          if (!a.completed && !b.completed && a.due_date < b.due_date) return -1;
+          else return 0;
+        })
+        break;
       case "by_due_date":
         projectsCopy.sort(function(a,b){
           if (a.due_date < b.due_date) return -1; //first argument is lesser
