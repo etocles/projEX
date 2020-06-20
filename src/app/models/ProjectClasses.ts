@@ -16,6 +16,16 @@ export class Project{
     this.progbar = new ProgressBar(length,this.due_date);
   }
 
+  copy(obj){
+    this.name = obj.name;
+    this.category = obj.category;
+    this.due_date = new Date(obj.due_date);
+    this.order_matters = obj.order_matters;
+    this.completed = obj.completed;
+    this.progbar = new ProgressBar(-1, new Date(obj.due_date));
+    this.progbar.copy(obj);
+  }
+
   UpcomingBenchmark():Bench{
     //narrow the benchmarks down to the ones that haven't been completed
     let not_done = this.progbar.benchmarks.filter(t => !t.completed);
