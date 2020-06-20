@@ -92,7 +92,7 @@ export class BenchmarkComponent implements OnInit {
       return hex.length === 1 ? '0' + hex : hex;
     };
     let progColor = "#"+toHex(r)+toHex(g)+toHex(b);
-    let linGradientText = 'linear-gradient(to left, '+ `${progColor}` +' 50%, #aaaaaa 50%)'
+    let linGradientText = 'linear-gradient(to left, '+ `${progColor}` +' 50%, var(--gradient-bg) 50%)'
     return{
       'backgroundImage': linGradientText
     };

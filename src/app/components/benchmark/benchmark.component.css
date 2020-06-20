@@ -16,6 +16,7 @@
     justify-content: center;
     text-align: center;
     align-items: center;
+    color: var(--bench-text);
 }
 
 .bench:hover{
@@ -24,6 +25,7 @@
 
 .is-done{
   background-position: -100% 0%;
+  color: var(--darkened-bench-text);
 }
 
 .not-done{

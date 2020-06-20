@@ -14,7 +14,7 @@ import { ProgressBarComponent }  from '../progress-bar/progress-bar.component';
 export class ProjectItemComponent implements OnInit {
   @Input() proj: Project;
   @Output() updateDB: EventEmitter<any> = new EventEmitter();
-  @Output() deleteTodo: EventEmitter<Project> = new EventEmitter();
+  @Output() deleteProj: EventEmitter<Project> = new EventEmitter();
   @ViewChild(EditingDropdownComponent)
   private dropdownForm: EditingDropdownComponent;
   @ViewChild(ProgressBarComponent)
@@ -71,7 +71,7 @@ export class ProjectItemComponent implements OnInit {
   }
 
   onDelete(proj){
-    this.deleteTodo.emit(proj);
+    this.deleteProj.emit(proj);
     this.updateDB.emit();
   }
 

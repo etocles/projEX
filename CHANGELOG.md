@@ -25,11 +25,9 @@
     - ONLY project due date notifications
     - ONLY benchmark due date notifications
     - BOTH project + benchmark due date notifications (Default)
-  - importance hash menu
-  - category manager ???
 - Search bar for easier finding of projects
 - Full implementation of undo/redo
-- OBVIOUSLY fix any other bugs of previous version
+- Fixed other minor bugs from previous version
 
 
 ### Beta 0.0.0

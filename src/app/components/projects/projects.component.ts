@@ -17,7 +17,7 @@ export class ProjectsComponent implements OnInit {
   private addComponent: AddProjectComponent;
 
   projects:Project[];
-  notifID: any;
+  notify_type: string;
 
   private ipc: IpcRenderer
   constructor() {
@@ -35,36 +35,77 @@ export class ProjectsComponent implements OnInit {
 
   ngOnInit(): void {
     //uncomment this to revert to backup
-    // this.revertToBackup()
+    // this.revertToBackup();
 
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
-      //store default user preferences here
+      //default user preferences:
+      let prefs = {"sort_type":"by_due_date",
+                   "view_mode":"light_mode",
+                   "notification_frequency":"60",
+                   "notification_type":"proj_and_bench"};
+      localStorage.setItem("userPrefs",JSON.stringify(prefs));
+    }
+    /*     PULL STUFF FROM STORAGE     */
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    /* TOGGLE LIGHTMODE  DARKMODE */
+    if (userPrefs.view_mode == "light_mode"){
+      document.documentElement.style.setProperty('--name-color', 'black');
+      document.documentElement.style.setProperty('--cat-color', '#8794a3');
+      document.documentElement.style.setProperty('--percent-color', '#828282');
+      document.documentElement.style.setProperty('--background-color', '#aeaeae');
+      document.documentElement.style.setProperty('--shadow', '#74747e');
+      document.documentElement.style.setProperty('--card', '#f4f4f4');
+      document.documentElement.style.setProperty('--gradient-bg', '#aaaaaa');
+      document.documentElement.style.setProperty('--bench-text', '#353535 ');
+      document.documentElement.style.setProperty('--darkened-bench-text', 'var(--bench-text)');
+    }
+    else if(userPrefs.view_mode = "dark_mode"){
+      document.documentElement.style.setProperty('--name-color', '#cecece');
+      document.documentElement.style.setProperty('--cat-color', 'white');
+      document.documentElement.style.setProperty('--percent-color', 'white');
+      document.documentElement.style.setProperty('--background-color', '#3b3b3b');
+      document.documentElement.style.setProperty('--shadow', 'black');
+      document.documentElement.style.setProperty('--card', '#515151');
+      document.documentElement.style.setProperty('--gradient-bg', '#797979');
+      document.documentElement.style.setProperty('--bench-text', '#eeeeee ');
+      document.documentElement.style.setProperty('--darkened-bench-text', '#353535');
     }
 
-
+    /* NOTIFICATION TYPE */
+    this.notify_type = userPrefs.notification_type;
+    /* LIST OF PROJECTS */
     this.projects = [];
     if(localStorage.getItem('projArray') == "undefined") return; //on first bootup, the projects array will be empty
-
     //grabs the projects from storage
     let projJSON = localStorage.getItem('projArray');
     let pArray = JSON.parse(projJSON);
-
-    //testing out adding something to the array after grabbing
-    // pArray.push(new Project('StorageTester',"StorageCAT",8));
-
     //convert every JSON project to an instance of Project
     for (let i = 0; i < pArray.length; i++){
       this.projects.push(this.JSON_TO_PROJECT(pArray[i]));
     }
+    /* SORT PROJECTS */
+    this.sortProjects(userPrefs.sort_type);
 
-    //begin checking for notifications every 30 minutes
-    setInterval(this.NotificationService, 60 * 60 * 1000);
+    /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/
+    setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
   }
 
-  deleteTodo(proj:Project){
+  deleteProj(proj:Project){
     //Removes from UI
     //returns all projects that are not the specified id in the UI
-    this.projects = this.projects.filter(t => t.name !== proj.name);
+    this.projects = this.projects.filter(p => p.name !== proj.name);
+
+    // let archivedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
+    if (localStorage.getItem("archivedProjects") == null){
+      let archivedProjects = [proj];
+      localStorage.setItem("archivedProjects", JSON.stringify(archivedProjects));
+    }
+    else{
+      let archivedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
+      archivedProjects.unshift(proj);
+      localStorage.setItem("archivedProjects", JSON.stringify(archivedProjects));
+    }
+
   }
 
   addProj(){
@@ -212,7 +253,8 @@ export class ProjectsComponent implements OnInit {
     localStorage.removeItem('projArray');
 
     let proj1 = new Project('Homework 7','FOCS',5);
-    proj1.due_date = new Date('2020-05-09T23:59:00');
+    proj1.due_date.setHours(23);
+    proj1.due_date.setMinutes(59);
     proj1.progbar = new ProgressBar(5,proj1.due_date);
     proj1.progbar.benchmarks[1].isnested = true;
     proj1.progbar.benchmarks[1].nested_bar = new NestedBar(3);
@@ -221,22 +263,20 @@ export class ProjectsComponent implements OnInit {
     proj1.progbar.ToggleBenchmark(1);
 
     let proj2 = new Project('Character','3D Modeling',5);
-    proj2.due_date = new Date('2020-06-09T23:59:00');
+    proj2.due_date.setDate(proj2.due_date.getDate()+1)
 
     let proj3 = new Project('ProjectName3','Category3',10);
-    proj3.due_date = new Date('2020-11-09T23:59:00');
+    proj3.due_date.setDate(proj3.due_date.getDate()+3)
     proj3.progbar.MarkUpTo(proj3.progbar.benchmarks[4]);
 
     let proj4 = new Project('ProjectName4','Category4',10);
-    proj4.due_date = new Date('2020-11-20T23:59:00');
+    proj4.due_date.setDate(proj4.due_date.getDate()+10)
     proj4.order_matters = false;
     proj4.progbar.benchmarks[5].isnested = true;
     proj4.progbar.benchmarks[5].nested_bar = new NestedBar(5);
     proj4.progbar.benchmarks[5].PartSummary();
 
-    let proj5 = new Project('ProjectName5','Category5',2);
-    let proj6 = new Project('Test','YEST',1);
-    let projs  = [proj1,proj2,proj3,proj4,proj5,proj6];
+    let projs  = [proj1,proj2,proj3,proj4];
     localStorage.setItem('projArray',JSON.stringify(projs));
   }
 
@@ -280,34 +320,38 @@ export class ProjectsComponent implements OnInit {
       let p = ps[i];
       let b = p.UpcomingBenchmark();
       if (p.completed) continue;
-      //if the project is due soon, send a notification.
-      if (p.SoonMeter().includes("HOURS") || p.SoonMeter().includes("MINUTES")){
-        var notification = {
-          timeoutType: 'never',
-          icon: '../../PJX_5.png',
-          title: 'Project ' + p.name + ' due soon!',
-          body:
-          p.SoonMeter() + ' REMAINING' +
-          '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
-          '\nThe next benchmark you have to get done is: ' + p.UpcomingBenchmark().title + '.'
-        }
-        const myNotification = new window.Notification(notification.title, notification)
-        myNotification.onclick = () => {
-          console.dir(window);
-        }
+      let pSoon = p.SoonMeter().includes("HOURS") || p.SoonMeter().includes("MINUTES");
+      let bSoon = b.SoonMeter().includes("HOURS") || b.SoonMeter().includes("MINUTES");
+      var notification = {
+        timeoutType: 'never',
+        icon: '../../PJX_5.png',
+        title: '',
+        body: ''
       }
-      if (b.SoonMeter().includes("HOURS") || b.SoonMeter().includes("MINUTES")){
-        var notification = {
-          timeoutType: 'never',
-          icon: '../../PJX_5.png',
-          title: 'Benchmark ' + b.title + ' due soon!',
-          body: b.SoonMeter() + ' REMAINING to finish this benchmark!'
-        }
-        const myNotification = new window.Notification(notification.title, notification)
-        myNotification.onclick = () => {
-          console.dir(window);
-        }
+      let myNotification;
+      if (pSoon && this.notify_type == "proj"){
+        notification.title = `Project ${p.name} due soon!`;
+        notification.body = p.SoonMeter() + ' REMAINING' +
+        '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
+        '\nThe next benchmark you have to get done is: ' + b.title + '.'
+        myNotification = new window.Notification(notification.title, notification)
+        //try pushing this to an array
       }
+      if (bSoon && this.notify_type == "bench"){
+        notification.title = `Benchmark ${b.title} of ${p.name} due soon!`;
+        notification.body = b.SoonMeter() + ' REMAINING to finish this benchmark!'
+        myNotification = new window.Notification(notification.title, notification)
+        //try pushing this to an array
+      }
+      if (bSoon && this.notify_type == "proj_and_bench"){
+        notification.title = `Project ${p.name} has a pressing benchmark!`;
+        notification.body = (p.SoonMeter()=="") ? `The next benchmark you have to get done is: ${b.title}.` : `${p.name} is due in ${p.SoonMeter()} \n` + `The next benchmark you have to get done is: ${b.title}.`
+        myNotification = new window.Notification(notification.title, notification)
+        //try pushing this to an array
+      }
+      // if(!pSoon || !bSoon) continue;
+
+      myNotification.onclick = () => { this.ipc.send("notifClicked"); }
     }
   }
 

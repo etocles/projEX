@@ -1,5 +1,5 @@
 <app-add-project (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-project>
-<!-- <button (click)="NotificationService()">click to notification service</button> -->
+<button (click)="NotificationService()">click to notification service</button>
 <p *ngIf="projects.length==0" class="hint-text">
     Looks like you don't have any projects started yet. Click the "+" above to add one!
 </p>
@@ -9,7 +9,7 @@
     <!-- <mat-icon cdkDragHandle style="float:left; z-index:4; padding-left: 30px; padding-top: .6%;">reorder</mat-icon> -->
     <app-project-item
     [proj]="proj"
-    (deleteTodo)="deleteTodo($event)"
+    (deleteProj)="deleteProj($event)"
     (updateDB)="updateStorage()">
     </app-project-item>
   </div>

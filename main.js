@@ -41,6 +41,9 @@ function createWindow () {
   // ipcMain.on('OpenNumber2', () => {
   //     secondaryWindow.show();
   // })
+  ipcMain.on('notifClicked', () => {
+      mainWindow.show();
+  })
 }
 
 app.on('ready', createWindow)

@@ -36,9 +36,11 @@
   -webkit-transition: background-position .75s;
   -moz-transition: background-position .75s;
   transition: background-position .75s;
+  color: var(--bench-text);
 }
 .is-done{
   background-position: -100% 0%;
+  color: var(--darkened-bench-text);
 }
 
 .not-done{

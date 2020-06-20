@@ -39,7 +39,7 @@ export class AddProjectComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.sort_type = localStorage.getItem("sort_type");
+    this.sort_type = JSON.parse(localStorage.getItem("userPrefs")).sort_type;
 
     //playing with overlay
     // this.overlayRef = this.overlay.create({

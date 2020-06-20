@@ -53,8 +53,6 @@ export class Project{
     else{
       return "";
     }
-
-    // return Math.trunc(hoursBetween) + " hours left";
   }
 }
 
