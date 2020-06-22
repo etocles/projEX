@@ -8,8 +8,7 @@
 - Invisible notification service
 
 
-### Beta 1.1.0
-#### Coming 06/25/2020 4pm EST
+### Beta 0.1.0
 - Sort by uncompleted first (also sorts by due-date)
 - fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
 - Clicking notification opens app

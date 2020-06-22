@@ -1,8 +1,8 @@
-const {app, BrowserWindow, screen, ipcMain} = require('electron')
+const {app, BrowserWindow, screen, ipcMain, Menu, MenuItem} = require('electron');
 const url = require("url");
 const path = require("path");
 
-let mainWindow
+let mainWindow;
 
 function createWindow () {
   const size = screen.getPrimaryDisplay().workAreaSize;
@@ -12,7 +12,8 @@ function createWindow () {
     icon: path.join(__dirname, `/PJX_5.png`),
     webPreferences: {
       nodeIntegration: true /*doesn't have an effect on whether angular works or not*/
-    }
+    },
+    show:false,
   })
   mainWindow.loadURL(
     url.format({
@@ -22,9 +23,16 @@ function createWindow () {
     })
   );
 
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
+
   //configuring menu
   let windowMenu = Menu.getApplicationMenu();
-  let menuItem = new MenuItem( {role: "about"} );
+  let menuItem = new MenuItem({
+    role: "about",
+    label:"Yiggy"
+  });
   windowMenu.append(menuItem);
   Menu.setApplicationMenu(windowMenu);
 
