@@ -4,6 +4,56 @@ const path = require("path");
 
 let mainWindow;
 
+function createApplicationMenu(){
+  //configuring menu
+  let windowMenu = Menu.getApplicationMenu();
+  let menuItem = new MenuItem({
+    role: "about",
+    label:"Yiggy",
+  });
+  windowMenu.append(menuItem);
+  Menu.setApplicationMenu(windowMenu);
+
+  // var menu = Menu.buildFromTemplate([
+  //     {
+  //         label: 'File',
+  //         submenu: [
+  //             {label:'Adjust Notification Value'},
+  //             {label:'CoinMarketCap'},
+  //             {label:'Exit'}
+  //         ]
+  //     },
+  //     {
+  //         label: 'Edit',
+  //         submenu: [
+  //             {label:'Adjust Notification Value'},
+  //             {label:'CoinMarketCap'},
+  //             {label:'Exit'}
+  //         ]
+  //     },
+  //     {
+  //         label: 'Window',
+  //         submenu: [
+  //             {label:'Adjust Notification Value'},
+  //             {label:'CoinMarketCap'},
+  //             {label:'Exit'}
+  //         ]
+  //     },
+  //     {
+  //         label: 'View',
+  //         submenu: [
+  //             {label:'Adjust Notification Value'},
+  //             {label:'CoinMarketCap'},
+  //             {label:'Exit'}
+  //         ]
+  //     },
+  //
+  // ]);
+
+  // shell.openExternal('http://coinmarketcap.com')
+}
+
+
 function createWindow () {
   const size = screen.getPrimaryDisplay().workAreaSize;
   mainWindow = new BrowserWindow({
@@ -27,15 +77,7 @@ function createWindow () {
     mainWindow.show()
   })
 
-  //configuring menu
-  let windowMenu = Menu.getApplicationMenu();
-  let menuItem = new MenuItem({
-    role: "about",
-    label:"Yiggy"
-  });
-  windowMenu.append(menuItem);
-  Menu.setApplicationMenu(windowMenu);
-
+  createApplicationMenu();
 
   //handling closing
   mainWindow.on('closed', function () {
