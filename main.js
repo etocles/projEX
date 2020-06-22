@@ -14,13 +14,6 @@ function createWindow () {
       nodeIntegration: true /*doesn't have an effect on whether angular works or not*/
     }
   })
-
-  // secondaryWindow = new BrowserWindow({
-  //   width:800,
-  //   height:800,
-  //   show:false
-  // })
-
   mainWindow.loadURL(
     url.format({
       pathname: path.join(__dirname, `/dist/projex/index.html`),
@@ -28,22 +21,24 @@ function createWindow () {
       slashes: true
     })
   );
-  // secondaryWindow.loadURL('http://google.com');
 
-  // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
+  //configuring menu
+  let windowMenu = Menu.getApplicationMenu();
+  let menuItem = new MenuItem( {role: "about"} );
+  windowMenu.append(menuItem);
+  Menu.setApplicationMenu(windowMenu);
 
+
+  //handling closing
   mainWindow.on('closed', function () {
     mainWindow = null
   })
-  // secondaryWindow.show();
-  //should open remote window
-  // ipcMain.on('OpenNumber2', () => {
-  //     secondaryWindow.show();
-  // })
+  //making application pop up when notification is clicked
   ipcMain.on('notifClicked', () => {
       mainWindow.show();
   })
+  // Open the DevTools.
+  // mainWindow.webContents.openDevTools()
 }
 
 app.on('ready', createWindow)

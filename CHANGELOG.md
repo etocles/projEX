@@ -1,14 +1,18 @@
 # Changelog
 
-<!-- ### Beta 1.1.0 -->
+### Upcoming Changes for Next Patch
+- Import project from text
+- Notification disappears in 30 mins
+- Importance to change how importance is figured out
+- Alternate Views
+- Invisible notification service
 
-### Upcoming Changes
 
+### Beta 1.1.0
+#### Coming 06/25/2020 4pm EST
 - Sort by uncompleted first (also sorts by due-date)
 - fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
-- import project from text
 - Clicking notification opens app
-- Notification disappears in 30 mins
 - Soon meter doesn't show up when project is completed
 - Completion of project depends on benchmarks, not a button
 - Clicking notification opens app
@@ -16,7 +20,6 @@
 - add Delay to tooltips
 - Archiving benchmarks when deleted so that they can be brought back
 - Dark Mode/Light Mode
-- Alternative Views
 - UserPrefs Config
   - sort_type
   - lightness mode

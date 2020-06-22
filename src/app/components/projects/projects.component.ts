@@ -19,7 +19,6 @@ export class ProjectsComponent implements OnInit {
   projects:Project[];
   notify_type: string;
   search_filter: string;
-  backupProjects: Project[]; //used to keep the projects intact while searching
 
   private ipc: IpcRenderer
   constructor() {
@@ -78,7 +77,6 @@ export class ProjectsComponent implements OnInit {
     this.notify_type = userPrefs.notification_type;
     /* LIST OF PROJECTS */
     this.projects = [];
-    this.backupProjects = [];
     if(localStorage.getItem('projArray') == "undefined") return; //on first bootup, the projects array will be empty
     //grabs the projects from storage
     let projJSON = localStorage.getItem('projArray');
@@ -86,7 +84,6 @@ export class ProjectsComponent implements OnInit {
     //convert every JSON project to an instance of Project
     for (let i = 0; i < pArray.length; i++){
       this.projects.push(this.JSON_TO_PROJECT(pArray[i]));
-      this.backupProjects.push(this.JSON_TO_PROJECT(pArray[i]));
     }
     /* SORT PROJECTS */
     this.sortProjects(userPrefs.sort_type);
