@@ -39,7 +39,6 @@ export class ProjectsComponent implements OnInit {
     //uncomment this to revert to backup
     // this.revertToBackup();
 
-    this.sendViewMode(); //send user's preference of view mode to main process
     this.search_filter = '';
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
       //default user preferences:
@@ -84,6 +83,8 @@ export class ProjectsComponent implements OnInit {
     this.ipc.on('openArchive', () => {
       /* open archive stuff here */
     });
+
+    this.sendViewMode(); //send user's preference of view mode to main process
 
     //testing with ipc useful reference code
     // this.ipc.on('async-test' , function(event , data) {
