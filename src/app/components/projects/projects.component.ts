@@ -4,7 +4,7 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
 import { AddProjectComponent }  from '../add-project/add-project.component';
-import { IpcRenderer, app } from 'electron';
+import { IpcRenderer, Menu, app } from 'electron';
 
 
 @Component({
@@ -26,6 +26,7 @@ export class ProjectsComponent implements OnInit {
     if ((<any>window).require) {
       try {
         this.ipc = (<any>window).require('electron').ipcRenderer;
+        this.ipc.on('async-test' , function(event , data){ console.log("coc") });
       } catch (e) {
         throw e;
       }
@@ -38,6 +39,7 @@ export class ProjectsComponent implements OnInit {
     //uncomment this to revert to backup
     // this.revertToBackup();
 
+    this.sendViewMode(); //send user's preference of view mode to main process
     this.search_filter = '';
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
       //default user preferences:
@@ -49,30 +51,8 @@ export class ProjectsComponent implements OnInit {
     }
     /*     PULL STUFF FROM STORAGE     */
     let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
-    /* TOGGLE LIGHTMODE  DARKMODE */
-    if (userPrefs.view_mode == "light_mode"){
-      document.documentElement.style.setProperty('--name-color', 'black');
-      document.documentElement.style.setProperty('--cat-color', '#8794a3');
-      document.documentElement.style.setProperty('--percent-color', '#828282');
-      document.documentElement.style.setProperty('--background-color', '#aeaeae');
-      document.documentElement.style.setProperty('--shadow', '#74747e');
-      document.documentElement.style.setProperty('--card', '#f4f4f4');
-      document.documentElement.style.setProperty('--gradient-bg', '#aaaaaa');
-      document.documentElement.style.setProperty('--bench-text', '#353535 ');
-      document.documentElement.style.setProperty('--darkened-bench-text', 'var(--bench-text)');
-    }
-    else if(userPrefs.view_mode = "dark_mode"){
-      document.documentElement.style.setProperty('--name-color', '#cecece');
-      document.documentElement.style.setProperty('--cat-color', 'white');
-      document.documentElement.style.setProperty('--percent-color', 'white');
-      document.documentElement.style.setProperty('--background-color', '#3b3b3b');
-      document.documentElement.style.setProperty('--shadow', 'black');
-      document.documentElement.style.setProperty('--card', '#515151');
-      document.documentElement.style.setProperty('--gradient-bg', '#797979');
-      document.documentElement.style.setProperty('--bench-text', '#eeeeee ');
-      document.documentElement.style.setProperty('--darkened-bench-text', '#353535');
-    }
-
+    /* TOGGLE LIGHTMODE or DARKMODE */
+    this.toggleTheme(userPrefs.view_mode);
     /* NOTIFICATION TYPE */
     this.notify_type = userPrefs.notification_type;
     /* LIST OF PROJECTS */
@@ -88,8 +68,27 @@ export class ProjectsComponent implements OnInit {
     /* SORT PROJECTS */
     this.sortProjects(userPrefs.sort_type);
 
-    /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/
+    /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/ // TODO: set this to scale with a userpreference
     setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
+
+    /* SUBSCRIBE TO LightMode/DarkMode toggle from menu */
+    this.ipc.on('LightModeEnable', () => { this.toggleTheme("light_mode") });
+    this.ipc.on('DarkModeEnable', () => { this.toggleTheme("dark_mode") });
+
+    this.ipc.on('undoAction', () => {
+      /* undo stuff here */
+    });
+    this.ipc.on('redoAction', () => {
+      /* redo stuff here */
+    });
+    this.ipc.on('openArchive', () => {
+      /* open archive stuff here */
+    });
+
+    //testing with ipc useful reference code
+    // this.ipc.on('async-test' , function(event , data) {
+    //   console.log(data)
+    // });
   }
 
   deleteProj(proj:Project){
@@ -150,6 +149,38 @@ export class ProjectsComponent implements OnInit {
     // }
   }
 
+  toggleTheme(type:string){
+    //if no type is specified (such as on init)
+    if (type == "light_mode"){
+      document.documentElement.style.setProperty('--name-color', 'black');
+      document.documentElement.style.setProperty('--cat-color', '#8794a3');
+      document.documentElement.style.setProperty('--percent-color', '#828282');
+      document.documentElement.style.setProperty('--background-color', '#aeaeae');
+      document.documentElement.style.setProperty('--shadow', '#74747e');
+      document.documentElement.style.setProperty('--card', '#f4f4f4');
+      document.documentElement.style.setProperty('--gradient-bg', '#aaaaaa');
+      document.documentElement.style.setProperty('--bench-text', '#353535 ');
+      document.documentElement.style.setProperty('--darkened-bench-text', 'var(--bench-text)');
+      document.documentElement.style.setProperty('--hint-text', '#223540');
+    }
+    else if(type == "dark_mode"){
+      document.documentElement.style.setProperty('--name-color', '#cecece');
+      document.documentElement.style.setProperty('--cat-color', 'white');
+      document.documentElement.style.setProperty('--percent-color', 'white');
+      document.documentElement.style.setProperty('--background-color', '#3b3b3b');
+      document.documentElement.style.setProperty('--shadow', 'black');
+      document.documentElement.style.setProperty('--card', '#515151');
+      document.documentElement.style.setProperty('--gradient-bg', '#797979');
+      document.documentElement.style.setProperty('--bench-text', '#eeeeee ');
+      document.documentElement.style.setProperty('--darkened-bench-text', '#353535');
+      document.documentElement.style.setProperty('--hint-text', '#cecece');
+    }
+    //update database
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    userPrefs.view_mode = type;
+    localStorage.setItem("userPrefs",JSON.stringify(userPrefs));
+  }
+
   JSON_TO_PROJECT(obj):Project{
     //takes in a JSON object and turn it into a project
     // console.log("%c TRANSCRIPTINO BEGINS HERE",'font-weight:bold;background-color:yellow;');
@@ -182,6 +213,11 @@ export class ProjectsComponent implements OnInit {
     }
     // console.dir(proj);
     return proj;
+  }
+
+  sendViewMode(){
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    this.ipc.send("ViewModeType", {"view_mode": userPrefs.view_mode});
   }
 
   sortProjects(sortMethod:string){

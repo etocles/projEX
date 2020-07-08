@@ -1,10 +1,6 @@
+<!-- <button (click)="NotificationService()">click to notification service</button> -->
+<input type="text" [(ngModel)]="search_filter" class="search-bar" placeholder="Search by category or project name here"/>
 <app-add-project (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-project>
-<button (click)="NotificationService()">click to notification service</button>
-<input type="text" [(ngModel)]="search_filter"/>
-<!-- <mat-form-field>
-    <mat-icon matSuffix>search</mat-icon>
-    <input matInput type="search" placeholder="Search Projects..." class="search-input">
-</mat-form-field> -->
 <p *ngIf="projects.length==0" class="hint-text">
     Looks like you don't have any projects started yet. Click the "+" above to add one!
 </p>
@@ -12,7 +8,6 @@
   <div cdkDrag *ngFor="let proj of projects" >
       <!-- Search div -->
       <div *ngIf="search_filter == '' || proj.name.toLowerCase().includes(search_filter.toLowerCase()) || proj.category.toLowerCase().includes(search_filter.toLowerCase())">
-        <!-- *ngIf="proj.name.toLowerCase().includes(search_filter.toLowerCase()) || proj.category.toLowerCase().includes(search_filter.toLowerCase()))" -->
         <p cdkDragHandle style="float:left; z-index:4; padding-left: 18px; padding-top: 9%;"> ||| </p>
         <app-project-item
         [proj]="proj"

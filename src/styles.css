@@ -8,6 +8,7 @@
   --card: #f4f4f4;
   --gradient-bg: #aaaaaa;
   --bench-text: #353535 ;
+  --hint-text:#223540;
   --darkened-bench-text: var(--bench-text); */
 
   /*    DARK MODE    */
@@ -20,6 +21,7 @@
   --gradient-bg: #797979;
   --bench-text: #eeeeee ;
   --darkened-bench-text: #353535;
+  --hint-text:#cecece;
 
   --warning-color: #ff2020;
 }

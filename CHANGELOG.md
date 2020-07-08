@@ -3,21 +3,26 @@
 ### Upcoming Changes for Next Patch
 - Import project from text
 - Notification disappears in 30 mins
-- Importance to change how importance is figured out
+- Importance; change how importance is figured out
 - Alternate Views
-- Invisible notification service
+- Full implementation of undo/redo
+- File/Edit/View/Help toolbar needs customizing
+- Archiving benchmarks when deleted so that they can be brought back
+- Settings Page to modify UserPrefs
+- Archive pop-up
+
 
 
 ### Beta 0.1.0
 - Sort by uncompleted first (also sorts by due-date)
-- fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
+- Fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
 - Clicking notification opens app
 - Soon meter doesn't show up when project is completed
 - Completion of project depends on benchmarks, not a button
 - Clicking notification opens app
 - Change the benchmark form proportions in addPanel
-- add Delay to tooltips
-- Archiving benchmarks when deleted so that they can be brought back
+- File/Edit/View/Help bar begins implementation
+- Added Delay to tooltips
 - Dark Mode/Light Mode
 - UserPrefs Config
   - sort_type
@@ -28,8 +33,9 @@
     - ONLY benchmark due date notifications
     - BOTH project + benchmark due date notifications (Default)
 - Search bar for easier finding of projects
-- Full implementation of undo/redo
 - Fixed other minor bugs from previous version
+- Invisible notification service
+
 
 
 ### Beta 0.0.0

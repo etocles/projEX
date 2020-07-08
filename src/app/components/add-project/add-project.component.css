@@ -12,7 +12,7 @@
   margin-right: 1%;
   background-color: green;
   border-radius: 50px;
-  box-shadow: 0px 5px 5px #223540;
+  box-shadow: 0px 5px 5px var(--shadow);
 
   flex: 7;
 }
