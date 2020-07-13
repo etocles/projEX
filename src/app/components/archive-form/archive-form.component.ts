@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Project } from '../../models/ProjectClasses';
 
 @Component({
@@ -8,17 +8,18 @@ import { Project } from '../../models/ProjectClasses';
 })
 export class ArchiveFormComponent implements OnInit {
   @Output() restoreProject: EventEmitter<void> = new EventEmitter();
+  @Input() inputtedProjects: Project[];
   archprojects: Project[];
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
     this.archprojects = JSON.parse(localStorage.getItem("archivedProjects"));
+    console.log(this.archprojects);
   }
 
   restoreProj(p){
-    console.log(p);
-
     //add it back to list of projects
     localStorage.setItem('ProjectToBeAdded',JSON.stringify(p));
     this.restoreProject.emit();

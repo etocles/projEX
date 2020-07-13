@@ -88,16 +88,17 @@ function createApplicationMenu(){
           label:"Open Archive",
           click() {
             mainWindow.webContents.send('openArchive');
-            // mainWindow.webContents.send('async-test', {'SAVED': 'File Saved'});
           }
         },
         {
-          label:"Yeet This Shit",
+          label:"Quit",
           role: "quit",
         },
-        {
-          type: 'separator'
-        },
+      ],
+    },
+    {
+      label: "View",
+      submenu:[
         {
           label: 'Dark',
           type: 'radio',
@@ -114,26 +115,32 @@ function createApplicationMenu(){
             mainWindow.webContents.send('LightModeEnable');
           }
         },
-        {
-          type: 'separator'
-        },
-        {
-          label:"Yeet This Shit",
-          role: "help",
-        },
-      ],
+      ]
     },
     {
       label: "Test",
       click() {
-        console.log('test recieved')
+        console.log('test sent')
+        mainWindow.webContents.send('async-test', {'SAVED': 'File Saved'});
       }
     },
     {
       label: "Help",
-      click() {
-        console.log('*help happens*')
-      }
+      submenu:[
+        {
+          label: "About...",
+          click() {
+            /*user gets sent to an about page on mikpozdn.com*/
+          }
+        },
+        {
+          label: "Open DevTools",
+          accelerator: "CmdOrCtrl+Shift+I",
+          click() {
+            mainWindow.webContents.openDevTools();
+          }
+        },
+      ],
     },
   ];
 

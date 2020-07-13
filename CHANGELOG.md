@@ -7,9 +7,11 @@
 - Alternate Views
 - Full implementation of undo/redo
 - File/Edit/View/Help toolbar needs customizing
-- Archiving benchmarks when deleted so that they can be brought back
+- Archived Projects can be viewed from menu bar
 - Settings Page to modify UserPrefs
 - Max amount of archived projects can be changed
+- Implementation of Undo/Redo
+- Add more options to the menu bar (Help, View, etc.)
 
 
 ### Beta 0.1.0
@@ -18,8 +20,8 @@
 - Clicking notification opens app
 - Soon meter doesn't show up when project is completed
 - Completion of project depends on benchmarks, not a button
-- Clicking notification opens app
-- Change the benchmark form proportions in addPanel
+  - Button now does nothing
+- Changed the benchmark form proportions in addPanel
 - File/Edit/View/Help bar begins implementation
 - Added Delay to tooltips
 - Dark Mode/Light Mode
@@ -34,6 +36,7 @@
 - Search bar for easier finding of projects
 - Fixed other minor bugs from previous version
 - Invisible notification service
+- Archiving benchmarks when deleted so that they can be brought back
 - Archive pop-up
 
 

@@ -37,7 +37,7 @@ export class ProjectsComponent implements OnInit {
     if ((<any>window).require) {
       try {
         this.ipc = (<any>window).require('electron').ipcRenderer;
-        this.ipc.on('async-test' , function(event , data){ console.log("coc") });
+        this.ipc.on('async-test' , function(event , data){ console.log("test received:"); console.log(data); });
       } catch (e) {
         throw e;
       }
@@ -49,16 +49,6 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     //uncomment this to revert to backup
     // this.revertToBackup();
-
-    /*creates infrastructure for overlay*/
-    this.overlayRef = this.overlay.create({
-      hasBackdrop: true,
-      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
-      scrollStrategy: this.sso.close(),
-      width: 600,
-      height: 600,
-    });
-    this.formComponentPortal = new ComponentPortal(ArchiveFormComponent)
 
     this.search_filter = '';
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
@@ -101,9 +91,7 @@ export class ProjectsComponent implements OnInit {
     this.ipc.on('redoAction', () => {
       /* redo stuff here */
     });
-    this.ipc.on('openArchive', () => {
-      this.openArchiveForm();
-    });
+    this.ipc.on('openArchive',() => { this.openArchiveForm() });
 
     this.sendViewMode(); //send user's preference of view mode to main process
 
@@ -155,9 +143,20 @@ export class ProjectsComponent implements OnInit {
   }
 
   openArchiveForm(){
+    /*creates infrastructure for overlay*/
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      scrollStrategy: this.sso.close(),
+      width: 600,
+      height: 600,
+    });
+    this.formComponentPortal = new ComponentPortal(ArchiveFormComponent)
+
     if (!this.overlayRef.hasAttached()) {
       this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
       this.overlayRef.backdropClick().subscribe(_ => this.overlayRef.detach());
+      this.formComponentRef.instance.inputtedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
       this.formComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
     } else { //close the panel if the plus button is clicked again
       this.overlayRef.detach();
