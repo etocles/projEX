@@ -1,0 +1,13 @@
+<div id="panel">
+  <h1>Archived Projects</h1>
+  <br />
+  <br />
+  <div id="archived-container">
+    <div class="archived-project" *ngFor="let p of archprojects">
+      <p>
+        {{p.name}},
+        {{p.category}}
+      </p>
+    </div>
+  </div>
+</div>

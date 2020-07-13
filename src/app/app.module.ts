@@ -20,6 +20,7 @@ import { PartComponent } from './components/part/part.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditingDropdownComponent } from './components/editing-dropdown/editing-dropdown.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
+import { ArchiveFormComponent } from './components/archive-form/archive-form.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AddFormComponent } from './components/add-form/add-form.component';
     NestedBarComponent,
     PartComponent,
     EditingDropdownComponent,
-    AddFormComponent
+    AddFormComponent,
+    ArchiveFormComponent
   ],
   imports: [
     BrowserModule,

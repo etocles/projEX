@@ -9,8 +9,7 @@
 - File/Edit/View/Help toolbar needs customizing
 - Archiving benchmarks when deleted so that they can be brought back
 - Settings Page to modify UserPrefs
-- Archive pop-up
-
+- Max amount of archived projects can be changed
 
 
 ### Beta 0.1.0
@@ -35,14 +34,13 @@
 - Search bar for easier finding of projects
 - Fixed other minor bugs from previous version
 - Invisible notification service
+- Archive pop-up
 
 
 
 ### Beta 0.0.0
-
-<details><summary>Click for full info</summary>
+<details><summary></summary>
 <p>
-
 #### FEATURES
 - Projects added
   - have a name

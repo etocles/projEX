@@ -1,0 +1,16 @@
+#panel{
+  background-color: lightgray;
+  color: black;
+  width: 600px;
+  height: 600px;
+  padding-top: 5%;
+}
+
+h1{
+  font-size: 2.25em;
+  padding-left: 5%;
+}
+
+.archived-project{
+  padding-left:30px;
+}

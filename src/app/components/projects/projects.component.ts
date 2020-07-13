@@ -2,9 +2,13 @@ import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/cor
 import { CommonModule } from "@angular/common";
 import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
+import { Overlay, PositionStrategy, OverlayRef, ScrollStrategyOptions, OverlayConfig } from '@angular/cdk/overlay';
+import { ComponentPortal} from '@angular/cdk/portal';
+import { ArchiveFormComponent } from 'src/app/components/archive-form/archive-form.component'; // TODO: replace this with an archive popup
+
 import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
 import { AddProjectComponent }  from '../add-project/add-project.component';
-import { IpcRenderer, Menu, app } from 'electron';
+import { IpcRenderer, app } from 'electron';
 
 
 @Component({
@@ -16,12 +20,19 @@ export class ProjectsComponent implements OnInit {
   @ViewChild(AddProjectComponent)
   private addComponent: AddProjectComponent;
 
+  /*variables used for project management*/
   projects:Project[];
   notify_type: string;
   search_filter: string;
 
+  /*variables used for making archive window*/
+  overlayRef: OverlayRef;
+  overlayPosition: PositionStrategy;
+  formComponentPortal: ComponentPortal<ArchiveFormComponent>;
+  formComponentRef: any;
+
   private ipc: IpcRenderer
-  constructor() {
+  constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
     //adds electron api
     if ((<any>window).require) {
       try {
@@ -38,6 +49,16 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     //uncomment this to revert to backup
     // this.revertToBackup();
+
+    /*creates infrastructure for overlay*/
+    this.overlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      scrollStrategy: this.sso.close(),
+      width: 600,
+      height: 600,
+    });
+    this.formComponentPortal = new ComponentPortal(ArchiveFormComponent)
 
     this.search_filter = '';
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
@@ -66,6 +87,7 @@ export class ProjectsComponent implements OnInit {
     }
     /* SORT PROJECTS */
     this.sortProjects(userPrefs.sort_type);
+    // this.openArchiveForm();
 
     /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/ // TODO: set this to scale with a userpreference
     setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
@@ -81,7 +103,7 @@ export class ProjectsComponent implements OnInit {
       /* redo stuff here */
     });
     this.ipc.on('openArchive', () => {
-      /* open archive stuff here */
+      this.openArchiveForm();
     });
 
     this.sendViewMode(); //send user's preference of view mode to main process
@@ -105,6 +127,7 @@ export class ProjectsComponent implements OnInit {
     else{
       let archivedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
       archivedProjects.unshift(proj);
+      if (archivedProjects.length >= 5) archivedProjects.pop(); // TODO: change bounds to be customizeable
       localStorage.setItem("archivedProjects", JSON.stringify(archivedProjects));
     }
 
@@ -130,6 +153,17 @@ export class ProjectsComponent implements OnInit {
     this.addComponent.sort_type = 'by_custom';
     //update the database
     this.updateStorage();
+  }
+
+  openArchiveForm(){
+    if (!this.overlayRef.hasAttached()) {
+      this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
+
+      this.overlayRef.backdropClick().subscribe(_ => this.overlayRef.detach());
+      this.formComponentRef.instance.closePanel.subscribe(() => { this.overlayRef.detach() })
+    } else { //close the panel if the plus button is clicked again
+      this.overlayRef.detach();
+    }
   }
 
   /*HELPER FUNCTIONS*/
