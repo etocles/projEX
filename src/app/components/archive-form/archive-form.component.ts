@@ -12,11 +12,11 @@ export class ArchiveFormComponent implements OnInit {
   archprojects: Project[];
 
   constructor() {
+    this.archprojects = JSON.parse(localStorage.getItem("archivedProjects"));
   }
 
   ngOnInit(): void {
     this.archprojects = JSON.parse(localStorage.getItem("archivedProjects"));
-    console.log(this.archprojects);
   }
 
   restoreProj(p){
