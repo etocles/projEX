@@ -3,11 +3,19 @@
   <br />
   <br />
   <div id="archived-container">
-    <div class="archived-project" *ngFor="let p of archprojects">
-      <p>
-        {{p.name}},
-        {{p.category}}
-      </p>
+    <div class="archived-item" *ngFor="let p of archprojects">
+      <div class="archived-project">
+        <p class="archproj-info">
+          {{p.name}}, {{p.category | uppercase}}, {{p.progbar.num_done/p.progbar.benchmarks.length*100 | number:'1.0-0'}}%
+        </p>
+        <mat-icon class="restore-btn" (click)="restoreProj(p)">undo</mat-icon>
+      </div>
+      <hr />
+      <div class="benchmark-names">
+        <div class="name" *ngFor="let b of p.progbar.benchmarks">
+          {{b.title}}, &nbsp;
+        </div>
+      </div>
     </div>
   </div>
 </div>

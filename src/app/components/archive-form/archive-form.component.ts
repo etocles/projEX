@@ -7,6 +7,7 @@ import { Project } from '../../models/ProjectClasses';
   styleUrls: ['./archive-form.component.css']
 })
 export class ArchiveFormComponent implements OnInit {
+  @Output() restoreProject: EventEmitter<void> = new EventEmitter();
   archprojects: Project[];
 
   constructor() { }
@@ -15,4 +16,27 @@ export class ArchiveFormComponent implements OnInit {
     this.archprojects = JSON.parse(localStorage.getItem("archivedProjects"));
   }
 
+  restoreProj(p){
+    console.log(p);
+
+    //add it back to list of projects
+    localStorage.setItem('ProjectToBeAdded',JSON.stringify(p));
+    this.restoreProject.emit();
+
+    //remove it from ui
+    this.archprojects = this.archprojects.filter(
+      t => (
+        (t.name !== p.name) ||
+        (t.name == p.name && t.progbar.num_done != p.progbar.num_done) ||
+        (t.name == p.name && t.category != p.category) ||
+        (t.name == p.name && t.due_date != p.due_date)
+      )
+    );
+    //remove it from archived database
+    localStorage.setItem('archivedProjects', JSON.stringify(this.archprojects));
+    //switch sort mode to custom
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    userPrefs.sort_type = "by_custom";
+    localStorage.setItem("userPrefs",JSON.stringify(userPrefs));
+  }
 }

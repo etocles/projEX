@@ -1,7 +1,7 @@
 <!-- <button (click)="NotificationService()">click to notification service</button> -->
 <input type="text" [(ngModel)]="search_filter" class="search-bar" placeholder="Search by category or project name here"/>
 <app-add-project (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-project>
-<button (click)="openArchiveForm()">Testing</button>
+<!-- <button (click)="openArchiveForm()">Testing</button> -->
 <p *ngIf="projects.length==0" class="hint-text">
     Looks like you don't have any projects started yet. Click the "+" above to add one!
 </p>

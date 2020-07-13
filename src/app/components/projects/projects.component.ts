@@ -87,7 +87,6 @@ export class ProjectsComponent implements OnInit {
     }
     /* SORT PROJECTS */
     this.sortProjects(userPrefs.sort_type);
-    // this.openArchiveForm();
 
     /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/ // TODO: set this to scale with a userpreference
     setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
@@ -158,9 +157,8 @@ export class ProjectsComponent implements OnInit {
   openArchiveForm(){
     if (!this.overlayRef.hasAttached()) {
       this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
-
       this.overlayRef.backdropClick().subscribe(_ => this.overlayRef.detach());
-      this.formComponentRef.instance.closePanel.subscribe(() => { this.overlayRef.detach() })
+      this.formComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
     } else { //close the panel if the plus button is clicked again
       this.overlayRef.detach();
     }
@@ -324,6 +322,7 @@ export class ProjectsComponent implements OnInit {
 
   revertToBackup(){
     localStorage.removeItem('projArray');
+    localStorage.removeItem('archivedProjects');
 
     let proj1 = new Project('Homework 7','FOCS',5);
     proj1.due_date.setHours(23);
