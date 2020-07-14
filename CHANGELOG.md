@@ -7,11 +7,10 @@
 - Alternate Views
 - Full implementation of undo/redo
 - File/Edit/View/Help toolbar needs customizing
+  - Add more options to the menu bar (Help, View, etc.)
 - Archived Projects can be viewed from menu bar
 - Settings Page to modify UserPrefs
 - Max amount of archived projects can be changed
-- Implementation of Undo/Redo
-- Add more options to the menu bar (Help, View, etc.)
 
 
 ### Beta 0.1.0
