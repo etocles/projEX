@@ -15,13 +15,16 @@
 
 
 ### Beta 0.1.0
+#### July 14, 2020
+<details> <summary>Click to Expand</summary>
+<p>
+
+#### FEATURES
 - Sort by uncompleted first (also sorts by due-date)
-- Fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
 - Clicking notification opens app
-- Soon meter doesn't show up when project is completed
+- Soon meter no longer shows when project is completed
 - Completion of project depends on benchmarks, not a button
   - Button now does nothing
-- Changed the benchmark form proportions in addPanel
 - File/Edit/View/Help bar begins implementation
 - Added Delay to tooltips
 - Dark Mode/Light Mode
@@ -34,18 +37,28 @@
     - ONLY benchmark due date notifications
     - BOTH project + benchmark due date notifications (Default)
 - Search bar for easier finding of projects
-- Fixed other minor bugs from previous version
 - Invisible notification service
 - Archiving benchmarks when deleted so that they can be brought back
 - Archive pop-up
+
+
+#### BUGS
+- Changed the benchmark form proportions in addPanel
+- Completion bug fixed
+- Fix bug of going over 100 by clicking title of a nested benchmark (adding 1 to numDone when should add .2 )
+- Fixed other minor bugs from previous version
 - Fixed multi-deleting bug
 - Fixed date changing bug
 
+</p>
+</details>
 
 
 ### Beta 0.0.0
-<details><summary></summary>
+#### June 12, 2020
+<details> <summary>Click to Expand</summary>
 <p>
+
 #### FEATURES
 - Projects added
   - have a name
@@ -93,7 +106,7 @@
 #### BUGS
 - Notification titles
 - Help menu sends to wrong place
-- Notifications every 30 menu
+- Notifications every 30 mins
 - Notification criteria
 - Question mark on the project adding form is not clear.
   - Delay is too long
