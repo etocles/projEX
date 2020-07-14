@@ -38,6 +38,8 @@
 - Invisible notification service
 - Archiving benchmarks when deleted so that they can be brought back
 - Archive pop-up
+- Fixed multi-deleting bug
+- Fixed date changing bug
 
 
 

@@ -104,7 +104,15 @@ export class ProjectsComponent implements OnInit {
   deleteProj(proj:Project){
     //Removes from UI
     //returns all projects that are not the specified id in the UI
-    this.projects = this.projects.filter(p => p.name !== proj.name);
+    this.projects = this.projects.filter(
+      p => (
+        (p.name !== proj.name) ||
+        (p.name == proj.name && p.progbar.num_done != proj.progbar.num_done) ||
+        (p.name == proj.name && p.category != proj.category) ||
+        (p.name == proj.name && p.due_date != proj.due_date)
+      )
+    );
+
 
     // let archivedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
     if (localStorage.getItem("archivedProjects") == null){

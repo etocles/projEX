@@ -117,12 +117,17 @@ export class EditingDropdownComponent implements OnInit {
       if (a.due_date < b.due_date) return 1; //first argument is greater (placed after second one)
       return 0; //if a==b
     })
+    // console.log(dateSetter[0].title, dateSetter[0].due_date);
     var refDate = new Date(dateSetter[0].due_date);
+    // console.log("Override happening: ",refDate > this.proj.due_date);
+    // console.log("old due date:", this.proj.due_date);
     if (refDate > this.proj.due_date) this.proj.due_date = refDate;
+    // console.log("new due date:", this.proj.due_date);
+
     return benchmarksCopy;
   }
 
-  timeAdjust(date,event){
+  timeAdjust(date,event):Date{
     date = new Date(date); //original benchmark due-date, unchanged
     // TODO: add something that auto-initializes to 11:59 pm if time breaks
     if (event.includes("-")){ //date was changed
@@ -138,7 +143,6 @@ export class EditingDropdownComponent implements OnInit {
   }
 
   dateOverride(event){
-
     var dateSetter = [...this.benchmarks];
     //sort it so that the 0th index is the furthestmost date
     dateSetter.sort(function(a,b){
@@ -148,6 +152,8 @@ export class EditingDropdownComponent implements OnInit {
     })
     let refDate = new Date(dateSetter[0].due_date)
     let newProjDate = new Date(event.srcElement.value);
+    // console.log(dateSetter[0].title, refDate);
+    // console.log("Confirm should trigger: ",refDate.getTime() > newProjDate.getTime());
 
     // console.dir(newProjDate);
     // console.dir(refDate);
@@ -156,6 +162,7 @@ export class EditingDropdownComponent implements OnInit {
     // console.log(refDate > newProjDate);
 
     if (refDate.getTime() > newProjDate.getTime()){
+      // console.log("confirm did trigger");
       let ans = confirm("The date that you have chosen is earlier than (a benchmarks) due date. \nWould you like to change all of the benchmarks to have this due date?");
       if (ans == false) return; //if user clicks cancel, abandon changing project duedate.
       for (let i = 0; i < this.benchmarks.length; i++){
