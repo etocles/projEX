@@ -1,6 +1,8 @@
 # Changelog
 
 ### Upcoming Changes for Next Patch
+- Perma-Delete from archive
+- New Defaults for Benchmark Names
 - Import project from text
 - Notification disappears in 30 mins
 - Importance; change how importance is figured out
