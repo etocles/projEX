@@ -4,7 +4,8 @@ import { CdkDragDrop, moveItemInArray } from '@angular/cdk/drag-drop';
 
 import { Overlay, PositionStrategy, OverlayRef, ScrollStrategyOptions, OverlayConfig } from '@angular/cdk/overlay';
 import { ComponentPortal} from '@angular/cdk/portal';
-import { ArchiveFormComponent } from 'src/app/components/archive-form/archive-form.component'; // TODO: replace this with an archive popup
+import { ArchiveFormComponent } from 'src/app/components/archive-form/archive-form.component';
+import { PreferencesFormComponent } from 'src/app/components/preferences-form/preferences-form.component';
 
 import { Project, ProgressBar, NestedBar, Part } from '../../models/ProjectClasses';
 import { AddProjectComponent }  from '../add-project/add-project.component';
@@ -30,6 +31,11 @@ export class ProjectsComponent implements OnInit {
   archiveFormComponentPortal: ComponentPortal<ArchiveFormComponent>;
   archiveFormComponentRef: any;
 
+  /*variables used for making preferences window*/
+  preferencesOverlayRef: OverlayRef;
+  preferencesFormComponentPortal: ComponentPortal<PreferencesFormComponent>;
+  preferencesFormComponentRef: any;
+
   private ipc: IpcRenderer
   constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
     //adds electron api
@@ -48,6 +54,25 @@ export class ProjectsComponent implements OnInit {
   ngOnInit(): void {
     //uncomment this to revert to backup
     // this.revertToBackup();
+
+    /*creates infrastructure for overlay*/
+    this.archiveOverlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      scrollStrategy: this.sso.close(),
+      width: 600,
+      height: 600,
+    });
+    this.archiveFormComponentPortal = new ComponentPortal(ArchiveFormComponent)
+    /*creates infrastructure for overlay*/
+    this.preferencesOverlayRef = this.overlay.create({
+      hasBackdrop: true,
+      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
+      scrollStrategy: this.sso.close(),
+      width: 600,
+      height: 600,
+    });
+    this.preferencesFormComponentPortal = new ComponentPortal(PreferencesFormComponent)
 
     this.search_filter = '';
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
@@ -92,7 +117,8 @@ export class ProjectsComponent implements OnInit {
       console.log("redo donezo")
       /* redo stuff here */
     });
-    this.ipc.on('openArchive',() => { this.openArchiveForm() });
+    this.ipc.on('openArchive',() => { this.openArchiveForm(); this.ipc.send("ArchiveOpened"); console.log("%c sent signal to open archive",'color:blue'); });
+    this.ipc.on('openSettings',() => { this.openPreferencesForm(); this.ipc.send("ArchiveOpened"); console.log("%c sent signal to open archive",'color:blue'); });
 
     this.sendViewMode(); //send user's preference of view mode to main process
 
@@ -152,23 +178,25 @@ export class ProjectsComponent implements OnInit {
   }
 
   openArchiveForm(){
-    /*creates infrastructure for overlay*/
-    this.archiveOverlayRef = this.overlay.create({
-      hasBackdrop: true,
-      positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
-      scrollStrategy: this.sso.close(),
-      width: 600,
-      height: 600,
-    });
-    this.archiveFormComponentPortal = new ComponentPortal(ArchiveFormComponent)
-
     if (!this.archiveOverlayRef.hasAttached()) {
       this.archiveFormComponentRef = this.archiveOverlayRef.attach(this.archiveFormComponentPortal);
       this.archiveOverlayRef.backdropClick().subscribe(_ => this.archiveOverlayRef.detach());
-      this.archiveFormComponentRef.instance.inputtedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
       this.archiveFormComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
+      console.log("%c archive attached",'color:green');
     } else { //close the panel if the plus button is clicked again
+      console.log("%c archive detached",'color:red');
       this.archiveOverlayRef.detach();
+    }
+  }
+
+  openPreferencesForm(){
+    if (!this.preferencesOverlayRef.hasAttached()) {
+      this.preferencesFormComponentRef = this.preferencesOverlayRef.attach(this.preferencesFormComponentPortal);
+      this.preferencesOverlayRef.backdropClick().subscribe(_ => this.preferencesOverlayRef.detach());
+      console.log("%c preferences attached",'color:green');
+    } else { //close the panel if the plus button is clicked again
+      console.log("%c preferences detached",'color:red');
+      this.preferencesOverlayRef.detach();
     }
   }
 

@@ -8,7 +8,6 @@ import { Project } from '../../models/ProjectClasses';
 })
 export class ArchiveFormComponent implements OnInit {
   @Output() restoreProject: EventEmitter<void> = new EventEmitter();
-  @Input() inputtedProjects: Project[];
   archprojects: Project[];
 
   constructor() {
