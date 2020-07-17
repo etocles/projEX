@@ -6,7 +6,9 @@
 - New Defaults for Benchmark Names
 - Import project from text
 - Notification disappears in 30 mins
-- Importance; change how importance is figured out
+- Importance
+  - implement an actual hash
+  - implement a way to change it in the settings page 
 - Alternate Views
 - Full implementation of undo/redo
 - File/Edit/View/Help toolbar needs customizing
@@ -21,6 +23,7 @@
   - default benchmark names
   - default project name
 - Removed "Complete" button
+- Add Context Menu (create project from another project)
 
 
 

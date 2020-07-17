@@ -74,21 +74,35 @@ function createApplicationMenu(){
       submenu: [
         {
           label:"Undo",
+          accelerator: "CmdOrCtrl+Z",
           click(){
-            mainWindow.webContents.send('undoAction')
+            mainWindow.webContents.send('undoAction');
           }
         },
         {
           label:"Redo",
+          accelerator: "CmdOrCtrl+Y",
           click(){
-            mainWindow.webContents.send('redoAction')
+            mainWindow.webContents.send('redoAction');
           }
         },
         {
-          label:"Open Archive",
+          type:"separator"
+        },
+        {
+          label:"Archived Projects",
           click() {
             mainWindow.webContents.send('openArchive');
           }
+        },
+        {
+          label:"Settings",
+          click() {
+            mainWindow.webContents.send('openSettings');
+          }
+        },
+        {
+          type:"separator"
         },
         {
           label:"Quit",

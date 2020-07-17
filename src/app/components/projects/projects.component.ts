@@ -86,9 +86,11 @@ export class ProjectsComponent implements OnInit {
     this.ipc.on('DarkModeEnable', () => { this.toggleTheme("dark_mode") });
 
     this.ipc.on('undoAction', () => {
+      console.log("undo donezo")
       /* undo stuff here */
     });
     this.ipc.on('redoAction', () => {
+      console.log("redo donezo")
       /* redo stuff here */
     });
     this.ipc.on('openArchive',() => { this.openArchiveForm() });
