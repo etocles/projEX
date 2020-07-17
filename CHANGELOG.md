@@ -12,14 +12,16 @@
 - File/Edit/View/Help toolbar needs customizing
   - Add more options to the menu bar (Help, View, etc.)
 - Archived Projects can be viewed from menu bar
-- Settings Page to modify UserPrefs
-- Max amount of archived projects can be changed
-- Removed "Complete" button
-- Add way more to userPrefs (maybe change the way user prefs are stored?)
+- Settings Page to modify UserPrefs:
+  - Default Project Name
+  - Default Category Name
+  - Default Benchmark Name
   - notification time interval
   - max archived projects number
   - default benchmark names
   - default project name
+- Removed "Complete" button
+
 
 
 ### Beta 0.1.0

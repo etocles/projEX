@@ -28,6 +28,10 @@ export class AddFormComponent implements OnInit {
     this.proj = null; //upon form creation, there should be no project
     this.benchmarks = [];
     this.today = new Date(Date.now());
+
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    if ('defaultProjectName' in userPrefs) this.name = userPrefs.defaultProjectName;
+    if ('defaultCategoryName' in userPrefs) this.name = userPrefs.defaultCategoryName;
   }
 
   createProject(){
@@ -63,7 +67,10 @@ export class AddFormComponent implements OnInit {
   }
 
   addBench(){
-    this.benchmarks.push(new Bench(this.benchmarks.length,this.date));
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    let benchToAdd = new Bench(this.benchmarks.length,this.date);
+    if ('defaultBenchName' in userPrefs) benchToAdd.title = userPrefs.defaultBenchName + benchToAdd.id;
+    this.benchmarks.push(benchToAdd);
   }
 
   delBench(event){
