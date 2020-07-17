@@ -40,4 +40,18 @@ export class ArchiveFormComponent implements OnInit {
     userPrefs.sort_type = "by_custom";
     localStorage.setItem("userPrefs",JSON.stringify(userPrefs));
   }
+
+  deleteProj(p){
+    let ans = confirm("Are you sure you want to permanently delete "+p.name+ "?");
+    if (!ans) return;
+    this.archprojects = this.archprojects.filter(
+      t => (
+        (t.name !== p.name) ||
+        (t.name == p.name && t.progbar.num_done != p.progbar.num_done) ||
+        (t.name == p.name && t.category != p.category) ||
+        (t.name == p.name && t.due_date != p.due_date)
+      )
+    );
+    localStorage.setItem('archivedProjects', JSON.stringify(this.archprojects));
+  }
 }

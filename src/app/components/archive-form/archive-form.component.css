@@ -41,6 +41,11 @@ h1{
   cursor:pointer;
 }
 
+.delete-btn{
+  flex:0;
+  cursor:pointer;
+}
+
 .benchmark-names{
   flex-flow: wrap;
   padding-left: 4%;
