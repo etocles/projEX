@@ -2,6 +2,7 @@
 
 ### Upcoming Changes for Next Patch
 - Perma-Delete from archive
+  - Confirms before deleting
 - New Defaults for Benchmark Names
 - Import project from text
 - Notification disappears in 30 mins
@@ -13,6 +14,12 @@
 - Archived Projects can be viewed from menu bar
 - Settings Page to modify UserPrefs
 - Max amount of archived projects can be changed
+- Removed "Complete" button
+- Add way more to userPrefs (maybe change the way user prefs are stored?)
+  - notification time interval
+  - max archived projects number
+  - default benchmark names
+  - default project name
 
 
 ### Beta 0.1.0

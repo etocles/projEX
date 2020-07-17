@@ -21,7 +21,7 @@ export class AddFormComponent implements OnInit {
   ngOnInit(): void {
     // TODO: add a create from template option
     this.name = "New Project";
-    this.category = "New Category"; // TODO: change this into a dropdown
+    this.category = "New Category";
     this.date = new Date(Date.now());
     this.date.setHours(23,59)
     this.order = true

@@ -9,6 +9,7 @@
           {{p.name}}, {{p.category | uppercase}}, {{p.progbar.num_done/p.progbar.benchmarks.length*100 | number:'1.0-0'}}%
         </p>
         <mat-icon class="restore-btn" (click)="restoreProj(p)">undo</mat-icon>
+        <mat-icon class="delete-btn" (click)="deleteProj(p)">delete</mat-icon>
       </div>
       <hr />
       <div class="benchmark-names">
