@@ -21,6 +21,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EditingDropdownComponent } from './components/editing-dropdown/editing-dropdown.component';
 import { AddFormComponent } from './components/add-form/add-form.component';
 import { ArchiveFormComponent } from './components/archive-form/archive-form.component';
+import { PreferencesFormComponent } from './components/preferences-form/preferences-form.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { ArchiveFormComponent } from './components/archive-form/archive-form.com
     PartComponent,
     EditingDropdownComponent,
     AddFormComponent,
-    ArchiveFormComponent
+    ArchiveFormComponent,
+    PreferencesFormComponent
   ],
   imports: [
     BrowserModule,

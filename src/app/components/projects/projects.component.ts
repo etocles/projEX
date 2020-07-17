@@ -26,10 +26,9 @@ export class ProjectsComponent implements OnInit {
   search_filter: string;
 
   /*variables used for making archive window*/
-  overlayRef: OverlayRef;
-  overlayPosition: PositionStrategy;
-  formComponentPortal: ComponentPortal<ArchiveFormComponent>;
-  formComponentRef: any;
+  archiveOverlayRef: OverlayRef;
+  archiveFormComponentPortal: ComponentPortal<ArchiveFormComponent>;
+  archiveFormComponentRef: any;
 
   private ipc: IpcRenderer
   constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
@@ -154,22 +153,22 @@ export class ProjectsComponent implements OnInit {
 
   openArchiveForm(){
     /*creates infrastructure for overlay*/
-    this.overlayRef = this.overlay.create({
+    this.archiveOverlayRef = this.overlay.create({
       hasBackdrop: true,
       positionStrategy: this.overlay.position().global().centerHorizontally().centerVertically(),
       scrollStrategy: this.sso.close(),
       width: 600,
       height: 600,
     });
-    this.formComponentPortal = new ComponentPortal(ArchiveFormComponent)
+    this.archiveFormComponentPortal = new ComponentPortal(ArchiveFormComponent)
 
-    if (!this.overlayRef.hasAttached()) {
-      this.formComponentRef = this.overlayRef.attach(this.formComponentPortal);
-      this.overlayRef.backdropClick().subscribe(_ => this.overlayRef.detach());
-      this.formComponentRef.instance.inputtedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
-      this.formComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
+    if (!this.archiveOverlayRef.hasAttached()) {
+      this.archiveFormComponentRef = this.archiveOverlayRef.attach(this.archiveFormComponentPortal);
+      this.archiveOverlayRef.backdropClick().subscribe(_ => this.archiveOverlayRef.detach());
+      this.archiveFormComponentRef.instance.inputtedProjects = JSON.parse(localStorage.getItem("archivedProjects"));
+      this.archiveFormComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
     } else { //close the panel if the plus button is clicked again
-      this.overlayRef.detach();
+      this.archiveOverlayRef.detach();
     }
   }
 
