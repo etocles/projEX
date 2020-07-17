@@ -47,13 +47,13 @@ function createWindow () {
     createApplicationMenu();
   });
 
-  ipcMain.on('ArchiveOpened', function(event , data){
+  ipcMain.on('PortalOpened', function(event , data){
     mainWindow.webContents.openDevTools();
-    console.log("%c opening tools",'color:yellow');
+    // console.log("%c opening tools",'color:yellow');
     setTimeout( function() {
       mainWindow.webContents.closeDevTools();
-      console.log("%c closing tools",'color:yellow');
-    }, 800) //wait 300ms and then close it
+      // console.log("%c closing tools",'color:yellow');
+    }, 500) //wait 300ms and then close it
   });
 
 }

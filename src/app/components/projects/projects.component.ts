@@ -117,8 +117,16 @@ export class ProjectsComponent implements OnInit {
       console.log("redo donezo")
       /* redo stuff here */
     });
-    this.ipc.on('openArchive',() => { this.openArchiveForm(); this.ipc.send("ArchiveOpened"); console.log("%c sent signal to open archive",'color:blue'); });
-    this.ipc.on('openSettings',() => { this.openPreferencesForm(); this.ipc.send("ArchiveOpened"); console.log("%c sent signal to open archive",'color:blue'); });
+    this.ipc.on('openArchive',() => {
+      this.openArchiveForm();
+      this.ipc.send("PortalOpened");
+      // console.log("%c sent signal to open tools",'color:blue');
+    });
+    this.ipc.on('openSettings',() => {
+      this.openPreferencesForm();
+      this.ipc.send("PortalOpened");
+      // console.log("%c sent signal to open tools",'color:blue');
+    });
 
     this.sendViewMode(); //send user's preference of view mode to main process
 
@@ -182,9 +190,9 @@ export class ProjectsComponent implements OnInit {
       this.archiveFormComponentRef = this.archiveOverlayRef.attach(this.archiveFormComponentPortal);
       this.archiveOverlayRef.backdropClick().subscribe(_ => this.archiveOverlayRef.detach());
       this.archiveFormComponentRef.instance.restoreProject.subscribe(() => { this.addProj(); });
-      console.log("%c archive attached",'color:green');
+      // console.log("%c archive attached",'color:green');
     } else { //close the panel if the plus button is clicked again
-      console.log("%c archive detached",'color:red');
+      // console.log("%c archive detached",'color:red');
       this.archiveOverlayRef.detach();
     }
   }
@@ -193,9 +201,9 @@ export class ProjectsComponent implements OnInit {
     if (!this.preferencesOverlayRef.hasAttached()) {
       this.preferencesFormComponentRef = this.preferencesOverlayRef.attach(this.preferencesFormComponentPortal);
       this.preferencesOverlayRef.backdropClick().subscribe(_ => this.preferencesOverlayRef.detach());
-      console.log("%c preferences attached",'color:green');
+      // console.log("%c preferences attached",'color:green');
     } else { //close the panel if the plus button is clicked again
-      console.log("%c preferences detached",'color:red');
+      // console.log("%c preferences detached",'color:red');
       this.preferencesOverlayRef.detach();
     }
   }
