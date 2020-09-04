@@ -36,6 +36,8 @@ export class ProjectsComponent implements OnInit {
   preferencesFormComponentPortal: ComponentPortal<PreferencesFormComponent>;
   preferencesFormComponentRef: any;
 
+  notification_list: any[];
+
   private ipc: IpcRenderer
   constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
     //adds electron api
@@ -451,23 +453,21 @@ export class ProjectsComponent implements OnInit {
         '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
         '\nThe next benchmark you have to get done is: ' + b.title + '.'
         myNotification = new window.Notification(notification.title, notification)
-        //try pushing this to an array
       }
       if (bSoon && this.notify_type == "bench"){
         notification.title = `Benchmark ${b.title} of ${p.name} due soon!`;
         notification.body = b.SoonMeter() + ' REMAINING to finish this benchmark!'
         myNotification = new window.Notification(notification.title, notification)
-        //try pushing this to an array
       }
       if (bSoon && this.notify_type == "proj_and_bench"){
         notification.title = `Project ${p.name} has a pressing benchmark!`;
         notification.body = (p.SoonMeter()=="") ? `The next benchmark you have to get done is: ${b.title}.` : `${p.name} is due in ${p.SoonMeter()} \n` + `The next benchmark you have to get done is: ${b.title}.`
         myNotification = new window.Notification(notification.title, notification)
-        //try pushing this to an array
       }
       // if(!pSoon || !bSoon) continue;
 
       myNotification.onclick = () => { this.ipc.send("notifClicked"); }
+      this.notification_list.push(myNotification);
     }
   }
 

@@ -1,5 +1,53 @@
 <div id = "panel">
   <h1>Settings</h1>
   <br />
-  <br />
+  <form #form="ngForm">
+
+
+    <select name="sorting_name"  size="1" [(ngModel)]="sort_type">
+      <option value="by_importance">Importance (Default)</option>
+      <option value="by_custom">Custom</option>
+      <option value="completed_first">Not Completed</option>
+      <option value="not_completed_first">Completed</option>
+      <option value="by_due_date">Due Date</option>
+      <option value="by_category">Category</option>
+      <option value="by_alpha">A-Z</option>
+      <option value="by_rev_alpha">Z-A</option>
+    </select>
+
+    <select name="light_or_dark" size="1" [(ngModel)]="view_mode">
+      <option value="light_mode">Light Mode (Default)</option>
+      <option value="dark_mode">Dark Mode</option>
+    </select>
+
+    <select name="notif_type" size="1" [(ngModel)]="notification_type">
+      <option value="proj_and_bench">Project and Benchmark Alerts</option>
+      <option value="proj">Project Alerts</option>
+      <option value="bench">Benchmark Alerts</option>
+    </select>
+
+    <input name="frequency" type="number" [(ngModel)]="notification_frequency" />
+
+
+    <h3>Optional Settings</h3>
+
+    <input name="def_proj_name" [(ngModel)]="default_project_name" />
+    <input name="def_cat_name" [(ngModel)]="default_category_name" />
+    <input name="def_bench_name" [(ngModel)]="default_benchmark_name" />
+
+    <button type="submit"  [disabled]="!form.dirty" (submit)="updateUserPrefs">Save</button>
+  </form>
 </div>
+
+
+<!-- - Settings Page to modify UserPrefs:
+  - Default Project Name
+  - Default Category Name
+  - Default Benchmark Name
+  - notification time interval
+  - max archived projects number
+  - default benchmark names
+  - default project name
+- Importance
+  - implement an actual hash
+  - implement a way to change it in the settings page  -->
