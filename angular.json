@@ -122,5 +122,8 @@
       }
     }
   },
-  "defaultProject": "projex"
+  "defaultProject": "projex",
+  "cli": {
+    "analytics": false
+  }
 }
