@@ -82,7 +82,7 @@ export class ProjectsComponent implements OnInit {
       //default user preferences:
       let prefs = {"sort_type":"by_due_date",
                    "view_mode":"light_mode",
-                   "notification_frequency":"60",
+                   "notification_frequency":"15",
                    "notification_type":"proj_and_bench"};
       localStorage.setItem("userPrefs",JSON.stringify(prefs));
     }
