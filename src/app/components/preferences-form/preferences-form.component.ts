@@ -38,6 +38,7 @@ export class PreferencesFormComponent implements OnInit {
       "default_category_name": this.default_category_name,
       "default_benchmark_name": this.default_benchmark_name
     };
+    localStorage.setItem("userPrefs",JSON.stringify(prefs));
     //remove dirty tag on form
   }
 

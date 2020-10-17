@@ -37,6 +37,7 @@ export class ProjectsComponent implements OnInit {
   preferencesFormComponentRef: any;
 
   notifs_: any[];
+  notif_service: any;
 
   private ipc: IpcRenderer
   constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
@@ -106,7 +107,7 @@ export class ProjectsComponent implements OnInit {
     this.sortProjects(userPrefs.sort_type);
 
     /* START NOTIFICATIONS AT USER DEFINED INTERVAL*/ // TODO: set this to scale with a userpreference
-    setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
+    this.notif_service = setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
 
     /* SUBSCRIBE TO LightMode/DarkMode toggle from menu */
     this.ipc.on('LightModeEnable', () => { this.toggleTheme("light_mode") });
@@ -203,10 +204,14 @@ export class ProjectsComponent implements OnInit {
   openPreferencesForm(){
     if (!this.preferencesOverlayRef.hasAttached()) {
       this.preferencesFormComponentRef = this.preferencesOverlayRef.attach(this.preferencesFormComponentPortal);
-      this.preferencesOverlayRef.backdropClick().subscribe(_ => this.preferencesOverlayRef.detach());
+      this.preferencesOverlayRef.backdropClick().subscribe(_ => {
+        this.restartNotificationService();
+        this.preferencesOverlayRef.detach();
+      });
       // console.log("%c preferences attached",'color:green');
     } else { //close the panel if the plus button is clicked again
       // console.log("%c preferences detached",'color:red');
+      this.restartNotificationService();
       this.preferencesOverlayRef.detach();
     }
   }
@@ -227,6 +232,13 @@ export class ProjectsComponent implements OnInit {
     //   }
     //   else e.innerHTML = e.title;
     // }
+  }
+
+  restartNotificationService(){
+    clearInterval(this.notif_service)
+    let userPrefs = JSON.parse(localStorage.getItem("userPrefs"));
+    this.notif_service = setInterval(this.NotificationService, userPrefs.notification_frequency * 60 * 1000);
+    this.NotificationService()
   }
 
   toggleTheme(type:string){

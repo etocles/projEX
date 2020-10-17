@@ -35,7 +35,7 @@
     <input name="def_cat_name" [(ngModel)]="default_category_name" />
     <input name="def_bench_name" [(ngModel)]="default_benchmark_name" />
 
-    <button type="submit"  [disabled]="!form.dirty" (submit)="updateUserPrefs">Save</button>
+    <button type="submit" (submit)="updateUserPrefs">Save</button>
   </form>
 </div>
 

@@ -8,7 +8,7 @@
 - Notification disappears in 30 mins
 - Importance
   - implement an actual hash
-  - implement a way to change it in the settings page 
+  - implement a way to change it in the settings page
 - Alternate Views
 - Full implementation of undo/redo
 - File/Edit/View/Help toolbar needs customizing
@@ -25,7 +25,20 @@
 - Removed "Complete" button
 - Add Context Menu (create project from another project)
 
+### Beta 0.1.2
+#### October 17, 2020
+<details> <summary>Click to Expand</summary>
+<p>
 
+#### FEATURES
+- Close and minimize automatically closes to tray
+  - Always running unless "Quit" through right clicking on tray or File>Quit
+- Only one instance of app can be open at once
+- No more "Completed" button
+- UserPrefs can be changed through preferences
+  - When the notification interval is changed through user preferences, the service restarts automatically
+</p>
+</details>
 
 ### Beta 0.1.0
 #### July 14, 2020
