@@ -465,7 +465,7 @@ export class ProjectsComponent implements OnInit {
         myNotification = new window.Notification(notification.title, notification)
       }
       // if(!pSoon || !bSoon) continue;
-
+      myNotification.show()
       myNotification.onclick = () => { this.ipc.send("notifClicked"); }
       this.notification_list.push(myNotification);
     }
