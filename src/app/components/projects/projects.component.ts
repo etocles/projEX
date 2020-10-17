@@ -466,7 +466,11 @@ export class ProjectsComponent implements OnInit {
       }
       // if(!pSoon || !bSoon) continue;
       myNotification.show()
-      myNotification.onclick = () => { this.ipc.send("notifClicked"); }
+      myNotification.onclick = () => {
+        this.ipc.send("notifClicked");
+        myNotification.close();
+        this.notification_list.filter(t=> t != myNotification)
+      };
       this.notification_list.push(myNotification);
     }
   }
