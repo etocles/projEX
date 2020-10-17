@@ -2,6 +2,12 @@ const {app, BrowserWindow, screen, ipcMain, ipcRenderer, Menu, MenuItem, Tray} =
 const url = require("url");
 const path = require("path");
 
+const gotTheLock = app.requestSingleInstanceLock()
+
+if (!gotTheLock) {
+  app.quit()
+}
+
 let mainWindow;
 let viewMode;
 let isQuiting;
@@ -41,6 +47,15 @@ function createWindow () {
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
+
+  //handling multiple instances
+  app.on('second-instance', (event) => {
+    // Someone tried to run a second instance, we should focus our window.
+    if (mainWindow) {
+      if (mainWindow.isMinimized()) mainWindow.restore()
+      mainWindow.focus()
+    }
+  })
 
   //handling closing
   // mainWindow.on('closed', function () {
