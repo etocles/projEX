@@ -1,9 +1,11 @@
-const {app, BrowserWindow, screen, ipcMain, ipcRenderer, Menu, MenuItem} = require('electron');
+const {app, BrowserWindow, screen, ipcMain, ipcRenderer, Menu, MenuItem, Tray} = require('electron');
 const url = require("url");
 const path = require("path");
 
 let mainWindow;
 let viewMode;
+let isQuiting;
+let appTray;
 
 function createWindow () {
   const size = screen.getPrimaryDisplay().workAreaSize;
@@ -24,9 +26,16 @@ function createWindow () {
     })
   );
 
+  /*
+  ################ EVENT HANDLING ###################
+  */
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
+
+  app.on('before-quit', function () {
+    isQuiting = true;
+  });
 
   // console.log(mainWindow.webContents);
 
@@ -34,8 +43,25 @@ function createWindow () {
   // mainWindow.webContents.openDevTools()
 
   //handling closing
-  mainWindow.on('closed', function () {
-    mainWindow = null
+  // mainWindow.on('closed', function () {
+  //   mainWindow = null
+  // })
+
+  //alternate closing handler for tray
+  mainWindow.on('close', function (event) {
+    if (!isQuiting) {
+      event.preventDefault();
+      if (!appTray) createAppTray();
+      mainWindow.hide();
+      event.returnValue = false;
+    }
+  });
+
+  //handling minimize for tray
+  mainWindow.on('minimize', function (event) {
+      event.preventDefault()
+      if (!appTray) createAppTray()
+      mainWindow.hide()
   })
   //making application pop up when notification is clicked
   ipcMain.on('notifClicked', () => {
@@ -54,6 +80,11 @@ function createWindow () {
       mainWindow.webContents.closeDevTools();
       // console.log("%c closing tools",'color:yellow');
     }, 500) //wait 300ms and then close it
+  });
+
+  //if everything quits, make sure to clean up the ProjEx tray Icon
+  app.on('window-all-closed', function (event) {
+    if (appTray) appTray.destroy();
   });
 
 }
@@ -171,4 +202,28 @@ function createApplicationMenu(){
 
   const menu = Menu.buildFromTemplate(template);
   Menu.setApplicationMenu(menu);
+}
+
+function createAppTray(){
+  /*
+  ################ TRAY CREATION ###################
+  */
+  appTray = new Tray(path.join(__dirname, `/PJX_5.png`));
+  var contextMenu = Menu.buildFromTemplate([
+    {
+        label: 'Show App', click: function () {
+            mainWindow.show()
+        }
+    },
+    {
+        label: 'Quit', click: function () {
+            isQuiting = true
+            app.quit()
+        }
+    }
+  ]);
+  appTray.setContextMenu(contextMenu)
+  appTray.on('click', function (event) {
+    mainWindow.show();
+  });
 }
