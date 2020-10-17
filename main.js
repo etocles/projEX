@@ -94,7 +94,7 @@ function createWindow () {
     setTimeout( function() {
       mainWindow.webContents.closeDevTools();
       // console.log("%c closing tools",'color:yellow');
-    }, 500) //wait 300ms and then close it
+    }, 300) //wait 300ms and then close it
   });
 
   //if everything quits, make sure to clean up the ProjEx tray Icon

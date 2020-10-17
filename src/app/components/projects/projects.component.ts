@@ -36,7 +36,7 @@ export class ProjectsComponent implements OnInit {
   preferencesFormComponentPortal: ComponentPortal<PreferencesFormComponent>;
   preferencesFormComponentRef: any;
 
-  notification_list: any[];
+  notifs_: any[];
 
   private ipc: IpcRenderer
   constructor(private overlay: Overlay, private readonly sso: ScrollStrategyOptions) {
@@ -77,6 +77,7 @@ export class ProjectsComponent implements OnInit {
     this.preferencesFormComponentPortal = new ComponentPortal(PreferencesFormComponent)
 
     this.search_filter = '';
+    this.notifs_ = [];
     if(localStorage.getItem("userPrefs") == null){ //on first bootup, initialize default user preferences
       //default user preferences:
       let prefs = {"sort_type":"by_due_date",
@@ -399,6 +400,11 @@ export class ProjectsComponent implements OnInit {
   }
 
   NotificationService(){
+    //clear last array of notifications
+    for (let i = 0; i < this.notifs_.length; i++){
+      this.notifs_[i].close()
+    }
+    this.notifs_ = []
     //because this is working at the window context, it has to remake the projects array and then iterate through it to send notifications
     let projs = JSON.parse(localStorage.getItem('projArray'));
     let ps = []
@@ -438,40 +444,44 @@ export class ProjectsComponent implements OnInit {
       let p = ps[i];
       let b = p.UpcomingBenchmark();
       if (p.completed) continue;
-      let pSoon = p.SoonMeter().includes("HOURS") || p.SoonMeter().includes("MINUTES");
-      let bSoon = b.SoonMeter().includes("HOURS") || b.SoonMeter().includes("MINUTES");
-      var notification = {
+      let pSoon = p.SoonMeter() != "";
+      let bSoon = b.SoonMeter() != "";
+      var data = {
         timeoutType: 'never',
         icon: '../../PJX_5.png',
         title: '',
-        body: ''
+        body: '',
+        tag: this.notifs_.length.toString(),
+        // renotify: true,
+        // requireInteraction:true,
       }
-      let myNotification;
+      let should_send = true
       if (pSoon && this.notify_type == "proj"){
-        notification.title = `Project ${p.name} due soon!`;
-        notification.body = p.SoonMeter() + ' REMAINING' +
+        data.title = `Project ${p.name} due soon!`;
+        data.body = p.SoonMeter() + ' REMAINING' +
         '\nYou are '+ Math.trunc(p.progbar.num_done/p.progbar.benchmarks.length*100)+'% done with '+ p.name + '.' +
         '\nThe next benchmark you have to get done is: ' + b.title + '.'
-        myNotification = new window.Notification(notification.title, notification)
       }
       if (bSoon && this.notify_type == "bench"){
-        notification.title = `Benchmark ${b.title} of ${p.name} due soon!`;
-        notification.body = b.SoonMeter() + ' REMAINING to finish this benchmark!'
-        myNotification = new window.Notification(notification.title, notification)
+        data.title = `Benchmark ${b.title} of ${p.name} due soon!`;
+        data.body = b.SoonMeter() + ' REMAINING to finish this benchmark!'
       }
       if (bSoon && this.notify_type == "proj_and_bench"){
-        notification.title = `Project ${p.name} has a pressing benchmark!`;
-        notification.body = (p.SoonMeter()=="") ? `The next benchmark you have to get done is: ${b.title}.` : `${p.name} is due in ${p.SoonMeter()} \n` + `The next benchmark you have to get done is: ${b.title}.`
-        myNotification = new window.Notification(notification.title, notification)
+        data.title = `Project ${p.name} has a pressing benchmark!`;
+        data.body = (p.SoonMeter()=="") ? `The next benchmark you have to get done is: ${b.title}.` : `${p.name} is due in ${p.SoonMeter()} \n` + `The next benchmark you have to get done is: ${b.title}.`
       }
-      // if(!pSoon || !bSoon) continue;
-      myNotification.show()
-      myNotification.onclick = () => {
+      else{
+        should_send = false
+      }
+      if(!should_send) continue;
+      const notif_to_send = new window.Notification(data.title, data)
+      //subscribe to events, including removing it from the list
+      notif_to_send.onclick = () => {
         this.ipc.send("notifClicked");
-        myNotification.close();
-        this.notification_list.filter(t=> t != myNotification)
+        notif_to_send.close();
+        this.notifs_.filter(t=> t.tag != notif_to_send.tag)
       };
-      this.notification_list.push(myNotification);
+      this.notifs_.push(notif_to_send);
     }
   }
 
