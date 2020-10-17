@@ -1,6 +1,6 @@
-<button (click)="NotificationService()">Notify!</button>
 <input type="text" [(ngModel)]="search_filter" class="search-bar" placeholder="Search by category or project name here"/>
 <app-add-project (addProj)="addProj()" (sort)="sortProjects($event)"></app-add-project>
+<button (click)="NotificationService()">Notify!</button>
 <button (click)="openArchiveForm()">Archived Projects</button>
 <button (click)="openPreferencesForm()">Settings</button>
 <p *ngIf="projects.length==0" class="hint-text">

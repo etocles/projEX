@@ -51,6 +51,11 @@ import { PreferencesFormComponent } from './components/preferences-form/preferen
     OverlayModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ArchiveFormComponent,
+    PreferencesFormComponent,
+    AddFormComponent
+  ]
 })
 export class AppModule { }
